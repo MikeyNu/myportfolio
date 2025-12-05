@@ -223,7 +223,7 @@ export function CreativeContactPage() {
 
         {/* Contact Methods */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
@@ -328,7 +328,7 @@ export function CreativeContactPage() {
           })}
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
           {/* Contact Info & Project Types */}
           <div className="space-y-8">
             {/* Direct Contact Card */}
@@ -464,7 +464,7 @@ export function CreativeContactPage() {
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -478,7 +478,8 @@ export function CreativeContactPage() {
                         value={formData.name}
                         onChange={(e) => handleInputChange('name', e.target.value)}
                         placeholder="Your full name"
-                        className="bg-input border-border focus:ring-accent"
+                        className="bg-input border-border focus:ring-accent min-h-[48px] text-base"
+                        autoComplete="name"
                       />
                     </motion.div>
                     
@@ -496,7 +497,9 @@ export function CreativeContactPage() {
                         value={formData.email}
                         onChange={(e) => handleInputChange('email', e.target.value)}
                         placeholder="your@email.com"
-                        className="bg-input border-border focus:ring-accent"
+                        className="bg-input border-border focus:ring-accent min-h-[48px] text-base"
+                        autoComplete="email"
+                        inputMode="email"
                       />
                     </motion.div>
                   </div>
@@ -513,11 +516,12 @@ export function CreativeContactPage() {
                       value={formData.company}
                       onChange={(e) => handleInputChange('company', e.target.value)}
                       placeholder="Your company or agency"
-                      className="bg-input border-border focus:ring-accent"
+                      className="bg-input border-border focus:ring-accent min-h-[48px] text-base"
+                      autoComplete="organization"
                     />
                   </motion.div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -527,7 +531,7 @@ export function CreativeContactPage() {
                         Budget Range
                       </label>
                       <Select onValueChange={(value) => handleInputChange('budget', value)}>
-                        <SelectTrigger className="bg-input border-border">
+                        <SelectTrigger className="bg-input border-border min-h-[48px] text-base">
                           <SelectValue placeholder="Select budget range" />
                         </SelectTrigger>
                         <SelectContent>
@@ -549,7 +553,7 @@ export function CreativeContactPage() {
                         Timeline
                       </label>
                       <Select onValueChange={(value) => handleInputChange('timeline', value)}>
-                        <SelectTrigger className="bg-input border-border">
+                        <SelectTrigger className="bg-input border-border min-h-[48px] text-base">
                           <SelectValue placeholder="Project timeline" />
                         </SelectTrigger>
                         <SelectContent>
@@ -577,7 +581,7 @@ export function CreativeContactPage() {
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       placeholder="Tell me about your project: What kind of experience are you looking to create? Do you have brand guidelines, floor plans, or reference materials? What are your main objectives?"
                       rows={6}
-                      className="bg-input border-border focus:ring-accent resize-none"
+                      className="bg-input border-border focus:ring-accent resize-none min-h-[120px] text-base"
                     />
                   </motion.div>
 
@@ -588,7 +592,7 @@ export function CreativeContactPage() {
                   >
                     <Button 
                       type="submit" 
-                      className="w-full relative overflow-hidden group bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent" 
+                      className="w-full relative overflow-hidden group bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent min-h-[48px]" 
                       disabled={isSubmitting}
                     >
                       <motion.div

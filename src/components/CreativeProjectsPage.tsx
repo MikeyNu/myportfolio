@@ -433,7 +433,7 @@ export function CreativeProjectsPage({ onViewCaseStudy }: CreativeProjectsPagePr
               <div className="flex-1 h-px bg-gradient-to-r from-accent/50 to-transparent" />
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {featuredProjects.map((project, index) => (
                 <ProjectCard 
                   key={project.id}
@@ -461,10 +461,10 @@ export function CreativeProjectsPage({ onViewCaseStudy }: CreativeProjectsPagePr
               <div className="flex-1 h-px bg-gradient-to-r from-muted-foreground/30 to-transparent" />
             </div>
             
-            <div className={`grid gap-6 ${
+            <div className={`grid gap-4 sm:gap-6 ${
               viewMode === 'grid' 
-                ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' 
-                : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
+                : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
             }`}>
               {regularProjects.map((project, index) => (
                 <ProjectCard 
@@ -537,8 +537,9 @@ function ProjectCard({ project, index, onViewCaseStudy, isFeatured, isVisible }:
           <ImageWithFallback
             src={project.image}
             alt={project.title}
+            loading="lazy"
             className={`w-full object-cover transition-all duration-700 group-hover:scale-110 ${
-              isFeatured ? 'h-80' : 'h-64'
+              isFeatured ? 'h-48 sm:h-64 md:h-80' : 'h-48 sm:h-56 md:h-64'
             }`}
           />
           
