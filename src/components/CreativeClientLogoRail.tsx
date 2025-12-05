@@ -12,7 +12,7 @@ const clients = [
   },
   { 
     name: 'Hulu', 
-    projects: 'Deli Boys Truck Experience',
+    projects: 'Deli Boys Food Truck Display',
     tier: 'premium',
     color: '#1ce783',
     icon: Star

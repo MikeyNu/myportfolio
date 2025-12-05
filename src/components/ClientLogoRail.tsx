@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const clients = [
   { name: 'Netflix', projects: 'Truck: Stranger Things, One Piece, Wednesday, Squid Game' },
-  { name: 'Hulu', projects: 'Truck: Deli Boys' },
+  { name: 'Hulu', projects: 'Food Truck: Deli Boys Show' },
   { name: 'DreamWorks', projects: 'How to Train Your Dragon' },
   { name: 'Amazon MGM Studios', projects: 'Various Productions' },
   { name: 'Warner Bros', projects: 'The Wizard of Oz @ The Sphere' },

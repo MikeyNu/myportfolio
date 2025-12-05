@@ -64,6 +64,17 @@ const allProjects = [
   },
   {
     id: '6',
+    title: 'Hulu Deli Boys Food Truck',
+    agency: 'JHDS (Contractor)',
+    brand: 'Hulu',
+    role: 'Design & build from client specifications, 3D product modeling, lighting setup',
+    image: RENDERS.deliBoys,
+    category: 'Branded Vehicles',
+    tags: ['3D Modeling', 'Design', 'Lighting'],
+    year: '2024'
+  },
+  {
+    id: '7',
     title: 'Heineken Pop-up Experience',
     agency: 'Heineken',
     brand: 'Heineken',
@@ -74,18 +85,18 @@ const allProjects = [
     year: '2024'
   },
   {
-    id: '7',
+    id: '8',
     title: 'Discovery Bank Retail Space',
     agency: 'Discovery',
     brand: 'Discovery Bank',
     role: 'Retail layout, customer journey, digital touchpoints',
-    image: RENDERS.deliBooys,
+    image: RENDERS.discoveryBank,
     category: 'Retail Pop-ups',
     tags: ['Plan Layout', 'Brand Identity', 'Elevations'],
     year: '2023'
   },
   {
-    id: '8',
+    id: '9',
     title: 'Daimler Conference Hall',
     agency: 'Daimler',
     brand: 'Mercedes-Benz',

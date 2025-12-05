@@ -79,6 +79,20 @@ const allProjects = [
   },
   {
     id: '6',
+    title: 'Hulu Deli Boys Food Truck',
+    agency: 'JHDS (Contractor)',
+    brand: 'Hulu',
+    role: 'Design & build from client specifications, 3D product modeling, lighting setup',
+    image: RENDERS.deliBoys,
+    category: 'Branded Vehicles',
+    tags: ['3D Modeling', 'Design', 'Lighting'],
+    year: '2024',
+    color: '#1ce783',
+    featured: false,
+    description: 'Food truck display for Hulu\'s upcoming show Deli Boys'
+  },
+  {
+    id: '7',
     title: 'Heineken Pop-up Experience',
     agency: 'Heineken',
     brand: 'Heineken',
@@ -90,19 +104,19 @@ const allProjects = [
     color: '#00a651'
   },
   {
-    id: '7',
+    id: '8',
     title: 'Discovery Bank Retail Space',
     agency: 'Discovery',
     brand: 'Discovery Bank',
     role: 'Retail layout, customer journey, digital touchpoints',
-    image: RENDERS.deliBooys,
+    image: RENDERS.discoveryBank,
     category: 'Retail Pop-ups',
     tags: ['Plan Layout', 'Brand Identity', 'Elevations'],
     year: '2023',
     color: '#f47920'
   },
   {
-    id: '8',
+    id: '9',
     title: 'Daimler Conference Hall',
     agency: 'Daimler',
     brand: 'Mercedes-Benz',
@@ -114,7 +128,7 @@ const allProjects = [
     color: '#0f1419'
   },
   {
-    id: '9',
+    id: '10',
     title: 'GAC Automotive Showroom',
     agency: 'GAC Motor',
     brand: 'GAC',

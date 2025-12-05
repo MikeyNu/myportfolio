@@ -1,7 +1,8 @@
 export const RENDERS = {
   aomMaize: '/renders/aom-maize.png',
   daimlerTruck: '/renders/daimler-truck.png',
-  deliBooys: '/renders/deli-booys.png',
+  deliBoys: '/renders/deli-boys/deli-boys.png',
+  discoveryBank: '/renders/deli-booys.png',
   discoveryVideo: '/renders/DiscoveryVideo.mp4',
   gacShowroom: '/renders/gac.png',
   genshinImpact: '/renders/genshin-impact.png',
