@@ -4,41 +4,41 @@ import { Sparkles, Zap, Globe, Users, Award, TrendingUp } from 'lucide-react';
 
 const dynamicTexts = [
   {
-    text: "2+ Years of 3D Experience Design",
+    text: "7+ Years 3D Generalist | Blender Specialist",
     icon: Award,
     color: "#9BB4FF"
   },
   {
-    text: "15+ Brand Experiences Created",
+    text: "3+ Years 3D Experience Design",
     icon: Sparkles,
     color: "#00D9FF"
   },
   {
-    text: "Remote Collaboration via Teams & Meet",
-    icon: Globe,
+    text: "5+ Years Web Development | 1+ Year Software",
+    icon: TrendingUp,
     color: "#FF6B6B"
   },
   {
-    text: "Working with Netflix, Hoyoverse, CeraVe",
-    icon: Users,
+    text: "XR Creator | Immersive AR/VR Experiences",
+    icon: Zap,
     color: "#4ECDC4"
   },
   {
-    text: "Specialized in Immersive Touchpoints",
-    icon: Zap,
+    text: "Remote Collaboration via Teams & Meet",
+    icon: Globe,
     color: "#FFE66D"
   },
   {
-    text: "From Concept to Final Render",
-    icon: TrendingUp,
+    text: "Full-Stack Creative Solutions",
+    icon: Users,
     color: "#A8E6CF"
   }
 ];
 
 const stats = [
-  { label: "Years Experience", value: "2+", color: "#9BB4FF" },
-  { label: "Projects Completed", value: "25+", color: "#00D9FF" },
-  { label: "Brand Partners", value: "10+", color: "#FF6B6B" },
+  { label: "3D Experience", value: "7+ yrs", color: "#9BB4FF" },
+  { label: "Development", value: "5+ yrs", color: "#00D9FF" },
+  { label: "Projects", value: "100+", color: "#FF6B6B" },
   { label: "Client Satisfaction", value: "100%", color: "#4ECDC4" }
 ];
 

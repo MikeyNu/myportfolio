@@ -265,7 +265,7 @@ export function StaticAnimatedHero({ onViewCaseStudy, onViewAllProjects }: Stati
                 transition={{ delay: 0.7, duration: 0.6 }}
               >
                 <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-                <span className="text-sm text-muted-foreground">3D Experience Designer</span>
+                <span className="text-sm text-muted-foreground">Multi-Disciplinary Designer & Developer</span>
               </motion.div>
 
               {/* Main Title */}
@@ -298,7 +298,7 @@ export function StaticAnimatedHero({ onViewCaseStudy, onViewAllProjects }: Stati
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
               >
-                Crafting immersive 3D brand experiences for{' '}
+                Crafting immersive 3D experiences, cutting-edge web applications, and innovative XR solutions for{' '}
                 <span className="text-foreground font-medium">Netflix</span>,{' '}
                 <span className="text-foreground font-medium">Hoyoverse</span>,{' '}
                 <span className="text-foreground font-medium">CeraVe</span>, and other industry leaders.
@@ -311,7 +311,7 @@ export function StaticAnimatedHero({ onViewCaseStudy, onViewAllProjects }: Stati
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
               >
-                {['3D Modeling', 'Spatial Design', 'Brand Integration', 'Experience Design'].map((specialty, index) => (
+                {['3D Generalist (7+ yrs)', 'Experience Design (3+ yrs)', 'Web Dev (5+ yrs)', 'XR Creator'].map((specialty, index) => (
                   <motion.div
                     key={specialty}
                     initial={{ opacity: 0, x: -20 }}

@@ -21,9 +21,12 @@ export function IntroBar() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="text-center lg:text-left">
             <h2 className="text-lg text-foreground mb-2">
-              <span className="font-semibold">Michael Ndhlovu</span> — 3D Experience Designer (2 years)
+              <span className="font-semibold">Michael Ndhlovu</span> — Multi-Disciplinary Designer & Developer
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
+              3D Experience Designer (3+ yrs) | 3D Generalist (7+ yrs) | Web/Software Dev (5+ yrs) | XR Creator
+            </p>
+            <p className="text-muted-foreground text-xs mt-1">
               Remote work via Teams or Google Meet
             </p>
           </div>

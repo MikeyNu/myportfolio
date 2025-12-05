@@ -8,14 +8,16 @@ import { RENDERS } from '../data/renderAssets';
 import { motion, AnimatePresence } from 'motion/react';
 
 const tools = [
-  { name: 'Blender', category: '3D Modeling', level: 95, color: '#FF7300' },
-  { name: 'Marvelous Designer', category: 'Cloth Simulation', level: 85, color: '#FF4081' },
-  { name: 'iClone', category: 'Character Animation', level: 80, color: '#2196F3' },
-  { name: 'Unreal Engine', category: 'Real-time Rendering', level: 75, color: '#000000' },
-  { name: 'Three.js', category: 'Web 3D', level: 70, color: '#000000' },
-  { name: 'Figma', category: 'Design & Prototyping', level: 90, color: '#F24E1E' },
-  { name: 'Adobe Creative Suite', category: 'Post-production', level: 85, color: '#FF0000' },
-  { name: 'Cinema 4D', category: '3D Motion Graphics', level: 80, color: '#011A2B' }
+  { name: 'Blender', category: '3D Modeling & Animation (Primary)', level: 95, color: '#FF7300' },
+  { name: 'SketchUp', category: '3D Experience Design', level: 88, color: '#005F9E' },
+  { name: 'Unreal Engine', category: 'Real-time & XR', level: 85, color: '#0E1128' },
+  { name: 'Marvelous Designer', category: 'Cloth Simulation', level: 90, color: '#FF4081' },
+  { name: 'Adobe Creative Suite', category: 'Design & Post-production', level: 88, color: '#FF0000' },
+  { name: 'React/TypeScript', category: 'Web Development', level: 85, color: '#61DAFB' },
+  { name: 'Three.js', category: 'WebGL & 3D Web', level: 80, color: '#000000' },
+  { name: 'Unity', category: 'XR Development', level: 75, color: '#000000' },
+  { name: 'Figma', category: 'UI/UX Design', level: 90, color: '#F24E1E' },
+  { name: 'Node.js', category: 'Backend Development', level: 78, color: '#339933' }
 ];
 
 const workProcess = [
@@ -58,54 +60,54 @@ const workProcess = [
 
 const expertiseAreas = [
   {
-    title: '3D Environment Modeling',
-    description: 'Creating detailed 3D spaces from architectural plans and creative briefs',
+    title: '3D Experience Design',
+    description: 'Creating immersive brand environments with SketchUp, Unreal Engine, and Blender',
     icon: Target,
-    projects: 25,
-    years: 2
+    projects: 30,
+    years: 3
   },
   {
-    title: 'Brand Integration',
-    description: 'Seamlessly applying brand identity across physical and digital touchpoints',
+    title: '3D Generalist Work',
+    description: 'Full-spectrum 3D: modeling, texturing, lighting, animation with Blender expertise',
+    icon: Zap,
+    projects: 100,
+    years: 7
+  },
+  {
+    title: 'Website Development',
+    description: 'Modern, responsive web applications using React, TypeScript, and cutting-edge frameworks',
+    icon: Globe,
+    projects: 50,
+    years: 5
+  },
+  {
+    title: 'Software Development',
+    description: 'Custom software solutions with modern development practices and tools',
     icon: Star,
+    projects: 15,
+    years: 1
+  },
+  {
+    title: 'XR Experiences',
+    description: 'Immersive AR/VR solutions combining 3D artistry with real-time programming',
+    icon: Award,
     projects: 20,
     years: 2
   },
   {
-    title: 'Spatial Design',
-    description: 'Optimizing visitor flow and experience within exhibition and retail spaces',
-    icon: Globe,
-    projects: 18,
-    years: 1.5
-  },
-  {
-    title: 'Visualization & Rendering',
-    description: 'Producing photorealistic renders and compelling POV imagery',
-    icon: Zap,
-    projects: 30,
-    years: 2
-  },
-  {
-    title: 'Technical Documentation',
-    description: 'Delivering comprehensive plans, elevations, and construction drawings',
-    icon: Clock,
-    projects: 15,
-    years: 1.5
-  },
-  {
-    title: 'Interactive Experiences',
-    description: 'Designing engaging touchpoints and immersive brand interactions',
+    title: 'Character & Cloth',
+    description: 'Advanced character modeling and realistic cloth simulation with Marvelous Designer',
     icon: Coffee,
-    projects: 12,
-    years: 1
+    projects: 40,
+    years: 5
   }
 ];
 
 const stats = [
-  { number: '2+', label: 'Years Experience', icon: Clock, color: '#9BB4FF' },
-  { number: '20+', label: 'Brands Worked With', icon: Star, color: '#00D9FF' },
-  { number: '50+', label: 'Projects Delivered', icon: Award, color: '#FF6B6B' },
-  { number: '100%', label: 'Remote Delivery', icon: Globe, color: '#4ECDC4' }
+  { number: '7+', label: 'Years 3D Experience', icon: Clock, color: '#9BB4FF' },
+  { number: '5+', label: 'Years Development', icon: Star, color: '#00D9FF' },
+  { number: '100+', label: 'Projects Delivered', icon: Award, color: '#FF6B6B' },
+  { number: '100%', label: 'Remote Ready', icon: Globe, color: '#4ECDC4' }
 ];
 
 export function CreativeAboutPage() {
@@ -197,24 +199,46 @@ export function CreativeAboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             >
-              Creating{' '}
+              Multi-Disciplinary{' '}
               <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                Immersive
+                Designer
               </span>
               <br />
-              Brand Experiences in 3D
+              & Developer
             </motion.h1>
             
             <motion.p 
-              className="text-xl text-muted-foreground mb-8 leading-relaxed"
+              className="text-xl text-muted-foreground mb-4 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              I'm Michael Ndhlovu, a 3D Experience Designer with 2 years of specialized experience 
-              in creating compelling brand environments for exhibitions, events, and retail spaces. 
-              My work bridges the gap between brand vision and spatial reality.
+              I'm Michael Ndhlovu, a versatile creative professional combining multiple disciplines to deliver exceptional results.
             </motion.p>
+            
+            <motion.div
+              className="space-y-3 mb-8 text-muted-foreground"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <p className="flex items-start gap-2">
+                <span className="text-accent font-semibold mt-1">•</span>
+                <span><strong className="text-foreground">3D Experience Designer</strong> (3+ years) — SketchUp, Unreal Engine, Blender</span>
+              </p>
+              <p className="flex items-start gap-2">
+                <span className="text-accent font-semibold mt-1">•</span>
+                <span><strong className="text-foreground">3D Generalist</strong> (7+ years) — Blender specialist, Marvelous Designer, Adobe Creative Suite</span>
+              </p>
+              <p className="flex items-start gap-2">
+                <span className="text-accent font-semibold mt-1">•</span>
+                <span><strong className="text-foreground">Web & Software Developer</strong> (5+ years web, 1+ year software)</span>
+              </p>
+              <p className="flex items-start gap-2">
+                <span className="text-accent font-semibold mt-1">•</span>
+                <span><strong className="text-foreground">XR Experience Creator</strong> — Immersive AR/VR combining 3D & programming</span>
+              </p>
+            </motion.div>
             
             <motion.div 
               className="flex items-center gap-6 mb-10"

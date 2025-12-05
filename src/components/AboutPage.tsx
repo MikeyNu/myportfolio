@@ -6,14 +6,16 @@ import { ImageWithFallback } from './shared/ImageWithFallback';
 import { RENDERS } from '../data/renderAssets';
 
 const tools = [
-  { name: 'Blender', category: '3D Modeling' },
+  { name: 'Blender', category: '3D Modeling & Animation (Primary)' },
+  { name: 'SketchUp', category: '3D Experience Design' },
+  { name: 'Unreal Engine', category: 'Real-time Rendering & XR' },
   { name: 'Marvelous Designer', category: 'Cloth Simulation' },
-  { name: 'iClone', category: 'Character Animation' },
-  { name: 'Unreal Engine', category: 'Real-time Rendering' },
-  { name: 'Three.js', category: 'Web 3D' },
-  { name: 'Figma', category: 'Design & Prototyping' },
-  { name: 'Adobe Creative Suite', category: 'Post-production' },
-  { name: 'Cinema 4D', category: '3D Motion Graphics' }
+  { name: 'Adobe Creative Suite', category: 'Post-production & Design' },
+  { name: 'React', category: 'Web Development' },
+  { name: 'TypeScript', category: 'Software Development' },
+  { name: 'Three.js', category: 'WebGL & 3D Web' },
+  { name: 'Figma', category: 'UI/UX Design' },
+  { name: 'Unity', category: 'XR Development' }
 ];
 
 const workProcess = [
@@ -52,12 +54,20 @@ export function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
           <div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Creating Immersive Brand Experiences in 3D
+              Multi-Disciplinary Designer & Developer
             </h1>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I'm Michael Ndhlovu, a 3D Experience Designer with 2 years of specialized experience 
-              in creating compelling brand environments for exhibitions, events, and retail spaces. 
-              My work bridges the gap between brand vision and spatial reality.
+              I'm Michael Ndhlovu, a versatile creative professional with expertise spanning multiple disciplines. 
+              As a <strong className="text-foreground">3D Experience Designer</strong> (3+ years with SketchUp, Unreal Engine, Blender), 
+              <strong className="text-foreground"> 3D Generalist</strong> (7+ years specializing in Blender, Marvelous Designer, Adobe Creative Suite), 
+              <strong className="text-foreground"> Software & Website Designer</strong> (5+ years web development, 1+ year software development), 
+              and <strong className="text-foreground">XR Experience Creator</strong>, I bring immersive brand experiences to life by combining 
+              3D artistry with cutting-edge technology.
+            </p>
+            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+              My strength lies predominantly in <strong className="text-accent">Blender</strong>, where I excel at creating detailed environments, 
+              characters, and interactive experiences. Whether you need stunning 3D visualizations, immersive XR experiences, or full-stack 
+              creative solutions, I deliver end-to-end excellence.
             </p>
             
             <div className="flex items-center gap-4 mb-8">
@@ -98,28 +108,28 @@ export function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: '3D Environment Modeling',
-                description: 'Creating detailed 3D spaces from architectural plans and creative briefs'
+                title: '3D Experience Design',
+                description: '3+ years creating immersive brand environments with SketchUp, Unreal Engine, and Blender'
               },
               {
-                title: 'Brand Integration',
-                description: 'Seamlessly applying brand identity across physical and digital touchpoints'
+                title: '3D Generalist Work',
+                description: '7+ years of expertise in modeling, texturing, lighting, and animation with Blender as primary tool'
               },
               {
-                title: 'Spatial Design',
-                description: 'Optimizing visitor flow and experience within exhibition and retail spaces'
+                title: 'Website Development',
+                description: '5+ years building responsive, interactive websites with modern frameworks and technologies'
               },
               {
-                title: 'Visualization & Rendering',
-                description: 'Producing photorealistic renders and compelling POV imagery'
+                title: 'Software Development',
+                description: '1+ year creating custom software solutions with TypeScript, React, and modern dev tools'
               },
               {
-                title: 'Technical Documentation',
-                description: 'Delivering comprehensive plans, elevations, and construction drawings'
+                title: 'XR Experience Creation',
+                description: 'Immersive AR/VR experiences combining 3D artistry with real-time programming'
               },
               {
-                title: 'Interactive Experiences',
-                description: 'Designing engaging touchpoints and immersive brand interactions'
+                title: 'Character & Cloth Design',
+                description: 'Advanced character modeling and realistic cloth simulation using Marvelous Designer'
               }
             ].map((expertise, index) => (
               <Card key={index} className="border-border bg-card">

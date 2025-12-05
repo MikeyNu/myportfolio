@@ -178,9 +178,9 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
                   transition={{ delay: 0.4, duration: 0.6 }}
                 >
                   <Box size={16} className="text-accent" />
-                  <span className="text-sm text-muted-foreground">3D Experience Designer</span>
+                  <span className="text-sm text-muted-foreground">Multi-Disciplinary Designer & Developer</span>
                   <div className="w-1 h-1 bg-accent rounded-full animate-pulse" />
-                  <span className="text-sm text-muted-foreground">2+ Years</span>
+                  <span className="text-sm text-muted-foreground">7+ Years</span>
                 </motion.div>
 
                 {/* Main Title */}
@@ -197,13 +197,14 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
                 </motion.div>
 
                 {/* Subtitle */}
-                <motion.p 
-                  className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl leading-relaxed"
+                <motion.p
+                  className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8, duration: 0.8 }}
+                  transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  Crafting immersive 3D experiences and spatial environments for leading brands through innovative design and technical excellence.
+                  Crafting immersive 3D experiences, interactive websites, custom software, and XR solutions 
+                  through technical excellence and creative innovation. Blender specialist with full-stack capabilities.
                 </motion.p>
 
                 {/* Brand Carousel */}
