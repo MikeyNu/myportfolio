@@ -19,8 +19,7 @@ const clients = [
   { name: 'GAC', projects: 'Showroom' },
   { name: 'Daimler', projects: 'Conference Hall' },
   { name: 'COSM', projects: 'Immersive Venues' },
-  { name: 'Logitech', projects: 'Event Assets' },
-  { name: 'CGIAR', projects: 'Beauty Brand' }
+  { name: 'Logitech', projects: 'Event Assets' }
 ];
 
 export function ClientLogoRail() {

@@ -124,18 +124,6 @@ const allProjects = [
     tags: ['Brand Identity', 'Plans', 'Touchpoints'],
     year: '2023',
     color: '#c41e3a'
-  },
-  {
-    id: '9',
-    title: 'CGIAR Beauty Brand Store',
-    agency: 'CGIAR',
-    brand: 'Beauty Brand',
-    role: 'Retail environment, product showcasing, brand experience',
-    image: RENDERS.redOneConcept,
-    category: 'Retail Pop-ups',
-    tags: ['Brand Identity', 'Moodboard', 'POVs'],
-    year: '2023',
-    color: '#2e8b57'
   }
 ];
 

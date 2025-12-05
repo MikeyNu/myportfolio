@@ -121,13 +121,6 @@ const clients = [
     tier: 'standard',
     color: '#00b8fc',
     icon: Users
-  },
-  { 
-    name: 'CGIAR', 
-    projects: 'Brand Experience Design',
-    tier: 'standard',
-    color: '#2e8b57',
-    icon: Sparkles
   }
 ];
 
