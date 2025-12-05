@@ -60,7 +60,7 @@ const allProjects = [
     image: RENDERS.cerave,
     category: 'Events/Experiences',
     tags: ['3D Modeling', 'Texturing', 'Blender'],
-    year: '2024'
+    year: '2025'
   },
   {
     id: '6',
@@ -71,7 +71,7 @@ const allProjects = [
     image: RENDERS.deliBoys,
     category: 'Branded Vehicles',
     tags: ['3D Modeling', 'Design', 'Lighting'],
-    year: '2024'
+    year: '2025'
   },
   {
     id: '7',
@@ -82,7 +82,7 @@ const allProjects = [
     image: RENDERS.heineken,
     category: 'Retail Pop-ups',
     tags: ['UV Mapping', 'Texturing', 'SketchUp'],
-    year: '2024'
+    year: '2025'
   },
   {
     id: '8',
@@ -93,7 +93,7 @@ const allProjects = [
     image: RENDERS.pepsi,
     category: 'Events/Experiences',
     tags: ['3D Modeling', 'Design', 'Blender', 'SketchUp'],
-    year: '2024'
+    year: '2025'
   },
   {
     id: '9',

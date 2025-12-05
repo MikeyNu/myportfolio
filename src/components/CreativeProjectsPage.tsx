@@ -73,7 +73,7 @@ const allProjects = [
     image: RENDERS.cerave,
     category: 'Events/Experiences',
     tags: ['3D Modeling', 'Texturing', 'Blender'],
-    year: '2024',
+    year: '2025',
     color: '#00a8e6',
     featured: false
   },
@@ -86,7 +86,7 @@ const allProjects = [
     image: RENDERS.deliBoys,
     category: 'Branded Vehicles',
     tags: ['3D Modeling', 'Design', 'Lighting'],
-    year: '2024',
+    year: '2025',
     color: '#1ce783',
     featured: false,
     description: 'Food truck display for Hulu\'s upcoming show Deli Boys'
@@ -100,7 +100,7 @@ const allProjects = [
     image: RENDERS.heineken,
     category: 'Retail Pop-ups',
     tags: ['UV Mapping', 'Texturing', 'SketchUp'],
-    year: '2024',
+    year: '2025',
     color: '#00a651'
   },
   {
@@ -112,7 +112,7 @@ const allProjects = [
     image: RENDERS.pepsi,
     category: 'Events/Experiences',
     tags: ['3D Modeling', 'Design', 'Blender', 'SketchUp'],
-    year: '2024',
+    year: '2025',
     color: '#004b93'
   },
   {
