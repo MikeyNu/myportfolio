@@ -44,7 +44,7 @@ const caseStudyData = {
       RENDERS.netflix5
     ],
     tags: ['Moodboard', 'Brand Identity', 'POVs'],
-    tools: ['Blender', 'Substance Painter', 'Adobe Creative Suite']
+    tools: ['Blender', 'SketchUp', 'Unreal Engine', 'Adobe Creative Suite']
   },
   '2': {
     title: 'Arknights: Endfield - Gamescom 2025 Stand',
@@ -82,7 +82,7 @@ const caseStudyData = {
       RENDERS.arknitghtsEndfieldBooth
     ],
     tags: ['Plan Layout', 'Elevations', 'Grid'],
-    tools: ['Blender', 'Substance Painter', 'ZBrush']
+    tools: ['Blender', 'SketchUp', 'Unreal Engine', 'Adobe Creative Suite']
   },
   '3': {
     title: 'Sonic Racing: CrossWorlds Stand - Gamescom 2025',
@@ -120,7 +120,7 @@ const caseStudyData = {
       RENDERS.sonic4
     ],
     tags: ['Brand Identity', 'Touchpoints', 'POVs'],
-    tools: ['Blender', 'Substance Painter', 'Photoshop']
+    tools: ['Blender', 'SketchUp', 'Unreal Engine', 'Adobe Creative Suite']
   },
   '4': {
     title: 'Genshin Impact Exhibition Booth',
@@ -156,7 +156,7 @@ const caseStudyData = {
       RENDERS.redOneConcept
     ],
     tags: ['Plan Layout', 'Elevations', 'Grid'],
-    tools: ['Blender', 'Cinema 4D', 'Figma']
+    tools: ['Blender', 'SketchUp', 'Unreal Engine', 'Adobe Creative Suite']
   }
 };
 
