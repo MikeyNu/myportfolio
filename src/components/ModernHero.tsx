@@ -42,7 +42,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
   return (
     <div 
       ref={containerRef}
-      className="relative h-[calc(100vh-5rem)] sm:h-[calc(100vh-5rem)] overflow-hidden bg-background"
+      className="relative min-h-[560px] md:min-h-[640px] lg:h-[calc(100vh-5rem)] overflow-hidden bg-background pb-8 lg:pb-0"
     >
       {/* Geometric Background Elements */}
       <div className="absolute inset-0">
@@ -135,7 +135,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
         </svg>
 
         {/* Floating Particles */}
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: typeof window !== 'undefined' && window.innerWidth < 768 ? 8 : 20 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-accent/40 rounded-full"
@@ -172,7 +172,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
               >
                 {/* Professional Badge */}
                 <motion.div
-                  className="inline-flex items-center gap-3 px-4 py-2 bg-card/50 border border-border rounded-full mb-8"
+                  className="hidden sm:inline-flex items-center gap-3 px-4 py-2 bg-card/50 border border-border rounded-full mb-6 sm:mb-8"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
@@ -185,12 +185,12 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
 
                 {/* Main Title */}
                 <motion.div
-                  className="mb-6"
+                  className="mb-4 sm:mb-6"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl leading-tight mb-4">
+                  <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-tight mb-4">tight mb-4">
                     <span className="block text-foreground">Michael</span>
                     <span className="block gradient-text">Ndhlovu</span>
                   </h1>
@@ -198,7 +198,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
 
                 {/* Subtitle */}
                 <motion.p
-                  className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed"
+                  className="text-base md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 md:mb-10 leading-relaxed"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
@@ -209,12 +209,12 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
 
                 {/* Brand Carousel */}
                 <motion.div
-                  className="mb-10"
+                  className="mb-6 sm:mb-8 md:mb-10"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.8 }}
                 >
-                  <div className="text-sm text-muted-foreground mb-3">Trusted by</div>
+                  <div className="text-sm text-muted-foreground mb-2 sm:mb-3">Trusted by</div>
                   <div className="flex flex-wrap gap-4">
                     {brands.map((brand, index) => (
                       <motion.div
@@ -237,7 +237,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
 
                 {/* Call to Action */}
                 <motion.div 
-                  className="flex flex-col sm:flex-row gap-4"
+                  className="flex flex-col sm:flex-row gap-3 sm:gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.4, duration: 0.8 }}
@@ -245,10 +245,11 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto"
                   >
                     <Button 
                       size="lg" 
-                      className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 group"
+                      className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-6 min-h-[48px] text-base group"
                       onClick={onViewAllProjects}
                     >
                       <Play size={20} className="mr-2 group-hover:translate-x-1 transition-transform" />
@@ -259,11 +260,12 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
+                    className="w-full sm:w-auto"
                   >
                     <Button 
                       size="lg" 
                       variant="outline" 
-                      className="border-border text-foreground hover:bg-muted px-8 py-6 group"
+                      className="w-full sm:w-auto border-border text-foreground hover:bg-muted px-8 py-6 min-h-[48px] text-base group"
                       onClick={() => onViewCaseStudy('1')}
                     >
                       <Sparkles size={20} className="mr-2 group-hover:rotate-12 transition-transform" />
