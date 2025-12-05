@@ -21,69 +21,69 @@ interface Project {
 const projects: Project[] = [
   {
     id: '1',
-    title: 'Stranger Things Experience Truck',
-    agency: 'Netflix',
-    brand: 'Stranger Things',
+    title: 'Netflix Multi-Show Launch Display',
+    agency: 'JHDS (Contract)',
+    brand: 'Netflix',
     role: '3D Experience Designer',
-    involvement: 'Environment modeling, lighting, immersive touchpoints',
-      image: RENDERS.sbExperience,
+    involvement: '3D modeling, UV unwrapping, van concept design, texturing',
+    image: RENDERS.netflixHero,
     tags: ['Moodboard', 'Brand Identity', 'POVs'],
     color: '#e50914'
   },
   {
     id: '2',
-    title: 'Genshin Impact Exhibition Booth',
-    agency: 'Hoyoverse',
-    brand: 'Genshin Impact',
+    title: 'Arknights: Endfield - Gamescom 2025',
+    agency: 'JHDS (Contract)',
+    brand: 'Arknights: Endfield',
     role: '3D Experience Designer',
-    involvement: 'Spatial layouts, character displays, interactive zones',
-      image: RENDERS.genshinImpact,
+    involvement: '3D modeling, UV unwrapping, texturing, staff population, character cutouts',
+    image: RENDERS.arknitghtsEndfieldHero,
     tags: ['Plan Layout', 'Elevations', 'Grid'],
     color: '#4a90e2'
   },
   {
     id: '3',
+    title: 'Sonic Racing: CrossWorlds - Gamescom 2025',
+    agency: 'JHDS (Contract)',
+    brand: 'SEGA',
+    role: '3D Experience Designer',
+    involvement: 'UV unwrapping, texture fixing, character cutouts, game item creation',
+    image: RENDERS.sonicHero,
+    tags: ['Brand Identity', 'Touchpoints', 'POVs'],
+    color: '#0066cc'
+  },
+  {
+    id: '4',
+    title: 'Genshin Impact Exhibition Booth',
+    agency: 'Hoyoverse',
+    brand: 'Genshin Impact',
+    role: '3D Experience Designer',
+    involvement: 'Spatial layouts, character displays, interactive zones',
+    image: RENDERS.genshinImpact,
+    tags: ['Plan Layout', 'Elevations', 'Grid'],
+    color: '#4a90e2'
+  },
+  {
+    id: '5',
     title: 'CeraVe Event Environment',
     agency: 'L\'Oréal',
     brand: 'CeraVe',
     role: '3D Experience Designer',
     involvement: 'Brand application, product displays, visitor flow',
-      image: RENDERS.niveaActivation,
+    image: RENDERS.niveaActivation,
     tags: ['Brand Identity', 'Touchpoints', 'Plans'],
     color: '#00a8e6'
   },
   {
-    id: '4',
+    id: '6',
     title: 'Heineken Pop-up Experience',
     agency: 'Heineken',
     brand: 'Heineken',
     role: '3D Experience Designer',
     involvement: 'Venue design, brand integration, social spaces',
-      image: RENDERS.heinekenExperience,
+    image: RENDERS.heinekenExperience,
     tags: ['Moodboard', 'POVs', 'No Grid'],
     color: '#00a651'
-  },
-  {
-    id: '5',
-    title: 'Discovery Bank Retail Space',
-    agency: 'Discovery',
-    brand: 'Discovery Bank',
-    role: '3D Experience Designer',
-    involvement: 'Retail layout, customer journey, digital touchpoints',
-      image: RENDERS.deliBooys,
-    tags: ['Plan Layout', 'Brand Identity', 'Elevations'],
-    color: '#f47920'
-  },
-  {
-    id: '6',
-    title: 'Sonic Racing Branded Vehicle',
-    agency: 'Sega',
-    brand: 'Sonic Racing: CrossWorlds',
-    role: '3D Experience Designer',
-    involvement: 'Vehicle wrapping, game branding, mobile experience',
-      image: RENDERS.pepsiExperience
-    tags: ['Brand Identity', 'Touchpoints', 'POVs'],
-    color: '#0066cc'
   }
 ];
 

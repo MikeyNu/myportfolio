@@ -9,17 +9,39 @@ import { RENDERS } from '../data/renderAssets';
 const allProjects = [
   {
     id: '1',
-    title: 'Stranger Things Experience Truck',
-    agency: 'Netflix',
-    brand: 'Stranger Things',
-    role: 'Environment modeling, lighting, immersive touchpoints',
-    image: RENDERS.sbExperience,
+    title: 'Netflix Multi-Show Launch Display',
+    agency: 'JHDS (Contract)',
+    brand: 'Netflix',
+    role: '3D modeling, UV unwrapping, van concept design, texturing',
+    image: RENDERS.netflixHero,
     category: 'Branded Vehicles',
     tags: ['Moodboard', 'Brand Identity', 'POVs'],
     year: '2024'
   },
   {
     id: '2',
+    title: 'Arknights: Endfield - Gamescom 2025',
+    agency: 'JHDS (Contract)',
+    brand: 'Arknights: Endfield',
+    role: '3D modeling, UV unwrapping, texturing, staff population, character cutouts',
+    image: RENDERS.arknitghtsEndfieldHero,
+    category: 'Game/Entertainment IP',
+    tags: ['Plan Layout', 'Elevations', 'Grid'],
+    year: '2025'
+  },
+  {
+    id: '3',
+    title: 'Sonic Racing: CrossWorlds - Gamescom 2025',
+    agency: 'JHDS (Contract)',
+    brand: 'SEGA',
+    role: 'UV unwrapping, texture fixing, character cutouts, game item creation',
+    image: RENDERS.sonicHero,
+    category: 'Game/Entertainment IP',
+    tags: ['Brand Identity', 'Touchpoints', 'POVs'],
+    year: '2025'
+  },
+  {
+    id: '4',
     title: 'Genshin Impact Exhibition Booth',
     agency: 'Hoyoverse',
     brand: 'Genshin Impact',
@@ -30,7 +52,7 @@ const allProjects = [
     year: '2024'
   },
   {
-    id: '3',
+    id: '5',
     title: 'CeraVe Event Environment',
     agency: 'L\'Oréal',
     brand: 'CeraVe',
@@ -41,7 +63,7 @@ const allProjects = [
     year: '2024'
   },
   {
-    id: '4',
+    id: '6',
     title: 'Heineken Pop-up Experience',
     agency: 'Heineken',
     brand: 'Heineken',
@@ -52,7 +74,7 @@ const allProjects = [
     year: '2024'
   },
   {
-    id: '5',
+    id: '7',
     title: 'Discovery Bank Retail Space',
     agency: 'Discovery',
     brand: 'Discovery Bank',
@@ -63,18 +85,7 @@ const allProjects = [
     year: '2023'
   },
   {
-    id: '6',
-    title: 'Sonic Racing Branded Vehicle',
-    agency: 'Sega',
-    brand: 'Sonic Racing: CrossWorlds',
-    role: 'Vehicle wrapping, game branding, mobile experience',
-    image: RENDERS.pepsiExperience,
-    category: 'Branded Vehicles',
-    tags: ['Brand Identity', 'Touchpoints', 'POVs'],
-    year: '2024'
-  },
-  {
-    id: '7',
+    id: '8',
     title: 'Daimler Conference Hall',
     agency: 'Daimler',
     brand: 'Mercedes-Benz',
@@ -82,17 +93,6 @@ const allProjects = [
     image: RENDERS.daimlerTruck,
     category: 'Events/Experiences',
     tags: ['Plan Layout', 'Elevations', 'Grid'],
-    year: '2023'
-  },
-  {
-    id: '8',
-    title: 'GAC Automotive Showroom',
-    agency: 'GAC Motor',
-    brand: 'GAC',
-    role: 'Showroom layout, vehicle displays, customer experience',
-    image: RENDERS.gacShowroom,
-    category: 'Retail Pop-ups',
-    tags: ['Brand Identity', 'Plans', 'Touchpoints'],
     year: '2023'
   },
   {

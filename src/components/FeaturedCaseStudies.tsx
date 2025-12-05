@@ -8,32 +8,32 @@ import { RENDERS } from '../data/renderAssets';
 const featuredProjects = [
   {
     id: '1',
-    title: 'Sonic Racing: CrossWorlds Stand',
-    agency: 'Sega',
-    brand: 'Sonic Racing',
-    summary: 'Interactive gaming booth featuring immersive racing experiences with custom 3D environments and branded touchpoints.',
-    image: RENDERS.pepsiExperience,
-    tags: ['Gaming', 'Interactive', 'Brand Identity'],
-    category: 'Game/Entertainment IP'
+    title: 'Netflix Multi-Show Launch Display',
+    agency: 'JHDS (Contract)',
+    brand: 'Netflix',
+    summary: 'Launch display for Stranger Things, Wednesday, One Piece, and Squid Games. Role included 3D modeling, UV unwrapping, van concept design, and texturing.',
+    image: RENDERS.netflixHero,
+    tags: ['Branded Vehicles', '3D Modeling', 'Texturing'],
+    category: 'Branded Vehicles'
   },
   {
     id: '2',
-    title: 'CeraVe Event Environment',
-    agency: 'L\'Oréal',
-    brand: 'CeraVe',
-    summary: 'Premium skincare brand activation with clean, minimal aesthetics and educational touchpoints for product discovery.',
-    image: RENDERS.niveaActivation,
-    tags: ['Beauty', 'Retail', 'Brand Identity'],
-    category: 'Events/Experiences'
+    title: 'Arknights: Endfield - Gamescom 2025',
+    agency: 'JHDS (Contract)',
+    brand: 'Arknights: Endfield',
+    summary: 'Designed an installation booth from the game for Gamescom 2025. Created 3D models, UV unwrapping, texturing, staff population with branded t-shirts, and character cutouts.',
+    image: RENDERS.arknitghtsEndfieldHero,
+    tags: ['Gaming', 'Exhibition', 'Character Design'],
+    category: 'Game/Entertainment IP'
   },
   {
     id: '3',
-    title: 'Genshin Impact Exhibition',
-    agency: 'Hoyoverse',
-    brand: 'Genshin Impact',
-    summary: 'Large-scale anime gaming exhibition with character displays, interactive zones, and immersive world environments.',
-    image: RENDERS.genshinImpact,
-    tags: ['Gaming', 'Exhibition', 'Interactive'],
+    title: 'Sonic Racing: CrossWorlds - Gamescom 2025',
+    agency: 'JHDS (Contract)',
+    brand: 'SEGA',
+    summary: 'Created the Sonic Racing: CrossWorlds stand for Gamescom 2025. Handled UV unwrapping, texture fixing, character cutouts, and game item creation.',
+    image: RENDERS.sonicHero,
+    tags: ['Gaming', 'Interactive', 'Brand Identity'],
     category: 'Game/Entertainment IP'
   }
 ];

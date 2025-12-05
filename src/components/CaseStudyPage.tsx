@@ -8,42 +8,121 @@ import { RENDERS } from '../data/renderAssets';
 
 const caseStudyData = {
   '1': {
-    title: 'Stranger Things Experience Truck',
-    brand: 'Stranger Things',
-    agency: 'Netflix',
+    title: 'Netflix Multi-Show Launch Display',
+    brand: 'Netflix',
+    agency: 'JHDS (Contract)',
     year: '2024',
     role: '3D Experience Designer',
-    overview: 'Designed an immersive mobile experience bringing the Upside Down world of Stranger Things directly to fans through a custom-built truck activation.',
+    overview: 'Designed launch display installations for multiple Netflix flagship shows including Stranger Things, Wednesday, One Piece, and Squid Games. This project involved creating branded vehicle concepts and detailed 3D assets for promotional activations.',
     objectives: [
-      'Create an authentic Stranger Things atmosphere',
-      'Design interactive touchpoints for fan engagement',
-      'Ensure smooth visitor flow in confined mobile space',
-      'Integrate show branding seamlessly throughout experience'
+      'Create cohesive multi-show launch display',
+      'Design branded vehicle wraps and concepts',
+      'Model detailed 3D assets for each show',
+      'Ensure consistent Netflix brand identity across all shows'
     ],
     myRole: [
-      'Environment modeling of Upside Down atmosphere',
-      'Lighting design for eerie, authentic mood',
-      'Interactive touchpoint placement and design',
-      'Brand identity application across all surfaces',
-      'Camera work for promotional renders'
+      '3D modeling of display assets and installations',
+      'UV unwrapping for optimal texture application',
+      'Van concept design for mobile activations',
+      'Texturing with show-specific branding',
+      'Asset optimization for production'
     ],
     deliverables: [
-      'Complete 3D environment models',
-      'Photorealistic renders (POVs, plans, elevations)', 
-      'Interactive touchpoint designs',
-      'Brand application guidelines',
-      'Construction documentation'
+      'Complete 3D models for all four shows',
+      'Van concept designs and renders',
+      'UV unwrapped assets ready for texturing',
+      'Final textured renders for approval',
+      'Production-ready files'
     ],
-    image: RENDERS.sbExperience,
+    image: RENDERS.netflixHero,
     gallery: [
-      RENDERS.sbExperience,
-      RENDERS.redOneConcept,
-      RENDERS.pepsiExperience
+      RENDERS.netflixHero,
+      RENDERS.netflix,
+      RENDERS.netflix2,
+      RENDERS.netflix3,
+      RENDERS.netflix4,
+      RENDERS.netflix5
     ],
     tags: ['Moodboard', 'Brand Identity', 'POVs'],
-    tools: ['Blender', 'Unreal Engine', 'Adobe Creative Suite']
+    tools: ['Blender', 'Substance Painter', 'Adobe Creative Suite']
   },
   '2': {
+    title: 'Arknights: Endfield - Gamescom 2025 Stand',
+    brand: 'Arknights: Endfield',
+    agency: 'JHDS (Contract)',
+    year: '2025',
+    role: '3D Experience Designer',
+    overview: 'Created an immersive installation booth for Arknights: Endfield at Gamescom 2025. Translated in-game environments into a large-scale physical display, complete with character cutouts and branded staff elements.',
+    objectives: [
+      'Recreate game installation booth in physical space',
+      'Design large-scale display areas',
+      'Create life-sized character cutouts',
+      'Develop staff population with branded elements'
+    ],
+    myRole: [
+      '3D modeling of installation booth from game',
+      'UV unwrapping for detailed texturing',
+      'Texturing to match game aesthetic',
+      'Modeling human figures with branded t-shirts',
+      'Creating character cutouts of game characters',
+      'Technical documentation'
+    ],
+    deliverables: [
+      'Complete booth 3D models',
+      'Installation display designs',
+      'Character cutout files',
+      'Staff population models',
+      'Textured final renders',
+      'Construction documentation'
+    ],
+    image: RENDERS.arknitghtsEndfieldHero,
+    gallery: [
+      RENDERS.arknitghtsEndfieldHero,
+      RENDERS.arknitghtsEndfield,
+      RENDERS.arknitghtsEndfieldBooth
+    ],
+    tags: ['Plan Layout', 'Elevations', 'Grid'],
+    tools: ['Blender', 'Substance Painter', 'ZBrush']
+  },
+  '3': {
+    title: 'Sonic Racing: CrossWorlds Stand - Gamescom 2025',
+    brand: 'SEGA',
+    agency: 'JHDS (Contract)',
+    year: '2025',
+    role: '3D Experience Designer',
+    overview: 'Developed the Sonic Racing: CrossWorlds exhibition stand for Gamescom 2025. Focused on technical optimization and character creation to bring the vibrant Sonic universe to life.',
+    objectives: [
+      'Create immersive Sonic Racing exhibition stand',
+      'Optimize existing 3D assets',
+      'Design character and item cutouts',
+      'Maintain authentic Sonic aesthetic'
+    ],
+    myRole: [
+      'UV unwrapping of stand assets',
+      'Fixing and optimizing textures',
+      'Creating cutouts of game characters',
+      'Modeling game items and props',
+      'Technical preparation for production'
+    ],
+    deliverables: [
+      'UV unwrapped stand models',
+      'Optimized texture maps',
+      'Character cutout designs',
+      'Game item models',
+      'Production-ready files'
+    ],
+    image: RENDERS.sonicHero,
+    gallery: [
+      RENDERS.sonicHero,
+      RENDERS.sonic,
+      RENDERS.sonic2,
+      RENDERS.sonic3,
+      RENDERS.sonic4
+    ],
+    tags: ['Brand Identity', 'Touchpoints', 'POVs'],
+    tools: ['Blender', 'Substance Painter', 'Photoshop']
+  },
+  '4': {
     title: 'Genshin Impact Exhibition Booth',
     brand: 'Genshin Impact',
     agency: 'Hoyoverse',
