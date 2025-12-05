@@ -76,7 +76,7 @@ const allProjects = [
   {
     id: '7',
     title: 'Heineken Pop-up Experience',
-    agency: 'Heineken',
+    agency: 'JHDS (Contractor)',
     brand: 'Heineken',
     role: 'UV unwrapping and retexturing existing SketchUp file',
     image: RENDERS.heineken,
