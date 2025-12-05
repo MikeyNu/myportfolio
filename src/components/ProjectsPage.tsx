@@ -43,13 +43,13 @@ const allProjects = [
   {
     id: '4',
     title: 'Genshin Impact Exhibition Booth',
-    agency: 'Hoyoverse',
+    agency: 'JHDS (Contractor)',
     brand: 'Genshin Impact',
-    role: 'Spatial layouts, character displays, interactive zones',
+    role: 'Stand design from client specifications',
     image: RENDERS.genshinImpact,
     category: 'Game/Entertainment IP',
-    tags: ['Plan Layout', 'Elevations', 'Grid'],
-    year: '2024'
+    tags: ['Stand Design', 'Exhibition', 'Client Spec'],
+    year: '2025'
   },
   {
     id: '5',
