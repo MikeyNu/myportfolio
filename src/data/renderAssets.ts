@@ -12,6 +12,9 @@ export const RENDERS = {
   redOneConcept: '/renders/red-one.png',
   sbExperience: '/renders/sb.png',
   
+  // CeraVe
+  cerave: '/renders/cerave/cerave.png',
+  
   // Arknights: Endfield
   arknitghtsEndfield: '/renders/arknights-endfield/arknights-endfiield.png',
   arknitghtsEndfieldHero: '/renders/arknights-endfield/arknights-endfiield-hero.png',

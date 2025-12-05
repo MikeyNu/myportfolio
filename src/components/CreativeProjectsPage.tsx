@@ -67,12 +67,12 @@ const allProjects = [
   {
     id: '5',
     title: 'CeraVe Event Environment',
-    agency: 'L\'Oréal',
+    agency: 'JHDS (Contractor)',
     brand: 'CeraVe',
-    role: 'Brand application, product displays, visitor flow',
-    image: RENDERS.niveaActivation,
+    role: '3D product modeling, UV unwrapping, texturing (Blender). Created initial design concept; final design utilized my product models.',
+    image: RENDERS.cerave,
     category: 'Events/Experiences',
-    tags: ['Brand Identity', 'Touchpoints', 'Plans'],
+    tags: ['3D Modeling', 'Texturing', 'Blender'],
     year: '2024',
     color: '#00a8e6',
     featured: false

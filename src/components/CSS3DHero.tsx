@@ -66,12 +66,12 @@ const projects: Project[] = [
   {
     id: '5',
     title: 'CeraVe Event Environment',
-    agency: 'L\'Oréal',
+    agency: 'JHDS (Contractor)',
     brand: 'CeraVe',
-    role: '3D Experience Designer',
-    involvement: 'Brand application, product displays, visitor flow',
-    image: RENDERS.niveaActivation,
-    tags: ['Brand Identity', 'Touchpoints', 'Plans'],
+    role: '3D Product Modeler',
+    involvement: '3D modeling, UV unwrapping, texturing in Blender',
+    image: RENDERS.cerave,
+    tags: ['3D Modeling', 'Texturing', 'Blender'],
     color: '#00a8e6'
   },
   {

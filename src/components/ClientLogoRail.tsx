@@ -12,7 +12,7 @@ const clients = [
   { name: 'Pepsi', projects: 'Event Activations' },
   { name: 'Punchestown', projects: 'Event Venues' },
   { name: 'SBS', projects: 'Special Broadcasting Service' },
-  { name: 'CeraVe', projects: 'Event Environment' },
+  { name: 'CeraVe', projects: '3D Product Modeling' },
   { name: 'Discovery Bank', projects: 'Animation Ad' },
   { name: 'Sega', projects: 'Sonic Racing: CrossWorlds stand' },
   { name: 'Arknights', projects: 'Endfield Booth' },

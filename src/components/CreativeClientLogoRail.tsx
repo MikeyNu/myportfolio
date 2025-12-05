@@ -68,7 +68,7 @@ const clients = [
   },
   { 
     name: 'CeraVe', 
-    projects: 'Event Environment Design',
+    projects: '3D Product Modeling & Texturing',
     tier: 'standard',
     color: '#00a8e6',
     icon: Award
