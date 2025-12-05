@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Mail, Calendar, Copy, Check, Send, MessageCircle, Clock, Zap, Globe, Star, Heart } from 'lucide-react';
+import { Mail, Calendar, Copy, Check, Send, MessageCircle, Clock, Zap, Globe, Star, Heart, Box, Truck, PartyPopper, Store, Gamepad2, Building2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { openCalendly } from '../config/calendly';
@@ -12,32 +12,32 @@ import { openCalendly } from '../config/calendly';
 const projectTypes = [
   { 
     type: 'Exhibition stands and trade show booths',
-    icon: '🏢',
+    icon: Box,
     color: '#9BB4FF'
   },
   { 
     type: 'Branded vehicle experiences and wraps',
-    icon: '🚛',
+    icon: Truck,
     color: '#00D9FF'
   },
   { 
     type: 'Event venues and pop-up activations',
-    icon: '🎪',
+    icon: PartyPopper,
     color: '#FF6B6B'
   },
   { 
     type: 'Retail spaces and showrooms',
-    icon: '🏪',
+    icon: Store,
     color: '#4ECDC4'
   },
   { 
     type: 'Gaming and entertainment IP experiences',
-    icon: '🎮',
+    icon: Gamepad2,
     color: '#FFE66D'
   },
   { 
     type: 'Corporate environments and conference spaces',
-    icon: '🏢',
+    icon: Building2,
     color: '#A8E6CF'
   }
 ];
@@ -405,40 +405,44 @@ export function CreativeContactPage() {
               </div>
               
               <div className="space-y-4">
-                {projectTypes.map((project, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg group cursor-pointer transition-all duration-300 hover:shadow-md"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1 + index * 0.1 }}
-                    onMouseEnter={() => setHoveredProject(index)}
-                    onMouseLeave={() => setHoveredProject(null)}
-                    whileHover={{ x: 8 }}
-                  >
+                {projectTypes.map((project, index) => {
+                  const IconComponent = project.icon;
+                  return (
                     <motion.div
-                      className="text-2xl"
-                      animate={hoveredProject === index ? { scale: 1.2, rotate: 10 } : { scale: 1, rotate: 0 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      key={index}
+                      className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg group cursor-pointer transition-all duration-300 hover:shadow-md"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1 + index * 0.1 }}
+                      onMouseEnter={() => setHoveredProject(index)}
+                      onMouseLeave={() => setHoveredProject(null)}
+                      whileHover={{ x: 8 }}
                     >
-                      {project.icon}
-                    </motion.div>
-                    
-                    <span 
-                      className="text-muted-foreground text-sm flex-1 group-hover:text-foreground transition-colors"
-                      style={{ color: hoveredProject === index ? project.color : undefined }}
-                    >
-                      {project.type}
-                    </span>
+                      <motion.div
+                        className="flex items-center justify-center w-10 h-10 rounded-lg"
+                        style={{ backgroundColor: project.color + '20' }}
+                        animate={hoveredProject === index ? { scale: 1.2, rotate: 10 } : { scale: 1, rotate: 0 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <IconComponent size={20} style={{ color: project.color }} />
+                      </motion.div>
+                      
+                      <span 
+                        className="text-muted-foreground text-sm flex-1 group-hover:text-foreground transition-colors"
+                        style={{ color: hoveredProject === index ? project.color : undefined }}
+                      >
+                        {project.type}
+                      </span>
 
-                    <motion.div
-                      className="w-2 h-2 rounded-full"
-                      style={{ backgroundColor: project.color }}
-                      animate={hoveredProject === index ? { scale: [1, 1.5, 1] } : { scale: 1 }}
-                      transition={{ duration: 0.6, repeat: hoveredProject === index ? Infinity : 0 }}
-                    />
-                  </motion.div>
-                ))}
+                      <motion.div
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: project.color }}
+                        animate={hoveredProject === index ? { scale: [1, 1.5, 1] } : { scale: 1 }}
+                        transition={{ duration: 0.6, repeat: hoveredProject === index ? Infinity : 0 }}
+                      />
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           </div>
