@@ -8,7 +8,12 @@ export const RENDERS = {
   genshinImpact: '/renders/genshin-impact.png',
   heineken: '/renders/heineken/heineken.jpg',
   niveaActivation: '/renders/nivea.png',
-  pepsiExperience: '/renders/pepsi.png',
+  
+  // Pepsi
+  pepsi: '/renders/pepsi/pepsi-hero.png',
+  pepsi2: '/renders/pepsi/pepsi (2).png',
+  pepsi3: '/renders/pepsi/pepsi (3).png',
+  
   punchesTownArena: '/renders/punches-town.png',
   redOneConcept: '/renders/red-one.png',
   sbExperience: '/renders/sb.png',

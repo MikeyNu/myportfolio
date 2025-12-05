@@ -105,6 +105,18 @@ const allProjects = [
   },
   {
     id: '8',
+    title: 'Pepsi Event Stand',
+    agency: 'Pepsi',
+    brand: 'Pepsi',
+    role: 'Design & build from client specifications using Blender and SketchUp',
+    image: RENDERS.pepsi,
+    category: 'Events/Experiences',
+    tags: ['3D Modeling', 'Design', 'Blender', 'SketchUp'],
+    year: '2024',
+    color: '#004b93'
+  },
+  {
+    id: '9',
     title: 'Discovery Bank Retail Space',
     agency: 'Discovery',
     brand: 'Discovery Bank',
@@ -116,7 +128,7 @@ const allProjects = [
     color: '#f47920'
   },
   {
-    id: '9',
+    id: '10',
     title: 'Daimler Conference Hall',
     agency: 'Daimler',
     brand: 'Mercedes-Benz',
@@ -128,7 +140,7 @@ const allProjects = [
     color: '#0f1419'
   },
   {
-    id: '10',
+    id: '11',
     title: 'GAC Automotive Showroom',
     agency: 'GAC Motor',
     brand: 'GAC',

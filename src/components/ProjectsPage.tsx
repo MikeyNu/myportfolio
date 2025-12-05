@@ -86,6 +86,17 @@ const allProjects = [
   },
   {
     id: '8',
+    title: 'Pepsi Event Stand',
+    agency: 'Pepsi',
+    brand: 'Pepsi',
+    role: 'Design & build from client specifications using Blender and SketchUp',
+    image: RENDERS.pepsi,
+    category: 'Events/Experiences',
+    tags: ['3D Modeling', 'Design', 'Blender', 'SketchUp'],
+    year: '2024'
+  },
+  {
+    id: '9',
     title: 'Discovery Bank Retail Space',
     agency: 'Discovery',
     brand: 'Discovery Bank',

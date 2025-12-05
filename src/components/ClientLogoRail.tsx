@@ -9,7 +9,7 @@ const clients = [
   { name: 'Hoyoverse', projects: 'Genshin Impact' },
   { name: 'Heineken', projects: 'Brand Experiences' },
   { name: 'Jimmy\'s Iced Coffee', projects: 'Pop-up Experiences' },
-  { name: 'Pepsi', projects: 'Event Activations' },
+  { name: 'Pepsi', projects: 'Event Stand Design' },
   { name: 'Punchestown', projects: 'Event Venues' },
   { name: 'SBS', projects: 'Special Broadcasting Service' },
   { name: 'CeraVe', projects: '3D Product Modeling' },
