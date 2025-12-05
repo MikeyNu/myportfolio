@@ -316,7 +316,7 @@ export function CreativeContactPage() {
                     whileHover={{ scale: 1.02 }}
                     onClick={copyEmail}
                   >
-                    <span className="font-medium">info@michaelnu.co.za</span>
+                    <span className="font-medium">info@mikeynu.com</span>
                     <motion.div
                       animate={copied ? { scale: [1, 1.2, 1] } : {}}
                       transition={{ duration: 0.3 }}
