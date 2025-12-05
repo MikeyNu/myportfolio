@@ -203,14 +203,14 @@ export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeC
                 <ThemeToggle onThemeChange={onThemeChange} />
               </motion.div>
               
-              {/* Desktop CTA button */}
+              {/* CTA button - Now visible on all screens */}
               <motion.div
-                className="hidden lg:block"
+                className="hidden sm:block"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Button 
-                  className="relative overflow-hidden bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent transition-all duration-300"
+                  className="relative overflow-hidden bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent transition-all duration-300 min-h-[48px]"
                   onClick={handleContactClick}
                 >
                   <motion.div
@@ -352,7 +352,7 @@ export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeC
                           </div>
                           <div>
                             <div className="font-medium capitalize">{item.label}</div>
-                            <div className="text-xs text-muted-foreground">{item.description}</div>
+                            <div className="hidden sm:block text-xs text-muted-foreground">{item.description}</div>
                           </div>
                         </div>
                         
