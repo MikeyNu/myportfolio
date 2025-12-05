@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Moon, Sun, Menu, X, Sparkles, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ThemeToggle } from './ThemeToggle';
+import { openCalendly } from '../config/calendly';
 
 interface CreativeNavigationProps {
   currentPage: string;
@@ -155,11 +156,14 @@ export function CreativeNavigation({ currentPage, onPageChange, onThemeChange }:
               
               {/* Creative CTA button */}
               <motion.div
-                className="hidden md:block"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button className="relative overflow-hidden bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent transition-all duration-300">
+                <Button 
+                  className="relative overflow-hidden bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent transition-all duration-300"
+                  onClick={() => openCalendly()}
+                >
                   <motion.div
                     className="absolute inset-0 bg-white/20"
                     initial={{ x: '-100%' }}
@@ -266,7 +270,10 @@ export function CreativeNavigation({ currentPage, onPageChange, onThemeChange }:
                 >
                   <Button 
                     className="w-full bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      openCalendly();
+                    }}
                   >
                     <span className="flex items-center space-x-2">
                       <Zap size={16} />

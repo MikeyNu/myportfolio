@@ -6,6 +6,7 @@ import { Download, Calendar, MapPin, User, Award, Target, Zap, Globe, Star, Cloc
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { RENDERS } from '../data/renderAssets';
 import { motion, AnimatePresence } from 'motion/react';
+import { openCalendly } from '../config/calendly';
 
 const tools = [
   { name: 'Blender', category: '3D Modeling & Animation (Primary)', level: 95, color: '#FF7300' },
@@ -264,7 +265,11 @@ export function CreativeAboutPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" className="relative overflow-hidden group">
+                <Button 
+                  size="lg" 
+                  className="relative overflow-hidden group"
+                  onClick={() => openCalendly()}
+                >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                     initial={{ x: '-100%' }}

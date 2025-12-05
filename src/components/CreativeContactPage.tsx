@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Mail, Calendar, Copy, Check, Send, MessageCircle, Clock, Zap, Globe, Star, Heart } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
+import { openCalendly } from '../config/calendly';
 
 const projectTypes = [
   { 
@@ -305,6 +306,10 @@ export function CreativeContactPage() {
                       onClick={() => {
                         if (method.action === 'Start Chat') {
                           window.open('https://wa.me/27659001045', '_blank');
+                        } else if (method.action === 'Schedule Call') {
+                          openCalendly();
+                        } else if (method.action === 'Email Now') {
+                          window.location.href = 'mailto:info@mikeynu.com';
                         }
                       }}
                     >

@@ -1,4 +1,5 @@
 import { ModernHero } from './ModernHero';
+import { MobileProjectShowcase } from './MobileProjectShowcase';
 import { CreativeIntroBar } from './CreativeIntroBar';
 import { CreativeCapabilitiesGrid } from './CreativeCapabilitiesGrid';
 import { CreativeClientLogoRail } from './CreativeClientLogoRail';
@@ -20,6 +21,12 @@ export function CreativeHomePage({ onViewCaseStudy, onViewAllProjects }: Creativ
     >
       {/* Hero Section */}
       <ModernHero 
+        onViewCaseStudy={onViewCaseStudy}
+        onViewAllProjects={onViewAllProjects}
+      />
+      
+      {/* Mobile Project Showcase - Shows portfolio immediately on mobile */}
+      <MobileProjectShowcase 
         onViewCaseStudy={onViewCaseStudy}
         onViewAllProjects={onViewAllProjects}
       />
