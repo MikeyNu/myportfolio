@@ -5,6 +5,7 @@ import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Mail, Calendar, Copy, Check, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -32,21 +33,39 @@ export function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log('Form submitted:', formData);
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      budget: '',
-      timeline: '',
-      message: ''
-    });
+    try {
+      await emailjs.send(
+        'service_93dsf5v',
+        'template_v7erfgb',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          company: formData.company || 'Not specified',
+          budget: formData.budget || 'Not specified',
+          timeline: formData.timeline || 'Not specified',
+          message: formData.message,
+          to_email: 'info@mikeynu.com'
+        },
+        'BJTOZ_dR6DYQVbT6h'
+      );
+      
+      alert('✅ Message sent successfully! I\'ll get back to you within 3 business days.');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        budget: '',
+        timeline: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Failed to send message:', error);
+      alert('❌ Failed to send message. Please try again or contact me directly at info@mikeynu.com');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
