@@ -76,7 +76,7 @@ export function CreativeIntroBar() {
   const CurrentIcon = currentText.icon;
 
   return (
-    <section id="intro-bar" className="py-12 bg-gradient-to-r from-background via-card to-background relative overflow-hidden">
+    <section id="intro-bar" className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-background via-card to-background relative overflow-hidden">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         {Array.from({ length: 30 }).map((_, i) => (
@@ -103,8 +103,8 @@ export function CreativeIntroBar() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           
           {/* Dynamic Text Section */}
           <motion.div
@@ -133,7 +133,7 @@ export function CreativeIntroBar() {
               <span className="font-medium text-foreground">Live Experience</span>
             </motion.div>
 
-            <div className="relative h-20 flex items-center">
+            <div className="relative min-h-[80px] sm:min-h-[100px] md:min-h-[120px] flex items-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentTextIndex}
@@ -143,7 +143,7 @@ export function CreativeIntroBar() {
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                   className="absolute inset-0 flex items-center"
                 >
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
                     <span 
                       className="bg-gradient-to-r bg-clip-text text-transparent"
                       style={{ 
@@ -158,12 +158,12 @@ export function CreativeIntroBar() {
             </div>
 
             {/* Progress Indicators */}
-            <div className="flex justify-center lg:justify-start gap-2 mt-8">
+            <div className="flex justify-center lg:justify-start gap-2 mt-6 sm:mt-8">
               {dynamicTexts.map((_, index) => (
                 <motion.div
                   key={index}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    index === currentTextIndex ? 'w-8' : 'w-2'
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                    index === currentTextIndex ? 'w-8 sm:w-10' : 'w-2 sm:w-2.5'
                   }`}
                   style={{
                     backgroundColor: index === currentTextIndex 
@@ -178,7 +178,7 @@ export function CreativeIntroBar() {
 
           {/* Stats Grid */}
           <motion.div
-            className="grid grid-cols-2 gap-6"
+            className="grid grid-cols-2 gap-4 sm:gap-5 md:gap-6"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -187,7 +187,7 @@ export function CreativeIntroBar() {
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                className="relative p-6 rounded-2xl bg-card border border-border hover:shadow-lg transition-all duration-300 group cursor-pointer"
+                className="relative p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl bg-card border border-border hover:shadow-lg transition-all duration-300 group cursor-pointer touch-feedback"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -196,13 +196,13 @@ export function CreativeIntroBar() {
               >
                 {/* Animated Background */}
                 <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                  className="absolute inset-0 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"
                   style={{ backgroundColor: stat.color }}
                 />
 
                 {/* Floating Accent */}
                 <motion.div
-                  className="absolute top-3 right-3 w-3 h-3 rounded-full"
+                  className="absolute top-2 right-2 sm:top-3 sm:right-3 w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full"
                   style={{ backgroundColor: stat.color }}
                   animate={{
                     scale: [1, 1.2, 1],
@@ -217,7 +217,7 @@ export function CreativeIntroBar() {
 
                 <div className="relative z-10">
                   <motion.div
-                    className="text-3xl font-bold mb-2"
+                    className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2"
                     style={{ color: stat.color }}
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
@@ -231,14 +231,14 @@ export function CreativeIntroBar() {
                     {stat.value}
                   </motion.div>
                   
-                  <div className="text-sm text-muted-foreground font-medium">
+                  <div className="text-xs sm:text-sm text-muted-foreground font-medium leading-tight">
                     {stat.label}
                   </div>
                 </div>
 
                 {/* Hover Effect Lines */}
                 <motion.div
-                  className="absolute bottom-0 left-0 h-1 rounded-full"
+                  className="absolute bottom-0 left-0 h-0.5 sm:h-1 rounded-full"
                   style={{ backgroundColor: stat.color }}
                   initial={{ width: 0 }}
                   whileHover={{ width: '100%' }}

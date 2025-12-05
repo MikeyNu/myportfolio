@@ -26,12 +26,12 @@ export function MobileProjectShowcase({
     <section className="md:hidden py-8 sm:py-12 bg-background">
       <div className="px-4">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 sm:mb-8">
           <div>
-            <h2 className="text-2xl font-bold text-foreground mb-1">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-1.5">
               Featured Work
             </h2>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm sm:text-base text-muted-foreground">
               Recent projects for global brands
             </p>
           </div>
@@ -47,7 +47,7 @@ export function MobileProjectShowcase({
         </div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5">
           {featuredWork.map((project, index) => (
             <motion.div
               key={project.id}
@@ -71,9 +71,9 @@ export function MobileProjectShowcase({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-3">
-                  <div className="text-xs text-white/70 mb-1">{project.category}</div>
-                  <div className="font-bold text-white text-sm line-clamp-1">
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                  <div className="text-xs sm:text-sm text-white/80 mb-0.5 sm:mb-1 font-medium">{project.category}</div>
+                  <div className="font-bold text-white text-sm sm:text-base line-clamp-1">
                     {project.brand}
                   </div>
                 </div>

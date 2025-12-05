@@ -198,7 +198,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
 
                 {/* Subtitle */}
                 <motion.p
-                  className="text-base md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 md:mb-10 leading-relaxed"
+                  className="text-base md:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8 md:mb-10 leading-relaxed max-w-2xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
@@ -214,8 +214,8 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1, duration: 0.8 }}
                 >
-                  <div className="text-sm text-muted-foreground mb-2 sm:mb-3">Trusted by</div>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="text-sm text-muted-foreground mb-3">Trusted by</div>
+                  <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4">
                     {brands.map((brand, index) => (
                       <motion.div
                         key={brand}
@@ -226,7 +226,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
                       >
                         <Badge 
                           variant="outline" 
-                          className="px-4 py-2 bg-background/50 border-border/50 hover:border-accent/50 hover:bg-accent/5 transition-all duration-300 cursor-pointer"
+                          className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm bg-background/50 border-border/50 hover:border-accent/50 hover:bg-accent/5 transition-all duration-300 cursor-pointer min-h-[32px]"
                         >
                           {brand}
                         </Badge>
