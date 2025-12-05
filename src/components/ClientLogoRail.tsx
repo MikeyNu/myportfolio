@@ -13,7 +13,7 @@ const clients = [
   { name: 'Punchestown', projects: 'Event Venues' },
   { name: 'SBS', projects: 'Special Broadcasting Service' },
   { name: 'CeraVe', projects: '3D Product Modeling' },
-  { name: 'Discovery Bank', projects: 'Animation Ad' },
+  { name: 'Discovery Bank', projects: 'Video Ad Production' },
   { name: 'Sega', projects: 'Sonic Racing: CrossWorlds stand' },
   { name: 'Arknights', projects: 'Endfield Booth' },
   { name: 'GAC', projects: 'Showroom' },

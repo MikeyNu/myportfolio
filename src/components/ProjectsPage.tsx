@@ -97,14 +97,14 @@ const allProjects = [
   },
   {
     id: '9',
-    title: 'Discovery Bank Retail Space',
-    agency: 'Discovery',
+    title: 'Discovery Bank Video Ad',
+    agency: 'JHDS (Contractor)',
     brand: 'Discovery Bank',
-    role: 'Retail layout, customer journey, digital touchpoints',
-    image: RENDERS.discoveryBank,
-    category: 'Retail Pop-ups',
-    tags: ['Plan Layout', 'Brand Identity', 'Elevations'],
-    year: '2023'
+    role: 'Motion tracking, rotoscoping, 3D building modeling from video references, tracking model to video, plane animation. End-to-end video ad production.',
+    image: RENDERS.discoveryVideo,
+    category: 'Animation/Video',
+    tags: ['Motion Tracking', 'Rotoscoping', '3D Modeling', 'Animation'],
+    year: '2025'
   },
   {
     id: '9',

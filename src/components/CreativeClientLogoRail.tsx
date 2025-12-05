@@ -75,7 +75,7 @@ const clients = [
   },
   { 
     name: 'Discovery Bank', 
-    projects: 'Retail Space & Animation',
+    projects: 'Video Ad - Motion Tracking & Animation',
     tier: 'standard',
     color: '#f47920',
     icon: Users
