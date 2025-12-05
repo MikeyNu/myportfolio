@@ -97,6 +97,7 @@ export function CreativeContactPage() {
     setIsSubmitting(true);
     
     try {
+      // Send confirmation email to user
       await emailjs.send(
         'service_93dsf5v',
         'template_v7erfgb',
@@ -108,6 +109,21 @@ export function CreativeContactPage() {
           timeline: formData.timeline || 'Not specified',
           message: formData.message,
           to_email: 'info@mikeynu.com'
+        },
+        'BJTOZ_dR6DYQVbT6h'
+      );
+      
+      // Send notification email to admin
+      await emailjs.send(
+        'service_93dsf5v',
+        'template_1x3epo3',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          company: formData.company || 'Not specified',
+          budget: formData.budget || 'Not specified',
+          timeline: formData.timeline || 'Not specified',
+          message: formData.message
         },
         'BJTOZ_dR6DYQVbT6h'
       );
