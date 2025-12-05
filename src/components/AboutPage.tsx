@@ -4,6 +4,7 @@ import { Badge } from './ui/badge';
 import { Download, Calendar, MapPin } from 'lucide-react';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { RENDERS } from '../data/renderAssets';
+import { openCalendly } from '../config/calendly';
 
 const tools = [
   { name: 'Blender', category: '3D Modeling & Animation (Primary)' },
@@ -80,7 +81,7 @@ export function AboutPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg">
+              <Button size="lg" onClick={() => openCalendly()}>
                 <Calendar size={16} className="mr-2" />
                 Book a 15-min Intro Call
               </Button>

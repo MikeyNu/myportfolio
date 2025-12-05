@@ -6,6 +6,7 @@ import { Textarea } from './ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Mail, Calendar, Copy, Check, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { openCalendly } from '../config/calendly';
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -142,7 +143,7 @@ export function ContactPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <Button className="w-full mb-4">
+                <Button className="w-full mb-4" onClick={() => openCalendly()}>
                   Request a Teams/Google Meet Call
                 </Button>
                 <p className="text-muted-foreground text-sm">

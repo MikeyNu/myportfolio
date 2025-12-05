@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Menu, X, Sparkles, Zap, Home, FolderOpen, User, Mail, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence, PanInfo } from 'motion/react';
 import { ThemeToggle } from './ThemeToggle';
+import { openCalendly } from '../config/calendly';
 
 interface ImprovedCreativeNavigationProps {
   currentPage: string;

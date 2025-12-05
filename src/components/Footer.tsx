@@ -1,5 +1,6 @@
 import { Button } from './ui/button';
 import { Mail, Download, Calendar } from 'lucide-react';
+import { openCalendly } from '../config/calendly';
 
 interface FooterProps {
   onPageChange: (page: string) => void;
@@ -62,7 +63,7 @@ export function Footer({ onPageChange }: FooterProps) {
                 <Download size={16} className="mr-2" />
                 Download CV
               </Button>
-              <Button size="sm" className="w-full justify-start">
+              <Button size="sm" className="w-full justify-start" onClick={() => openCalendly()}>
                 <Calendar size={16} className="mr-2" />
                 Book 15-min Call
               </Button>

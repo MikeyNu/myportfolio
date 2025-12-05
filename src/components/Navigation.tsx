@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Moon, Sun } from 'lucide-react';
+import { openCalendly } from '../config/calendly';
 
 interface NavigationProps {
   currentPage: string;
@@ -71,7 +72,7 @@ export function Navigation({ currentPage, onPageChange }: NavigationProps) {
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
             </Button>
             
-            <Button className="hidden md:inline-flex">
+            <Button className="hidden md:inline-flex" onClick={() => openCalendly()}>
               Book a 15-min Intro Call
             </Button>
           </div>

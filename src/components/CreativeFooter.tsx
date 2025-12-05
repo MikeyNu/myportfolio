@@ -1,6 +1,7 @@
 import { Button } from './ui/button';
 import { Mail, Download, Calendar, Heart, Sparkles, MapPin, Clock, Star, Zap, Globe } from 'lucide-react';
 import { motion } from 'motion/react';
+import { openCalendly } from '../config/calendly';
 
 interface CreativeFooterProps {
   onPageChange: (page: string) => void;
@@ -242,7 +243,11 @@ export function CreativeFooter({ onPageChange }: CreativeFooterProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Button size="sm" className="w-full justify-start relative overflow-hidden group">
+                <Button 
+                  size="sm" 
+                  className="w-full justify-start relative overflow-hidden group"
+                  onClick={() => openCalendly()}
+                >
                   <motion.div
                     className="absolute inset-0 bg-white/20"
                     initial={{ x: '-100%' }}
