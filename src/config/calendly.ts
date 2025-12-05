@@ -4,7 +4,7 @@
 export const CALENDLY_CONFIG = {
   // Your Calendly scheduling URL
   // Format: https://calendly.com/your-username/15min
-  bookingUrl: 'https://calendly.com/mikeynu/15min',
+  bookingUrl: 'https://calendly.com/mikeynu/15-min-intro-call',
   
   // Prefill parameters (optional)
   getPrefillUrl: (name?: string, email?: string) => {
