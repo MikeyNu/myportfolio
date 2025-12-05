@@ -313,35 +313,6 @@ export function CreativeCapabilitiesGrid() {
             );
           })}
         </div>
-
-        {/* Bottom CTA Section */}
-        <motion.div
-          className="text-center mt-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          <motion.p 
-            className="text-muted-foreground mb-6 text-lg"
-            whileHover={{ scale: 1.02 }}
-          >
-            Ready to bring your brand experience to life?
-          </motion.p>
-          <motion.button
-            className="px-8 py-3 bg-gradient-to-r from-accent to-primary text-white rounded-lg font-medium relative overflow-hidden group"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            />
-            <span className="relative flex items-center gap-2">
-              <Sparkles size={16} />
-              Let's Create Something Amazing
-            </span>
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );
