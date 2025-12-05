@@ -44,25 +44,26 @@ interface FeaturedCaseStudiesProps {
 
 export function FeaturedCaseStudies({ onViewCaseStudy }: FeaturedCaseStudiesProps) {
   return (
-    <section className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
             Featured Case Studies
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             In-depth looks at selected projects showcasing the complete design process
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {featuredProjects.map((project, index) => (
-            <Card key={project.id} className="group overflow-hidden hover:shadow-xl transition-all duration-500 border-border bg-card">
+            <Card key={project.id} className="group overflow-hidden hover:shadow-xl transition-all duration-500 border-border bg-card touch-feedback">
               <div className="relative overflow-hidden">
                 <ImageWithFallback
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-56 sm:h-64 md:h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
@@ -75,34 +76,35 @@ export function FeaturedCaseStudies({ onViewCaseStudy }: FeaturedCaseStudiesProp
                 </Button>
               </div>
 
-              <CardContent className="p-6">
-                <div className="flex flex-wrap gap-2 mb-3">
+              <CardContent className="p-5 sm:p-6">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="text-xs">
+                    <Badge key={tag} variant="secondary" className="text-xs sm:text-sm">
                       {tag}
                     </Badge>
                   ))}
                 </div>
 
-                <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-3 group-hover:text-accent transition-colors line-clamp-2">
                   {project.title}
                 </h3>
 
-                <div className="text-sm text-muted-foreground mb-3">
-                  <span className="text-accent">{project.agency}</span> · {project.brand}
+                <div className="text-sm sm:text-base text-muted-foreground mb-4">
+                  <span className="text-accent font-medium">{project.agency}</span> · {project.brand}
                 </div>
 
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-5 line-clamp-3">
                   {project.summary}
                 </p>
 
                 <Button 
                   variant="ghost" 
-                  className="w-full justify-between text-accent hover:text-accent-foreground hover:bg-accent"
+                  className="w-full justify-between text-accent hover:text-accent-foreground hover:bg-accent min-h-[44px] text-sm sm:text-base font-medium"
                   onClick={() => onViewCaseStudy(project.id)}
                 >
                   View Case Study
-                  <ArrowUpRight size={16} />
+                  <ArrowUpRight size={16} className="sm:hidden" />
+                  <ArrowUpRight size={18} className="hidden sm:block" />
                 </Button>
               </CardContent>
             </Card>

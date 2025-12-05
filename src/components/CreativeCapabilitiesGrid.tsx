@@ -78,7 +78,7 @@ export function CreativeCapabilitiesGrid() {
   const [selectedCapability, setSelectedCapability] = useState<number | null>(null);
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-background relative overflow-hidden">
+    <section className="py-20 bg-background relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {Array.from({ length: 20 }).map((_, i) => (
@@ -103,10 +103,10 @@ export function CreativeCapabilitiesGrid() {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Creative Header */}
         <motion.div 
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -124,7 +124,7 @@ export function CreativeCapabilitiesGrid() {
           </motion.div>
           
           <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 sm:mb-6"
+            className="text-4xl md:text-6xl font-bold text-foreground mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -138,7 +138,7 @@ export function CreativeCapabilitiesGrid() {
           </motion.h2>
           
           <motion.p 
-            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4"
+            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -149,7 +149,7 @@ export function CreativeCapabilitiesGrid() {
         </motion.div>
 
         {/* Capabilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {capabilities.map((capability, index) => {
             const Icon = capability.icon;
             const isHovered = hoveredIndex === index;
@@ -167,7 +167,7 @@ export function CreativeCapabilitiesGrid() {
                 onClick={() => setSelectedCapability(isSelected ? null : index)}
                 className="cursor-pointer"
               >
-                <Card className={`group relative min-h-[400px] h-full transition-all duration-500 border-border bg-card hover:shadow-2xl overflow-hidden touch-feedback ${
+                <Card className={`group relative h-full transition-all duration-500 border-border bg-card hover:shadow-2xl overflow-hidden ${
                   isHovered ? 'scale-105 -translate-y-2' : ''
                 } ${isSelected ? 'ring-2 ring-accent ring-offset-2 ring-offset-background' : ''}`}>
                   
@@ -177,7 +177,7 @@ export function CreativeCapabilitiesGrid() {
                   />
 
                   {/* Floating Particles */}
-                  <div className="absolute inset-0 overflow-hidden hidden sm:block">
+                  <div className="absolute inset-0 overflow-hidden">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <motion.div
                         key={i}
@@ -201,7 +201,7 @@ export function CreativeCapabilitiesGrid() {
                     ))}
                   </div>
 
-                  <CardContent className="p-5 sm:p-6 md:p-8 relative z-10">
+                  <CardContent className="p-8 relative z-10">
                     {/* Icon and Stats */}
                     <div className="flex items-start justify-between mb-6">
                       <motion.div
@@ -243,7 +243,7 @@ export function CreativeCapabilitiesGrid() {
                     
                     {/* Title */}
                     <motion.h3 
-                      className="font-bold text-lg sm:text-xl text-foreground mb-3 sm:mb-4 leading-tight"
+                      className="font-bold text-foreground mb-4 leading-tight"
                       animate={isHovered ? { scale: 1.02 } : { scale: 1 }}
                     >
                       {capability.title}
