@@ -195,7 +195,7 @@ export function CreativeIntroBar() {
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 {/* Animated Background */}
-                <motion.div
+                <div
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"
                   style={{ backgroundColor: stat.color }}
                 />
