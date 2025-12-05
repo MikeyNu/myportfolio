@@ -87,7 +87,7 @@ const allProjects = [
   {
     id: '8',
     title: 'Pepsi Event Stand',
-    agency: 'Pepsi',
+    agency: 'JHDS (Contractor)',
     brand: 'Pepsi',
     role: 'Design & build from client specifications using Blender and SketchUp',
     image: RENDERS.pepsi,
