@@ -267,6 +267,11 @@ export function CreativeContactPage() {
                     <Button 
                       className="w-full relative overflow-hidden group"
                       style={{ backgroundColor: method.color }}
+                      onClick={() => {
+                        if (method.action === 'Start Chat') {
+                          window.open('https://wa.me/27659001045', '_blank');
+                        }
+                      }}
                     >
                       <motion.div
                         className="absolute inset-0 bg-white/20"
