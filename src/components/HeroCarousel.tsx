@@ -72,10 +72,10 @@ const projects: Project[] = [
     title: 'Heineken Pop-up Experience',
     agency: 'Heineken',
     brand: 'Heineken',
-    role: '3D Experience Designer',
-    involvement: 'Venue design, brand integration, social spaces',
-    image: RENDERS.heinekenExperience,
-    tags: ['Moodboard', 'POVs', 'No Grid']
+    role: 'UV/Texture Artist',
+    involvement: 'UV unwrapping and retexturing in SketchUp',
+    image: RENDERS.heineken,
+    tags: ['UV Mapping', 'Texturing', 'SketchUp']
   }
 ];
 

@@ -6,7 +6,7 @@ export const RENDERS = {
   discoveryVideo: '/renders/DiscoveryVideo.mp4',
   gacShowroom: '/renders/gac.png',
   genshinImpact: '/renders/genshin-impact.png',
-  heinekenExperience: '/renders/heineken.jpg',
+  heineken: '/renders/heineken/heineken.jpg',
   niveaActivation: '/renders/nivea.png',
   pepsiExperience: '/renders/pepsi.png',
   punchesTownArena: '/renders/punches-town.png',

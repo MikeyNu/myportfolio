@@ -78,10 +78,10 @@ const allProjects = [
     title: 'Heineken Pop-up Experience',
     agency: 'Heineken',
     brand: 'Heineken',
-    role: 'Venue design, brand integration, social spaces',
-    image: RENDERS.heinekenExperience,
+    role: 'UV unwrapping and retexturing existing SketchUp file',
+    image: RENDERS.heineken,
     category: 'Retail Pop-ups',
-    tags: ['Moodboard', 'POVs', 'No Grid'],
+    tags: ['UV Mapping', 'Texturing', 'SketchUp'],
     year: '2024'
   },
   {
