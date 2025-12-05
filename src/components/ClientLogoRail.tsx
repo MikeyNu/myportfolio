@@ -17,7 +17,7 @@ const clients = [
   { name: 'Sega', projects: 'Sonic Racing: CrossWorlds stand' },
   { name: 'Arknights', projects: 'Endfield Booth' },
   { name: 'GAC', projects: 'Showroom' },
-  { name: 'Daimler', projects: 'Conference Hall' },
+  { name: 'Daimler', projects: 'Conference Hall Design' },
   { name: 'COSM', projects: 'Immersive Venues' },
   { name: 'Logitech', projects: 'Event Assets' }
 ];

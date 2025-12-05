@@ -129,14 +129,14 @@ const allProjects = [
   },
   {
     id: '10',
-    title: 'Daimler Conference Hall',
-    agency: 'Daimler',
+    title: 'Mercedes-Benz Conference Hall',
+    agency: 'JHDS (Contractor)',
     brand: 'Mercedes-Benz',
-    role: 'Corporate space design, presentation environments',
-    image: RENDERS.daimlerTruck,
+    role: 'End-to-end conference hall design with live client instructions. 3D modeling, UV unwrapping, texturing, lighting, space design.',
+    image: RENDERS.daimler,
     category: 'Events/Experiences',
-    tags: ['Plan Layout', 'Elevations', 'Grid'],
-    year: '2023',
+    tags: ['3D Modeling', 'Space Design', 'Texturing', 'Lighting'],
+    year: '2025',
     color: '#0f1419'
   },
   {

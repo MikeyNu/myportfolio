@@ -1,6 +1,11 @@
 export const RENDERS = {
   aomMaize: '/renders/aom-maize.png',
-  daimlerTruck: '/renders/daimler-truck.png',
+  
+  // Daimler/Mercedes-Benz
+  daimler: '/renders/daimler-truck/daimler.png',
+  daimler2: '/renders/daimler-truck/daimler-truck (1).png',
+  daimler3: '/renders/daimler-truck/daimler-truck (2).png',
+  
   deliBoys: '/renders/deli-boys/deli-boys.png',
   discoveryVideo: '/renders/discovery/DiscoveryVideo.mp4',
   gacShowroom: '/renders/gac.png',
