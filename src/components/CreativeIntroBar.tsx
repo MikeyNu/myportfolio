@@ -248,35 +248,6 @@ export function CreativeIntroBar() {
             ))}
           </motion.div>
         </div>
-
-        {/* Floating Call-to-Action */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        >
-          <motion.button
-            className="group relative px-8 py-4 bg-gradient-to-r from-accent/20 to-primary/20 border border-accent/30 rounded-full font-medium text-foreground hover:from-accent/30 hover:to-primary/30 transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-accent to-primary opacity-0 group-hover:opacity-20 rounded-full transition-opacity duration-300"
-            />
-            <span className="relative flex items-center gap-2">
-              <Sparkles size={16} className="text-accent" />
-              Explore My Work
-              <motion.div
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                →
-              </motion.div>
-            </span>
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   );
