@@ -190,7 +190,7 @@ export function ModernHero({ onViewCaseStudy, onViewAllProjects }: ModernHeroPro
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-tight mb-4">tight mb-4">
+                  <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-tight mb-4">
                     <span className="block text-foreground">Michael</span>
                     <span className="block gradient-text">Ndhlovu</span>
                   </h1>
