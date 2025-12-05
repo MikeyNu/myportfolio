@@ -20,7 +20,7 @@ export function ContactPage() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('info@michaelnu.co.za');
+      await navigator.clipboard.writeText('info@mikeynu.com');
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -79,7 +79,7 @@ export function ContactPage() {
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between p-4 bg-muted rounded-lg mb-4">
-                  <span className="font-medium">info@michaelnu.co.za</span>
+                  <span className="font-medium">info@mikeynu.com</span>
                   <Button
                     variant="ghost"
                     size="sm"

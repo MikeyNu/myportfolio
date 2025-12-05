@@ -7,7 +7,7 @@ export function IntroBar() {
 
   const copyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('info@michaelnu.co.za');
+      await navigator.clipboard.writeText('info@mikeynu.com');
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {

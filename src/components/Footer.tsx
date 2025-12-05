@@ -15,11 +15,11 @@ export function Footer({ onPageChange }: FooterProps) {
             <h3 className="font-semibold text-foreground mb-4">Get in Touch</h3>
             <div className="space-y-3">
               <a 
-                href="mailto:info@michaelnu.co.za" 
+                href="mailto:info@mikeynu.com" 
                 className="flex items-center text-muted-foreground hover:text-accent transition-colors"
               >
                 <Mail size={16} className="mr-2" />
-                info@michaelnu.co.za
+                info@mikeynu.com
               </a>
               <div className="text-sm text-muted-foreground">
                 Remote work via Teams or Google Meet

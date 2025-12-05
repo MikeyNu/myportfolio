@@ -111,7 +111,7 @@ export function CreativeFooter({ onPageChange }: CreativeFooterProps) {
               >
                 <Mail size={16} className="mr-3 group-hover:text-accent" />
                 <div>
-                  <div className="font-medium">info@michaelnu.co.za</div>
+                  <div className="font-medium">info@mikeynu.com</div>
                   <div className="text-xs">Direct email</div>
                 </div>
               </motion.a>
