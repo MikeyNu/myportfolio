@@ -270,7 +270,10 @@ export function CreativeNavigation({ currentPage, onPageChange, onThemeChange }:
                 >
                   <Button 
                     className="w-full bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      openCalendly();
+                    }}
                   >
                     <span className="flex items-center space-x-2">
                       <Zap size={16} />

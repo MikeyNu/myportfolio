@@ -97,7 +97,7 @@ export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeC
   };
 
   const handleContactClick = () => {
-    handlePageChange('contact');
+    openCalendly();
   };
 
   // Handle swipe to close

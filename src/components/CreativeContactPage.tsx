@@ -308,6 +308,8 @@ export function CreativeContactPage() {
                           window.open('https://wa.me/27659001045', '_blank');
                         } else if (method.action === 'Schedule Call') {
                           openCalendly();
+                        } else if (method.action === 'Email Now') {
+                          window.location.href = 'mailto:info@mikeynu.com';
                         }
                       }}
                     >
