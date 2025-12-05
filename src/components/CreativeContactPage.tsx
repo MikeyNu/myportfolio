@@ -245,7 +245,7 @@ export function CreativeContactPage() {
               >
                 <Card className="border-border bg-card h-full relative overflow-hidden group-hover:shadow-2xl transition-all duration-500">
                   {/* Animated Background */}
-                  <motion.div
+                  <div
                     className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
                     style={{ backgroundColor: method.color }}
                   />

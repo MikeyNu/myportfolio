@@ -172,14 +172,8 @@ export function CreativeCapabilitiesGrid() {
                 } ${isSelected ? 'ring-2 ring-accent ring-offset-2 ring-offset-background' : ''}`}>
                   
                   {/* Animated Background Gradient */}
-                  <motion.div
+                  <div
                     className={`absolute inset-0 bg-gradient-to-br ${capability.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                    initial={false}
-                    animate={{
-                      background: isHovered 
-                        ? `linear-gradient(135deg, ${capability.color}20, transparent)`
-                        : 'transparent'
-                    }}
                   />
 
                   {/* Floating Particles */}
