@@ -76,14 +76,36 @@ const projects: Project[] = [
   },
   {
     id: '6',
+    title: 'Hulu Deli Boys Food Truck',
+    agency: 'JHDS (Contractor)',
+    brand: 'Hulu',
+    role: 'Designer & Builder',
+    involvement: 'Design & build from client specifications, 3D product modeling, lighting setup',
+    image: RENDERS.deliBoys,
+    tags: ['3D Modeling', 'Design', 'Lighting'],
+    color: '#1ce783'
+  },
+  {
+    id: '7',
     title: 'Heineken Pop-up Experience',
-    agency: 'Heineken',
+    agency: 'JHDS (Contractor)',
     brand: 'Heineken',
     role: 'UV/Texture Artist',
     involvement: 'UV unwrapping and retexturing in SketchUp',
     image: RENDERS.heineken,
     tags: ['UV Mapping', 'Texturing', 'SketchUp'],
     color: '#00a651'
+  },
+  {
+    id: '8',
+    title: 'Pepsi Event Stand',
+    agency: 'JHDS (Contractor)',
+    brand: 'Pepsi',
+    role: 'Designer & Builder',
+    involvement: 'Design & build from client specifications using Blender and SketchUp',
+    image: RENDERS.pepsi,
+    tags: ['3D Modeling', 'Design', 'Blender', 'SketchUp'],
+    color: '#004b93'
   }
 ];
 
