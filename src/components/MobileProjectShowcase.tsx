@@ -23,15 +23,15 @@ export function MobileProjectShowcase({
   onViewAllProjects 
 }: MobileProjectShowcaseProps) {
   return (
-    <section className="md:hidden py-10 sm:py-14 bg-background">
-      <div className="px-4 sm:px-6">
+    <section className="md:hidden py-8 sm:py-12 bg-background">
+      <div className="px-4">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-8 sm:mb-10">
+        <div className="flex items-center justify-between mb-6">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-2">
+            <h2 className="text-2xl font-bold text-foreground mb-1">
               Featured Work
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Recent projects for global brands
             </p>
           </div>
@@ -47,7 +47,7 @@ export function MobileProjectShowcase({
         </div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-2 gap-3">
           {featuredWork.map((project, index) => (
             <motion.div
               key={project.id}
@@ -59,7 +59,7 @@ export function MobileProjectShowcase({
               className="relative cursor-pointer group touch-feedback"
             >
               {/* Project Card */}
-              <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div className="relative aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
                 <ImageWithFallback
                   src={project.img}
                   alt={project.brand}
@@ -71,9 +71,9 @@ export function MobileProjectShowcase({
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                  <div className="text-xs sm:text-sm text-white/80 mb-1 font-medium uppercase tracking-wider">{project.category}</div>
-                  <div className="font-bold text-white text-base sm:text-lg line-clamp-1">
+                <div className="absolute bottom-0 left-0 right-0 p-3">
+                  <div className="text-xs text-white/70 mb-1">{project.category}</div>
+                  <div className="font-bold text-white text-sm line-clamp-1">
                     {project.brand}
                   </div>
                 </div>
@@ -90,7 +90,7 @@ export function MobileProjectShowcase({
         {/* View All CTA */}
         <Button
           onClick={onViewAllProjects}
-          className="w-full mt-8 sm:mt-10 h-12 text-base min-h-[48px] font-semibold"
+          className="w-full mt-6 h-12 text-base min-h-[48px]"
           variant="outline"
         >
           View All Projects

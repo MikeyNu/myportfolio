@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Filter, Grid, List, Eye, Layers, Map, Search, Sparkles, TrendingUp, Calendar } from 'lucide-react';
+import { Filter, Grid, Eye, Layers, Map, Search, Sparkles, TrendingUp, Calendar } from 'lucide-react';
 import { Input } from './ui/input';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { motion, AnimatePresence } from 'motion/react';
@@ -163,11 +163,9 @@ const categories = [
 ];
 
 const viewToggles = [
-  { id: 'povs', label: 'POVs', icon: Eye },
-  { id: 'plans', label: 'Plans', icon: Map },
-  { id: 'elevations', label: 'Elevations', icon: Layers },
-  { id: 'grid', label: 'With Grid', icon: Grid },
-  { id: 'no-grid', label: 'Without Grid', icon: List }
+  { id: 'povs', label: 'POV touchpoints', icon: Eye },
+  { id: 'plans', label: 'Plans / elevations', icon: Map },
+  { id: 'grid', label: 'Grid handoff', icon: Grid }
 ];
 
 interface CreativeProjectsPageProps {
@@ -227,10 +225,8 @@ export function CreativeProjectsPage({ onViewCaseStudy }: CreativeProjectsPagePr
     const toggleMatch = activeToggles.length === 0 || 
       activeToggles.some(toggle => {
         if (toggle === 'grid') return project.tags.includes('Grid');
-        if (toggle === 'no-grid') return project.tags.includes('No Grid');
-        if (toggle === 'povs') return project.tags.includes('POVs');
-        if (toggle === 'plans') return project.tags.includes('Plans') || project.tags.includes('Plan Layout');
-        if (toggle === 'elevations') return project.tags.includes('Elevations');
+        if (toggle === 'povs') return project.tags.includes('POVs') || project.tags.includes('Touchpoints');
+        if (toggle === 'plans') return project.tags.includes('Plans') || project.tags.includes('Plan Layout') || project.tags.includes('Elevations');
         return false;
       });
     
@@ -362,7 +358,7 @@ export function CreativeProjectsPage({ onViewCaseStudy }: CreativeProjectsPagePr
           <div className="flex flex-wrap justify-center gap-2">
             <div className="flex items-center gap-2 mr-4">
               <Filter size={16} className="text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">View Types:</span>
+              <span className="text-sm text-muted-foreground">Deliverable views:</span>
             </div>
             {viewToggles.map((toggle, index) => {
               const Icon = toggle.icon;
@@ -386,6 +382,9 @@ export function CreativeProjectsPage({ onViewCaseStudy }: CreativeProjectsPagePr
               );
             })}
           </div>
+          <p className="text-center text-sm text-muted-foreground max-w-3xl mx-auto">
+            Plans and elevations are part of the standard set; POVs cover touchpoints and journeys; grids are included with final files for production or agency teams.
+          </p>
         </motion.div>
 
         {/* Results Summary */}

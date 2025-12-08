@@ -129,7 +129,7 @@ export function CreativeContactPage() {
         'BJTOZ_dR6DYQVbT6h'
       );
       
-      alert('✅ Message sent successfully! I\'ll get back to you within 3 business days.');
+      alert('✅ Message sent successfully! I\'ll get back to you within 24 hours.');
       
       // Reset form
       setFormData({

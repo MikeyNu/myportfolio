@@ -32,7 +32,7 @@ const caseStudyData = {
       'Van concept designs and renders',
       'UV unwrapped assets ready for texturing',
       'Final textured renders for approval',
-      'Production-ready files'
+      'Polished design files for production teams'
     ],
     image: RENDERS.netflixHero,
     gallery: [
@@ -109,7 +109,7 @@ const caseStudyData = {
       'Optimized texture maps',
       'Character cutout designs',
       'Game item models',
-      'Production-ready files'
+      'Polished design files for production teams'
     ],
     image: RENDERS.sonicHero,
     gallery: [
