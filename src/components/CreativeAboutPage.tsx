@@ -7,7 +7,6 @@ export function CreativeAboutPage() {
       <section className="cinematic-container cinematic-grid about-hero" aria-labelledby="about-title">
         <div className="about-copy">
           <p className="cinematic-kicker">About / Approach</p>
-          <p className="cinematic-meta" style={{ marginTop: '58px' }}>Approach</p>
           <h1 id="about-title" className="cinematic-display about-heading">
             Design as experience engineering.
           </h1>
