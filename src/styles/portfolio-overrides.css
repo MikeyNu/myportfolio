@@ -43,6 +43,12 @@ p {
   transition-property: none;
 }
 
+/* Remove inherited press scaling from the old mobile style layer. */
+button:active,
+a:active {
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
