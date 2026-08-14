@@ -54,6 +54,11 @@ export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeC
     setIsMobileMenuOpen(false);
   };
 
+  const handleBookCall = () => {
+    setIsMobileMenuOpen(false);
+    openCalendly();
+  };
+
   const isActivePage = (page: string) => {
     return currentPage === page || (currentPage === 'case-study' && page === 'projects');
   };
@@ -92,9 +97,11 @@ export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeC
 
             <div className="flex items-center gap-2">
               <ThemeToggle onThemeChange={onThemeChange} />
-              <Button className="hidden sm:inline-flex" onClick={openCalendly}>
-                Book intro call
-              </Button>
+              <div className="hidden lg:block">
+                <Button onClick={handleBookCall}>
+                  Book intro call
+                </Button>
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
@@ -135,7 +142,7 @@ export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeC
             </div>
 
             <div className="pt-8">
-              <Button className="w-full" onClick={openCalendly}>
+              <Button className="w-full" onClick={handleBookCall}>
                 Book a 15-minute intro call
               </Button>
             </div>
