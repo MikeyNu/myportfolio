@@ -164,7 +164,7 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
       </div>
 
       <div className="cinematic-container work-page-footer">
-        <span className="cinematic-page-index">{pageIndex.work.replace('/ ', '')}</span>
+        <span className="cinematic-page-index">{pageIndex.work}</span>
         <span className="cinematic-scroll-cue">Scroll to explore</span>
       </div>
     </div>
