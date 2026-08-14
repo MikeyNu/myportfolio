@@ -1,28 +1,18 @@
-import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
 import { Sun, Moon } from 'lucide-react';
 
 interface ThemeToggleProps {
-  onThemeChange?: (theme: 'light' | 'dark') => void;
+  theme: 'light' | 'dark';
+  onThemeChange: (theme: 'light' | 'dark') => void;
 }
 
-export function ThemeToggle({ onThemeChange }: ThemeToggleProps) {
-  const [isDark, setIsDark] = useState(true);
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const nextIsDark = savedTheme ? savedTheme === 'dark' : true;
-
-    setIsDark(nextIsDark);
-    localStorage.setItem('theme', nextIsDark ? 'dark' : 'light');
-    onThemeChange?.(nextIsDark ? 'dark' : 'light');
-  }, [onThemeChange]);
+export function ThemeToggle({ theme, onThemeChange }: ThemeToggleProps) {
+  const isDark = theme === 'dark';
 
   const toggleTheme = () => {
     const nextTheme = isDark ? 'light' : 'dark';
-    setIsDark(!isDark);
-    localStorage.setItem('theme', nextTheme);
-    onThemeChange?.(nextTheme);
+    window.localStorage.setItem('theme', nextTheme);
+    onThemeChange(nextTheme);
   };
 
   return (

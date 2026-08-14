@@ -6,6 +6,7 @@ import { openCalendly } from '../config/calendly';
 
 interface ImprovedCreativeNavigationProps {
   currentPage: string;
+  currentTheme: 'light' | 'dark';
   onPageChange: (page: string) => void;
   onThemeChange: (theme: 'light' | 'dark') => void;
 }
@@ -17,7 +18,12 @@ const navItems = [
   { id: 'contact', label: 'Contact', description: 'Project inquiry and direct contact' }
 ];
 
-export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeChange }: ImprovedCreativeNavigationProps) {
+export function ImprovedCreativeNavigation({
+  currentPage,
+  currentTheme,
+  onPageChange,
+  onThemeChange
+}: ImprovedCreativeNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
@@ -96,12 +102,10 @@ export function ImprovedCreativeNavigation({ currentPage, onPageChange, onThemeC
             </div>
 
             <div className="flex items-center gap-2">
-              <ThemeToggle onThemeChange={onThemeChange} />
-              <div className="hidden lg:block">
-                <Button onClick={handleBookCall}>
-                  Book intro call
-                </Button>
-              </div>
+              <ThemeToggle theme={currentTheme} onThemeChange={onThemeChange} />
+              <Button className="hidden sm:inline-flex" onClick={openCalendly}>
+                Book intro call
+              </Button>
               <Button
                 variant="ghost"
                 size="icon"

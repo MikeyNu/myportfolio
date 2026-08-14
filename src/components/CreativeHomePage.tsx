@@ -6,16 +6,12 @@ import { FeaturedCaseStudies } from './FeaturedCaseStudies';
 
 interface CreativeHomePageProps {
   onViewCaseStudy: (projectId: string) => void;
-  onViewAllProjects: () => void;
 }
 
-export function CreativeHomePage({ onViewCaseStudy, onViewAllProjects }: CreativeHomePageProps) {
+export function CreativeHomePage({ onViewCaseStudy }: CreativeHomePageProps) {
   return (
     <div className="min-h-screen">
-      <ModernHero
-        onViewCaseStudy={onViewCaseStudy}
-        onViewAllProjects={onViewAllProjects}
-      />
+      <ModernHero />
       <CreativeIntroBar />
       <CreativeCapabilitiesGrid />
       <FeaturedCaseStudies onViewCaseStudy={onViewCaseStudy} />
