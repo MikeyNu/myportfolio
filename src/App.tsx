@@ -10,10 +10,18 @@ import { CreativeFooter } from './components/CreativeFooter';
 type Page = 'home' | 'projects' | 'about' | 'contact' | 'case-study';
 type Theme = 'light' | 'dark';
 
+const getInitialTheme = (): Theme => {
+  if (typeof window === 'undefined') {
+    return 'dark';
+  }
+
+  return window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
+};
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   const moveToTop = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -71,6 +79,7 @@ export default function App() {
     <div className={`min-h-screen bg-background text-foreground ${theme === 'dark' ? 'dark' : ''}`}>
       <ImprovedCreativeNavigation
         currentPage={currentPage}
+        currentTheme={theme}
         onPageChange={handlePageChange}
         onThemeChange={setTheme}
       />
