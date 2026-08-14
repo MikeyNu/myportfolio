@@ -52,6 +52,12 @@
   }
 }
 
+.work-project-title,
+.work-archive-title,
+.project-detail-title {
+  overflow-wrap: break-word;
+}
+
 .project-missing-title {
   max-width: 8ch;
   margin: 18px 0 26px;
@@ -163,6 +169,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(1) contrast(1.04);
 }
 
 .project-reference-gallery {
