@@ -351,14 +351,17 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
             className="absolute top-4 right-4"
             onClick={() => setSelectedImage(null)}
             aria-label="Close image viewer"
+            autoFocus
           >
             <X size={18} />
           </Button>
-          <ImageWithFallback
-            src={selectedImage}
-            alt={`${project.title} enlarged project view`}
-            className="max-w-full max-h-full object-contain"
-          />
+          <div onClick={(event) => event.stopPropagation()}>
+            <ImageWithFallback
+              src={selectedImage}
+              alt={`${project.title} enlarged project view`}
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
         </div>
       )}
     </div>
