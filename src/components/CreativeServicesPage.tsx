@@ -77,7 +77,7 @@ export function CreativeServicesPage({ onContact }: CreativeServicesPageProps) {
       </section>
 
       <div className="cinematic-container work-page-footer">
-        <span className="cinematic-page-index">{pageIndex.services.replace('/ ', '')}</span>
+        <span className="cinematic-page-index">{pageIndex.services}</span>
         <span className="cinematic-scroll-cue">Scroll to explore</span>
       </div>
     </div>
