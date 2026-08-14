@@ -1,8 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import { Card, CardContent } from './ui/card';
-import { ArrowLeft, ArrowRight, Grid, Eye, Map, Layers } from 'lucide-react';
+import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { RENDERS } from '../data/renderAssets';
 
@@ -13,16 +11,16 @@ const caseStudyData = {
     agency: 'JHDS (Contract)',
     year: '2024',
     role: '3D Experience Designer',
-    overview: 'Designed launch display installations for multiple Netflix flagship shows including Stranger Things, Wednesday, One Piece, and Squid Games. This project involved creating branded vehicle concepts and detailed 3D assets for promotional activations.',
+    overview: 'Designed launch display installations for multiple Netflix flagship shows including Stranger Things, Wednesday, One Piece and Squid Game. The project involved branded vehicle concepts and detailed 3D assets for promotional activations.',
     objectives: [
-      'Create cohesive multi-show launch display',
+      'Create a cohesive multi-show launch display',
       'Design branded vehicle wraps and concepts',
       'Model detailed 3D assets for each show',
-      'Ensure consistent Netflix brand identity across all shows'
+      'Maintain a consistent Netflix brand identity across the activation'
     ],
     myRole: [
       '3D modeling of display assets and installations',
-      'UV unwrapping for optimal texture application',
+      'UV unwrapping for texture application',
       'Van concept design for mobile activations',
       'Texturing with show-specific branding',
       'Asset optimization for production'
@@ -52,17 +50,17 @@ const caseStudyData = {
     agency: 'JHDS (Contract)',
     year: '2025',
     role: '3D Experience Designer',
-    overview: 'Created an immersive installation booth for Arknights: Endfield at Gamescom 2025. Translated in-game environments into a large-scale physical display, complete with character cutouts and branded staff elements.',
+    overview: 'Created an installation booth for Arknights: Endfield at Gamescom 2025. The work translated in-game environments into a large-scale physical display with character cutouts and branded staff elements.',
     objectives: [
-      'Recreate game installation booth in physical space',
+      'Recreate a game installation booth in physical space',
       'Design large-scale display areas',
       'Create life-sized character cutouts',
       'Develop staff population with branded elements'
     ],
     myRole: [
-      '3D modeling of installation booth from game',
+      '3D modeling of the installation booth from the game',
       'UV unwrapping for detailed texturing',
-      'Texturing to match game aesthetic',
+      'Texturing to match the game aesthetic',
       'Modeling human figures with branded t-shirts',
       'Creating character cutouts of game characters',
       'Technical documentation'
@@ -90,12 +88,12 @@ const caseStudyData = {
     agency: 'JHDS (Contract)',
     year: '2025',
     role: '3D Experience Designer',
-    overview: 'Developed the Sonic Racing: CrossWorlds exhibition stand for Gamescom 2025. Focused on technical optimization and character creation to bring the vibrant Sonic universe to life.',
+    overview: 'Developed the Sonic Racing: CrossWorlds exhibition stand for Gamescom 2025, with a focus on technical asset preparation, texture corrections, character cutouts and game items.',
     objectives: [
-      'Create immersive Sonic Racing exhibition stand',
+      'Create a Sonic Racing exhibition stand',
       'Optimize existing 3D assets',
       'Design character and item cutouts',
-      'Maintain authentic Sonic aesthetic'
+      'Maintain the source visual identity of the game'
     ],
     myRole: [
       'UV unwrapping of stand assets',
@@ -128,18 +126,18 @@ const caseStudyData = {
     agency: 'Hoyoverse',
     year: '2024',
     role: '3D Experience Designer',
-    overview: 'Created a large-scale exhibition booth celebrating the world of Genshin Impact with character displays, interactive zones, and immersive environments.',
+    overview: 'Created a large-scale exhibition booth for Genshin Impact with character displays, audience areas and an environment shaped around the source visual identity.',
     objectives: [
-      'Showcase game characters in premium displays',
-      'Create photo opportunities for fans',
-      'Design interactive gaming stations',
-      'Maintain authentic game aesthetic'
+      'Showcase game characters in physical displays',
+      'Create audience photo opportunities',
+      'Plan interactive gaming areas',
+      'Maintain the visual identity of the game'
     ],
     myRole: [
-      'Spatial layout design for optimal flow',
+      'Spatial layout design for audience flow',
       'Character display environment modeling',
       'Interactive zone conceptualization',
-      'Game world atmosphere recreation',
+      'Game-world atmosphere development',
       'Technical documentation for construction'
     ],
     deliverables: [
@@ -150,15 +148,13 @@ const caseStudyData = {
       'Construction plans and elevations'
     ],
     image: RENDERS.genshinImpact,
-    gallery: [
-      RENDERS.genshinImpact,
-      RENDERS.punchesTownArena,
-      RENDERS.redOneConcept
-    ],
+    gallery: [RENDERS.genshinImpact],
     tags: ['Plan Layout', 'Elevations', 'Grid'],
     tools: ['Blender', 'SketchUp', 'Unreal Engine', 'Adobe Creative Suite']
   }
 };
+
+const caseStudyOrder = ['1', '2', '3', '4'] as const;
 
 interface CaseStudyPageProps {
   projectId: string;
@@ -167,235 +163,205 @@ interface CaseStudyPageProps {
 }
 
 export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPageProps) {
-  const [activeView, setActiveView] = useState<'povs' | 'plans' | 'elevations' | 'grid'>('povs');
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
   const project = caseStudyData[projectId as keyof typeof caseStudyData];
-  
+
+  useEffect(() => {
+    if (!selectedImage) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [selectedImage]);
+
   if (!project) {
     return (
-      <div className="min-h-screen pt-20 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-foreground mb-4">
-            Case Study Not Found
-          </h1>
+      <div className="min-h-screen flex items-center justify-center px-6">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground mb-4">Case study not found</h1>
           <Button onClick={onBack}>
             <ArrowLeft size={16} className="mr-2" />
-            Back to Projects
+            Back to projects
           </Button>
         </div>
       </div>
     );
   }
 
-  const viewButtons = [
-    { id: 'povs', label: 'POVs', icon: Eye },
-    { id: 'plans', label: 'Plans', icon: Map },
-    { id: 'elevations', label: 'Elevations', icon: Layers },
-    { id: 'grid', label: 'With Grid', icon: Grid }
-  ];
+  const currentIndex = caseStudyOrder.indexOf(projectId as typeof caseStudyOrder[number]);
+  const nextProjectId = caseStudyOrder[(currentIndex + 1) % caseStudyOrder.length];
+  const galleryImages = project.gallery.slice(1);
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <div className="bg-card border-b border-border">
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <Button variant="ghost" onClick={onBack} className="mb-6">
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border">
+        <div className="max-w-7xl mx-auto px-6 py-12">
+          <Button variant="ghost" onClick={onBack} className="mb-8">
             <ArrowLeft size={16} className="mr-2" />
-            Back to Projects
+            Back to projects
           </Button>
-          
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            {project.title}
-          </h1>
-          
-          <div className="flex flex-wrap items-center gap-4 text-muted-foreground">
-            <span><strong className="text-accent">{project.agency}</strong> · {project.brand}</span>
-            <span>•</span>
-            <span>{project.year}</span>
-            <span>•</span>
-            <span>Role: {project.role}</span>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div className="lg:col-span-8">
+              <p className="text-sm text-accent mb-3">{project.brand} · {project.year}</p>
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4">{project.title}</h1>
+              <p className="text-lg text-muted-foreground">{project.agency} · {project.role}</p>
+            </div>
+            <div className="lg:col-span-4">
+              <p className="text-sm text-muted-foreground mb-2">Project scope</p>
+              <p className="text-sm text-foreground leading-relaxed">{project.tags.join(' · ')}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Hero Image */}
-        <div className="mb-12">
-          <ImageWithFallback
-            src={project.image}
-            alt={project.title}
-            className="w-full h-96 object-cover rounded-lg"
-          />
-        </div>
+      <main className="max-w-7xl mx-auto px-6 py-12">
+        <ImageWithFallback
+          src={project.image}
+          alt={project.title}
+          className="w-full h-96 object-cover rounded-lg mb-16"
+        />
 
-        {/* Overview */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-          <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-foreground mb-4">
-              Project Overview
-            </h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-              {project.overview}
-            </p>
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
+          <div className="lg:col-span-8">
+            <h2 className="text-3xl font-bold text-foreground mb-4">Project overview</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-10">{project.overview}</p>
 
-            <h3 className="text-xl font-semibold text-foreground mb-4">
-              Project Objectives
-            </h3>
-            <ul className="space-y-2 mb-8">
-              {project.objectives.map((objective, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full mt-2" />
-                  <span className="text-muted-foreground">{objective}</span>
+            <h3 className="text-xl font-semibold text-foreground mb-4">Objectives</h3>
+            <ul className="space-y-3">
+              {project.objectives.map((objective) => (
+                <li key={objective} className="flex items-start gap-3 text-muted-foreground">
+                  <span className="text-accent">•</span>
+                  <span>{objective}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <aside className="lg:col-span-4">
+            <h2 className="text-xl font-semibold text-foreground mb-4">Project details</h2>
+            <dl>
+              <div className="border-t border-border py-4">
+                <dt className="text-sm text-muted-foreground">Client / agency</dt>
+                <dd className="font-medium text-foreground mt-1">{project.agency}</dd>
+              </div>
+              <div className="border-t border-border py-4">
+                <dt className="text-sm text-muted-foreground">Brand</dt>
+                <dd className="font-medium text-foreground mt-1">{project.brand}</dd>
+              </div>
+              <div className="border-t border-border py-4">
+                <dt className="text-sm text-muted-foreground">Year</dt>
+                <dd className="font-medium text-foreground mt-1">{project.year}</dd>
+              </div>
+              <div className="border-t border-border py-4">
+                <dt className="text-sm text-muted-foreground">Tools</dt>
+                <dd className="text-sm text-foreground leading-relaxed mt-1">{project.tools.join(' · ')}</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Key contributions</h2>
+            <ul className="space-y-3">
+              {project.myRole.map((role) => (
+                <li key={role} className="flex items-start gap-3 text-muted-foreground">
+                  <span className="text-accent">•</span>
+                  <span>{role}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <Card className="border-border bg-card">
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-foreground mb-4">
-                  Project Details
-                </h3>
-                <div className="space-y-4 text-sm">
-                  <div>
-                    <span className="text-muted-foreground">Client:</span>
-                    <div className="font-medium">{project.agency}</div>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Brand:</span>
-                    <div className="font-medium">{project.brand}</div>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Year:</span>
-                    <div className="font-medium">{project.year}</div>
-                  </div>
-                  <div>
-                    <span className="text-muted-foreground">Tools Used:</span>
-                    <div className="flex flex-wrap gap-1 mt-1">
-                      {project.tools.map((tool) => (
-                        <Badge key={tool} variant="outline" className="text-xs">
-                          {tool}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Deliverables</h2>
+            <ul className="space-y-3">
+              {project.deliverables.map((deliverable) => (
+                <li key={deliverable} className="flex items-start gap-3 text-muted-foreground">
+                  <span className="text-accent">•</span>
+                  <span>{deliverable}</span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        </section>
 
-        {/* My Role */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold text-foreground mb-6">
-            My Role & Responsibilities
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold text-foreground mb-4">
-                Key Contributions
-              </h3>
-              <ul className="space-y-3">
-                {project.myRole.map((role, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2" />
-                    <span className="text-muted-foreground">{role}</span>
-                  </li>
-                ))}
-              </ul>
+        {galleryImages.length > 0 && (
+          <section className="mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-8">
+              <div className="lg:col-span-4">
+                <h2 className="text-3xl font-bold text-foreground">Project gallery</h2>
+              </div>
+              <div className="lg:col-span-8">
+                <p className="text-muted-foreground">Additional views from the same project. Select an image to inspect it at a larger size.</p>
+              </div>
             </div>
-            <div>
-              <h3 className="text-lg font-semibold text-foreground mb-4">
-                Deliverables
-              </h3>
-              <ul className="space-y-3">
-                {project.deliverables.map((deliverable, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2" />
-                    <span className="text-muted-foreground">{deliverable}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        {/* View Toggle */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-6">
-            Project Visualization
-          </h2>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {viewButtons.map((view) => {
-              const Icon = view.icon;
-              return (
-                <Button
-                  key={view.id}
-                  variant={activeView === view.id ? 'default' : 'outline'}
-                  size="sm"
-                  onClick={() => setActiveView(view.id as any)}
-                  className="gap-2"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {galleryImages.map((image, index) => (
+                <button
+                  key={image}
+                  type="button"
+                  onClick={() => setSelectedImage(image)}
+                  className="w-full text-left"
+                  aria-label={`Open ${project.title} gallery image ${index + 1}`}
                 >
-                  <Icon size={14} />
-                  {view.label}
-                </Button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {project.gallery.map((image, index) => (
-            <div
-              key={index}
-              className="group cursor-pointer"
-              onClick={() => setSelectedImage(image)}
-            >
-              <ImageWithFallback
-                src={image}
-                alt={`${project.title} - View ${index + 1}`}
-                className="w-full h-64 object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
-              />
+                  <ImageWithFallback
+                    src={image}
+                    alt={`${project.title}, additional view ${index + 1}`}
+                    className="w-full h-64 object-cover rounded-lg"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
             </div>
-          ))}
-        </div>
+          </section>
+        )}
 
-        {/* Navigation */}
-        <div className="flex justify-between items-center pt-8 border-t border-border">
+        <div className="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-border">
           <Button variant="outline" onClick={onBack}>
             <ArrowLeft size={16} className="mr-2" />
-            Back to Projects
+            Project archive
           </Button>
-          
-          <Button onClick={() => onNextProject('2')}>
-            Next Project
+          <Button onClick={() => onNextProject(nextProjectId)}>
+            Next case study
             <ArrowRight size={16} className="ml-2" />
           </Button>
         </div>
-      </div>
+      </main>
 
-      {/* Lightbox */}
       {selectedImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Project image viewer"
           onClick={() => setSelectedImage(null)}
         >
-          <ImageWithFallback
-            src={selectedImage}
-            alt="Project detail"
-            className="max-w-full max-h-full object-contain"
-          />
+          <Button
+            type="button"
+            variant="secondary"
+            size="icon"
+            className="absolute top-4 right-4"
+            onClick={() => setSelectedImage(null)}
+            aria-label="Close image viewer"
+            autoFocus
+          >
+            <X size={18} />
+          </Button>
+          <div onClick={(event) => event.stopPropagation()}>
+            <ImageWithFallback
+              src={selectedImage}
+              alt={`${project.title} enlarged project view`}
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
         </div>
       )}
     </div>

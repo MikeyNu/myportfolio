@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ImprovedCreativeNavigation } from './components/ImprovedCreativeNavigation';
 import { CreativeHomePage } from './components/CreativeHomePage';
 import { CreativeProjectsPage } from './components/CreativeProjectsPage';
@@ -13,46 +13,46 @@ type Theme = 'light' | 'dark';
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
-  const [theme, setTheme] = useState<Theme>('dark'); // Default to dark mode
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [theme, setTheme] = useState<Theme>('dark');
 
-  // Initialize the app
-  useEffect(() => {
-    setIsLoaded(true);
-  }, []);
+  const moveToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
 
   const handlePageChange = (page: string) => {
     setCurrentPage(page as Page);
     setCurrentProjectId(null);
+    moveToTop();
   };
 
   const handleViewCaseStudy = (projectId: string) => {
     setCurrentProjectId(projectId);
     setCurrentPage('case-study');
+    moveToTop();
   };
 
   const handleViewAllProjects = () => {
     setCurrentPage('projects');
+    setCurrentProjectId(null);
+    moveToTop();
   };
 
   const handleBackFromCaseStudy = () => {
     setCurrentPage('projects');
     setCurrentProjectId(null);
+    moveToTop();
   };
 
   const handleNextProject = (projectId: string) => {
     setCurrentProjectId(projectId);
-  };
-
-  const handleThemeChange = (newTheme: Theme) => {
-    setTheme(newTheme);
+    moveToTop();
   };
 
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
         return (
-          <CreativeHomePage 
+          <CreativeHomePage
             onViewCaseStudy={handleViewCaseStudy}
             onViewAllProjects={handleViewAllProjects}
           />
@@ -65,20 +65,20 @@ export default function App() {
         return <CreativeContactPage />;
       case 'case-study':
         return currentProjectId ? (
-          <CaseStudyPage 
+          <CaseStudyPage
             projectId={currentProjectId}
             onBack={handleBackFromCaseStudy}
             onNextProject={handleNextProject}
           />
         ) : (
-          <CreativeHomePage 
+          <CreativeHomePage
             onViewCaseStudy={handleViewCaseStudy}
             onViewAllProjects={handleViewAllProjects}
           />
         );
       default:
         return (
-          <CreativeHomePage 
+          <CreativeHomePage
             onViewCaseStudy={handleViewCaseStudy}
             onViewAllProjects={handleViewAllProjects}
           />
@@ -86,29 +86,18 @@ export default function App() {
     }
   };
 
-  if (!isLoaded) {
-    return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-8 h-8 bg-accent rounded-lg animate-pulse mx-auto mb-4"></div>
-          <p>Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className={`min-h-screen bg-background text-foreground ${theme === 'dark' ? 'dark' : ''}`}>
-      <ImprovedCreativeNavigation 
-        currentPage={currentPage} 
+      <ImprovedCreativeNavigation
+        currentPage={currentPage}
         onPageChange={handlePageChange}
-        onThemeChange={handleThemeChange}
+        onThemeChange={setTheme}
       />
-      
-      <main className="pt-20 sm:pt-20">
+
+      <main className="pt-20">
         {renderCurrentPage()}
       </main>
-      
+
       <CreativeFooter onPageChange={handlePageChange} />
     </div>
   );

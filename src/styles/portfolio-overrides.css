@@ -1,0 +1,61 @@
+html {
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Retire legacy decorative helpers that conflict with the current design rules. */
+.gradient-text {
+  background: none !important;
+  color: inherit !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.glass {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-color: transparent !important;
+}
+
+.float,
+.pulse-custom {
+  animation: none !important;
+}
+
+.glow {
+  box-shadow: none !important;
+}
+
+/* Prevent legacy global transform and shadow transitions. Explicit component transitions still win by class specificity. */
+* {
+  transition-property: none;
+}
+
+/* Remove inherited press scaling from the old mobile style layer. */
+button:active,
+a:active {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
