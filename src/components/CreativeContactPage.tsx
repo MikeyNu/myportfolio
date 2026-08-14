@@ -219,9 +219,9 @@ export function CreativeContactPage() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Budget range</label>
+                    <label htmlFor="contact-budget" className="block text-sm font-medium text-foreground mb-2">Budget range</label>
                     <Select value={formData.budget} onValueChange={(value) => handleInputChange('budget', value)}>
-                      <SelectTrigger className="min-h-[48px] text-base">
+                      <SelectTrigger id="contact-budget" className="min-h-[48px] text-base">
                         <SelectValue placeholder="Select budget range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -235,9 +235,9 @@ export function CreativeContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-2">Timeline</label>
+                    <label htmlFor="contact-timeline" className="block text-sm font-medium text-foreground mb-2">Timeline</label>
                     <Select value={formData.timeline} onValueChange={(value) => handleInputChange('timeline', value)}>
-                      <SelectTrigger className="min-h-[48px] text-base">
+                      <SelectTrigger id="contact-timeline" className="min-h-[48px] text-base">
                         <SelectValue placeholder="Project timeline" />
                       </SelectTrigger>
                       <SelectContent>
