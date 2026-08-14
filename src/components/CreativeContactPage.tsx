@@ -60,19 +60,8 @@ export function CreativeContactPage() {
     };
 
     try {
-      await emailjs.send(
-        'service_93dsf5v',
-        'template_v7erfgb',
-        templateData,
-        'BJTOZ_dR6DYQVbT6h'
-      );
-
-      await emailjs.send(
-        'service_93dsf5v',
-        'template_1x3epo3',
-        templateData,
-        'BJTOZ_dR6DYQVbT6h'
-      );
+      await emailjs.send('service_93dsf5v', 'template_v7erfgb', templateData, 'BJTOZ_dR6DYQVbT6h');
+      await emailjs.send('service_93dsf5v', 'template_1x3epo3', templateData, 'BJTOZ_dR6DYQVbT6h');
 
       setFormData({ name: '', email: '', projectType: '', budget: '', message: '' });
       setSubmissionStatus('success');
@@ -107,7 +96,7 @@ export function CreativeContactPage() {
               <p className="contact-direct-label">Copy email</p>
               <button type="button" className="contact-direct-value" onClick={copyEmail}>
                 {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
-                <span style={{ marginLeft: '9px' }}>{copied ? 'Copied' : 'Copy address'}</span>
+                {' '}{copied ? 'Copied' : 'Copy address'}
               </button>
             </div>
             <div className="contact-direct-item">
