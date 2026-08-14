@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { ImprovedCreativeNavigation } from './components/ImprovedCreativeNavigation';
 import { CreativeHomePage } from './components/CreativeHomePage';
 import { CreativeProjectsPage } from './components/CreativeProjectsPage';
+import { CreativeServicesPage } from './components/CreativeServicesPage';
 import { CreativeAboutPage } from './components/CreativeAboutPage';
 import { CreativeContactPage } from './components/CreativeContactPage';
 import { CaseStudyPage } from './components/CaseStudyPage';
 import { CreativeFooter } from './components/CreativeFooter';
 
-type Page = 'home' | 'projects' | 'about' | 'contact' | 'case-study';
+type Page = 'home' | 'projects' | 'services' | 'about' | 'contact' | 'case-study';
 type Theme = 'light' | 'dark';
 
 const getInitialTheme = (): Theme => {
@@ -53,9 +54,16 @@ export default function App() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
-        return <CreativeHomePage onViewCaseStudy={handleViewCaseStudy} />;
+        return <CreativeHomePage />;
       case 'projects':
-        return <CreativeProjectsPage onViewCaseStudy={handleViewCaseStudy} />;
+        return (
+          <CreativeProjectsPage
+            onViewCaseStudy={handleViewCaseStudy}
+            onViewServices={() => handlePageChange('services')}
+          />
+        );
+      case 'services':
+        return <CreativeServicesPage onContact={() => handlePageChange('contact')} />;
       case 'about':
         return <CreativeAboutPage />;
       case 'contact':
@@ -68,12 +76,14 @@ export default function App() {
             onNextProject={handleNextProject}
           />
         ) : (
-          <CreativeHomePage onViewCaseStudy={handleViewCaseStudy} />
+          <CreativeHomePage />
         );
       default:
-        return <CreativeHomePage onViewCaseStudy={handleViewCaseStudy} />;
+        return <CreativeHomePage />;
     }
   };
+
+  const showGlobalFooter = currentPage === 'projects' || currentPage === 'services' || currentPage === 'about';
 
   return (
     <div className={`min-h-screen bg-background text-foreground ${theme === 'dark' ? 'dark' : ''}`}>
@@ -84,11 +94,11 @@ export default function App() {
         onThemeChange={setTheme}
       />
 
-      <main className="pt-20">
+      <main className="cinematic-main">
         {renderCurrentPage()}
       </main>
 
-      <CreativeFooter onPageChange={handlePageChange} />
+      {showGlobalFooter && <CreativeFooter onPageChange={handlePageChange} />}
     </div>
   );
 }

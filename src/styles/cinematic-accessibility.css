@@ -1,0 +1,33 @@
+:root {
+  --ci-accent-text: #4a6a8a;
+}
+
+.dark {
+  --ci-accent-text: #a2a6a0;
+}
+
+.dark .cinematic-kicker,
+.dark .work-project-index,
+.dark .work-project-category,
+.dark .service-panel-index,
+.dark .service-deliverables-title,
+.dark .about-capability-index,
+.dark .project-detail-category {
+  color: var(--ci-accent-text);
+}
+
+.dark .cinematic-text-link:hover {
+  color: var(--ci-paper);
+}
+
+.contact-select {
+  appearance: auto;
+  background-image: none;
+  padding-right: 12px;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --ci-header-height: 80px;
+  }
+}

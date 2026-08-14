@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { Button } from './ui/button';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
-import { openCalendly } from '../config/calendly';
 
 interface ImprovedCreativeNavigationProps {
   currentPage: string;
@@ -12,10 +10,10 @@ interface ImprovedCreativeNavigationProps {
 }
 
 const navItems = [
-  { id: 'home', label: 'Home', description: 'Overview and selected work' },
-  { id: 'projects', label: 'Projects', description: 'Portfolio archive and case studies' },
-  { id: 'about', label: 'About', description: 'Experience, tools and working process' },
-  { id: 'contact', label: 'Contact', description: 'Project inquiry and direct contact' }
+  { id: 'projects', label: 'Work' },
+  { id: 'services', label: 'Services' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' }
 ];
 
 export function ImprovedCreativeNavigation({
@@ -42,16 +40,15 @@ export function ImprovedCreativeNavigation({
   useEffect(() => {
     if (isMobileMenuOpen) {
       lastFocusedElement.current = document.activeElement as HTMLElement;
-      const firstMenuItem = mobileMenuRef.current?.querySelector<HTMLButtonElement>('.mobile-nav-item');
-      firstMenuItem?.focus();
+      mobileMenuRef.current?.querySelector<HTMLButtonElement>('.cinematic-mobile-menu-link')?.focus();
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
       lastFocusedElement.current?.focus();
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -60,39 +57,34 @@ export function ImprovedCreativeNavigation({
     setIsMobileMenuOpen(false);
   };
 
-  const handleBookCall = () => {
-    setIsMobileMenuOpen(false);
-    openCalendly();
-  };
-
   const isActivePage = (page: string) => {
     return currentPage === page || (currentPage === 'case-study' && page === 'projects');
   };
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-background border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-          <div className="flex items-center justify-between gap-4">
-            <button
-              type="button"
-              onClick={() => handlePageChange('home')}
-              className="text-left"
-              aria-label="Michael Ndhlovu, home"
-            >
-              <span className="block font-semibold text-foreground">Michael Ndhlovu</span>
-              <span className="hidden sm:block text-xs text-muted-foreground">3D experience design · XR · software</span>
-            </button>
+      <nav className="cinematic-nav" aria-label="Primary navigation">
+        <div className="cinematic-nav-inner">
+          <button
+            type="button"
+            className="cinematic-brand"
+            onClick={() => handlePageChange('home')}
+            aria-label="Mikey Nu, home"
+          >
+            Mikey Nu
+          </button>
 
-            <div className="hidden lg:flex items-center gap-2">
+          <div className="cinematic-nav-actions">
+            <div className="cinematic-nav-links">
               {navItems.map((item) => {
                 const active = isActivePage(item.id);
                 return (
                   <button
                     key={item.id}
                     type="button"
+                    className="cinematic-nav-link"
+                    data-active={active}
                     onClick={() => handlePageChange(item.id)}
-                    className={`px-4 py-2 text-sm font-medium transition-colors ${active ? 'text-accent' : 'text-muted-foreground hover:text-foreground'}`}
                     aria-current={active ? 'page' : undefined}
                   >
                     {item.label}
@@ -101,55 +93,45 @@ export function ImprovedCreativeNavigation({
               })}
             </div>
 
-            <div className="flex items-center gap-2">
-              <ThemeToggle theme={currentTheme} onThemeChange={onThemeChange} />
-              <Button className="hidden sm:inline-flex" onClick={openCalendly}>
-                Book intro call
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden"
-                onClick={() => setIsMobileMenuOpen((open) => !open)}
-                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={isMobileMenuOpen}
-              >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </Button>
-            </div>
+            <ThemeToggle theme={currentTheme} onThemeChange={onThemeChange} />
+
+            <button
+              type="button"
+              className="cinematic-menu-toggle"
+              onClick={() => setIsMobileMenuOpen((open) => !open)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="cinematic-mobile-menu"
+            >
+              {isMobileMenuOpen ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
+            </button>
           </div>
         </div>
       </nav>
 
       {isMobileMenuOpen && (
-        <div className="fixed top-20 left-0 right-0 bottom-0 z-30 lg:hidden bg-background" ref={mobileMenuRef}>
-          <div className="px-6 py-8">
-            <div className="border-t border-border">
-              {navItems.map((item) => {
-                const active = isActivePage(item.id);
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    onClick={() => handlePageChange(item.id)}
-                    className="mobile-nav-item w-full flex items-center justify-between gap-6 py-6 text-left border-b border-border"
-                    aria-current={active ? 'page' : undefined}
-                  >
-                    <span>
-                      <span className={`block text-lg font-semibold ${active ? 'text-accent' : 'text-foreground'}`}>{item.label}</span>
-                      <span className="block text-sm text-muted-foreground mt-1">{item.description}</span>
-                    </span>
-                    <ArrowRight size={18} className={active ? 'text-accent' : 'text-muted-foreground'} />
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="pt-8">
-              <Button className="w-full" onClick={handleBookCall}>
-                Book a 15-minute intro call
-              </Button>
-            </div>
+        <div
+          id="cinematic-mobile-menu"
+          className="cinematic-mobile-menu"
+          ref={mobileMenuRef}
+        >
+          <div className="cinematic-mobile-menu-list">
+            {navItems.map((item, index) => {
+              const active = isActivePage(item.id);
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  className="cinematic-mobile-menu-link"
+                  data-active={active}
+                  onClick={() => handlePageChange(item.id)}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  <span>{item.label}</span>
+                  <span className="cinematic-meta">0{index + 1}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
       )}

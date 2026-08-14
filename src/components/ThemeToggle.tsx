@@ -1,5 +1,4 @@
-import { Button } from './ui/button';
-import { Sun, Moon } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 
 interface ThemeToggleProps {
   theme: 'light' | 'dark';
@@ -16,14 +15,14 @@ export function ThemeToggle({ theme, onThemeChange }: ThemeToggleProps) {
   };
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
+    <button
+      type="button"
+      className="cinematic-theme-toggle"
       onClick={toggleTheme}
       aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
       title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
-    </Button>
+      {isDark ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+    </button>
   );
 }
