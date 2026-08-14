@@ -31,12 +31,6 @@ export default function App() {
     moveToTop();
   };
 
-  const handleViewAllProjects = () => {
-    setCurrentPage('projects');
-    setCurrentProjectId(null);
-    moveToTop();
-  };
-
   const handleBackFromCaseStudy = () => {
     setCurrentPage('projects');
     setCurrentProjectId(null);
@@ -51,12 +45,7 @@ export default function App() {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'home':
-        return (
-          <CreativeHomePage
-            onViewCaseStudy={handleViewCaseStudy}
-            onViewAllProjects={handleViewAllProjects}
-          />
-        );
+        return <CreativeHomePage onViewCaseStudy={handleViewCaseStudy} />;
       case 'projects':
         return <CreativeProjectsPage onViewCaseStudy={handleViewCaseStudy} />;
       case 'about':
@@ -71,18 +60,10 @@ export default function App() {
             onNextProject={handleNextProject}
           />
         ) : (
-          <CreativeHomePage
-            onViewCaseStudy={handleViewCaseStudy}
-            onViewAllProjects={handleViewAllProjects}
-          />
+          <CreativeHomePage onViewCaseStudy={handleViewCaseStudy} />
         );
       default:
-        return (
-          <CreativeHomePage
-            onViewCaseStudy={handleViewCaseStudy}
-            onViewAllProjects={handleViewAllProjects}
-          />
-        );
+        return <CreativeHomePage onViewCaseStudy={handleViewCaseStudy} />;
     }
   };
 
