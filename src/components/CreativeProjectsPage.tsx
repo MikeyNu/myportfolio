@@ -82,13 +82,11 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
           {filteredProjects.length === 0 ? (
             <div className="work-empty" aria-live="polite">
               <p className="cinematic-kicker">Portfolio evidence</p>
-              <h2 className="cinematic-display" style={{ fontSize: 'clamp(3rem, 5vw, 5.8rem)', maxWidth: '8ch', marginTop: '18px' }}>
-                Public case studies coming later.
-              </h2>
-              <p className="cinematic-copy" style={{ marginTop: '24px', maxWidth: '48ch' }}>
+              <h2 className="cinematic-display work-heading">Public case studies coming later.</h2>
+              <p className="cinematic-copy work-intro-copy">
                 This portfolio does not currently contain a documented public case study for this discipline. The service remains available, but no project is invented simply to fill the layout.
               </p>
-              <button type="button" className="cinematic-text-link" onClick={onViewServices} style={{ marginTop: '24px' }}>
+              <button type="button" className="cinematic-text-link work-project-action" onClick={onViewServices}>
                 View services
                 <ArrowRight size={14} aria-hidden="true" />
               </button>
