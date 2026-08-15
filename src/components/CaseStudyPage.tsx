@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { caseStudyProjectIds, projects } from '../data/portfolioContent';
 import { HeroPaintText } from './HeroPaintText';
+import { getPagePath, getProjectPath } from '../seo/siteSeo';
 
 interface CaseStudyPageProps {
   projectId: string;
@@ -12,7 +13,6 @@ interface CaseStudyPageProps {
 }
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const;
-
 const NARRATIVE = ['Challenge', 'Approach', 'Outcome'] as const;
 
 export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPageProps) {
@@ -35,10 +35,18 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
         <div className="cinematic-container work-empty">
           <p className="cinematic-kicker">Project detail</p>
           <h1 className="cinematic-display project-missing-title">Case study not found.</h1>
-          <button type="button" className="cinematic-text-link" onClick={onBack}>
+          <a
+            className="cinematic-text-link"
+            href={getPagePath('projects')}
+            onClick={(event) => {
+              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              event.preventDefault();
+              onBack();
+            }}
+          >
             <ArrowLeft size={14} aria-hidden="true" />
             Back to work
-          </button>
+          </a>
         </div>
       </div>
     );
@@ -48,21 +56,38 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
   const currentIndex = caseStudyProjectIds.indexOf(project.id);
   const previousProjectId = caseStudyProjectIds[(currentIndex - 1 + caseStudyProjectIds.length) % caseStudyProjectIds.length];
   const nextProjectId = caseStudyProjectIds[(currentIndex + 1) % caseStudyProjectIds.length];
+  const previousProject = projects.find((item) => item.id === previousProjectId)!;
+  const nextProject = projects.find((item) => item.id === nextProjectId)!;
   const galleryImages = caseStudy.gallery.slice(1);
+
+  const navigateProject = (event: React.MouseEvent<HTMLAnchorElement>, targetProjectId: string) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    onNextProject(targetProjectId);
+  };
 
   return (
     <div className="cinematic-page project-detail-page">
       <div className="cinematic-container">
         <header className="project-detail-header">
-          <div className="project-breadcrumb">
-            <button type="button" onClick={onBack}>Projects</button>
-            <span>/</span>
-            <span>{project.brand}</span>
-          </div>
+          <nav className="project-breadcrumb" aria-label="Breadcrumb">
+            <a
+              href={getPagePath('projects')}
+              onClick={(event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                onBack();
+              }}
+            >
+              Projects
+            </a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{project.title}</span>
+          </nav>
           <span className="cinematic-meta">{project.year} / {project.category}</span>
         </header>
 
-        <main className="project-reference-layout" aria-labelledby="project-title">
+        <div className="project-reference-layout" aria-labelledby="project-title">
           <section className="project-reference-left">
             <p className="project-detail-category">3D Design / Visualization</p>
             <HeroPaintText id="project-title" className="cinematic-display project-detail-title" text={project.brand} />
@@ -77,15 +102,13 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
                 <p className="project-detail-meta-copy">{project.agency}</p>
               </div>
               <div className="project-reference-overview">
+                <span className="project-detail-meta-label">Project</span>
+                <p className="project-detail-meta-copy">{project.title}</p>
                 <span className="project-detail-meta-label">Overview</span>
                 <p className="project-detail-meta-copy">{caseStudy.overview}</p>
               </div>
             </div>
 
-            {/*
-              Narrative: 3-column at large screens, all entering together.
-              Stagger via delay so they read as a sequence: problem → response → result.
-            */}
             <div className="project-reference-narrative" aria-label="Project narrative">
               {NARRATIVE.map((label, i) => (
                 <motion.article
@@ -128,7 +151,7 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
               onClick={() => setSelectedImage(project.image)}
               aria-label={`Open ${project.title} hero image`}
             >
-              <ImageWithFallback src={project.image} alt={project.title} />
+              <ImageWithFallback src={project.image} alt={`${project.title} hero render`} />
             </button>
 
             {galleryImages.length > 0 && (
@@ -141,24 +164,23 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
                     onClick={() => setSelectedImage(image)}
                     aria-label={`Open ${project.title} gallery image ${index + 1}`}
                   >
-                    <ImageWithFallback src={image} alt={`${project.title}, view ${index + 1}`} loading="lazy" />
+                    <ImageWithFallback src={image} alt={`${project.title} project view ${index + 1}`} loading="lazy" />
                     <span className="project-gallery-caption">{String(index + 1).padStart(2, '0')} / View</span>
                   </button>
                 ))}
               </div>
             )}
           </section>
-        </main>
+        </div>
 
-        {/* Footer arrows drift in their direction of travel — directional affordance. */}
         <footer className="project-detail-footer" aria-label="Project navigation">
-          <button type="button" onClick={() => onNextProject(previousProjectId)}>
+          <a href={getProjectPath(previousProject)} onClick={(event) => navigateProject(event, previousProjectId)}>
             <ArrowLeft size={13} aria-hidden="true" /> Previous project
-          </button>
+          </a>
           <span className="cinematic-meta">{String(currentIndex + 1).padStart(2, '0')} / {String(caseStudyProjectIds.length).padStart(2, '0')}</span>
-          <button type="button" onClick={() => onNextProject(nextProjectId)}>
+          <a href={getProjectPath(nextProject)} onClick={(event) => navigateProject(event, nextProjectId)}>
             Next project <ArrowRight size={13} aria-hidden="true" />
-          </button>
+          </a>
         </footer>
       </div>
 
