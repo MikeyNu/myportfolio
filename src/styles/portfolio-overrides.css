@@ -1,0 +1,109 @@
+html {
+  font-family: "Avenir Next", Avenir, "Helvetica Neue", system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Retire legacy decorative helpers that conflict with the current design rules. */
+.gradient-text {
+  background: none !important;
+  color: inherit !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+.glass {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-color: transparent !important;
+}
+
+.float,
+.pulse-custom {
+  animation: none !important;
+}
+
+.glow {
+  box-shadow: none !important;
+}
+
+/* Prevent legacy global transform and shadow transitions. Explicit component transitions still win by class specificity. */
+* {
+  transition-property: none;
+}
+
+/* Remove inherited press scaling from the old mobile style layer. */
+button:active,
+a:active {
+  transform: none;
+}
+
+/* Full-bleed hero video stack. Both videos occupy the same space so theme changes are immediate. */
+.portfolio-video-hero {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 5rem);
+  height: calc(100svh - 5rem);
+  min-height: 28rem;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--background);
+}
+
+.portfolio-hero-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 180ms ease;
+}
+
+.portfolio-hero-video-light {
+  z-index: 1;
+  opacity: 1;
+}
+
+.portfolio-hero-video-dark {
+  z-index: 2;
+  opacity: 0;
+}
+
+.dark .portfolio-hero-video-light {
+  opacity: 0;
+}
+
+.dark .portfolio-hero-video-dark {
+  opacity: 1;
+  mix-blend-mode: lighten;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .portfolio-hero-video {
+    transition: none;
+  }
+}
