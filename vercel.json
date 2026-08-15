@@ -4,13 +4,13 @@
     "deploymentEnabled": false
   },
   "rewrites": [
-    { "source": "/work", "destination": "/index.html" },
-    { "source": "/services", "destination": "/index.html" },
-    { "source": "/about", "destination": "/index.html" },
-    { "source": "/contact", "destination": "/index.html" },
-    { "source": "/work/netflix-multi-show-launch-display", "destination": "/index.html" },
-    { "source": "/work/arknights-endfield-gamescom-2025-stand", "destination": "/index.html" },
-    { "source": "/work/sonic-racing-crossworlds-stand-gamescom-2025", "destination": "/index.html" },
-    { "source": "/work/genshin-impact-exhibition-booth", "destination": "/index.html" }
+    { "source": "/work", "destination": "/work/index.html" },
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/work/netflix-multi-show-launch-display", "destination": "/work/netflix-multi-show-launch-display/index.html" },
+    { "source": "/work/arknights-endfield-gamescom-2025-stand", "destination": "/work/arknights-endfield-gamescom-2025-stand/index.html" },
+    { "source": "/work/sonic-racing-crossworlds-stand-gamescom-2025", "destination": "/work/sonic-racing-crossworlds-stand-gamescom-2025/index.html" },
+    { "source": "/work/genshin-impact-exhibition-booth", "destination": "/work/genshin-impact-exhibition-booth/index.html" }
   ]
 }
