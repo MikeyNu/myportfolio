@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { processSteps, services, pageIndex } from '../data/portfolioContent';
 import { RENDERS } from '../data/renderAssets';
 
@@ -6,7 +7,11 @@ interface CreativeServicesPageProps {
   onContact: () => void;
 }
 
+const EASE = [0.25, 0.46, 0.45, 0.94] as const;
+
 export function CreativeServicesPage({ onContact }: CreativeServicesPageProps) {
+  const reduced = useReducedMotion();
+
   return (
     <div className="cinematic-page services-page">
       <section className="cinematic-container cinematic-grid services-hero" aria-labelledby="services-title">
@@ -40,6 +45,7 @@ export function CreativeServicesPage({ onContact }: CreativeServicesPageProps) {
         <div className="services-band">
           {services.map((service) => (
             <article key={service.id} className="service-panel">
+              {/* Art drifts backward on hover — the surface recedes, revealing depth. */}
               <img className="service-panel-art theme-img-dark" src={service.image} alt="" aria-hidden="true" />
               <img className="service-panel-art theme-img-light" src={service.lightImage} alt="" aria-hidden="true" />
               <div className="service-panel-content">
@@ -61,6 +67,11 @@ export function CreativeServicesPage({ onContact }: CreativeServicesPageProps) {
         </div>
       </section>
 
+      {/*
+        Process steps: 5-column horizontal grid at large screens. All enter the
+        viewport at the same moment so we need explicit JS stagger — a scroll-
+        timeline approach would fire them all simultaneously.
+      */}
       <section className="cinematic-container services-process" aria-labelledby="process-title">
         <div className="services-process-intro">
           <p id="process-title" className="cinematic-kicker">How I work</p>
@@ -69,12 +80,19 @@ export function CreativeServicesPage({ onContact }: CreativeServicesPageProps) {
           </p>
         </div>
 
-        {processSteps.map((step) => (
-          <article key={step.index} className="process-step">
+        {processSteps.map((step, i) => (
+          <motion.article
+            key={step.index}
+            className="process-step"
+            initial={reduced ? false : { y: 8, opacity: 0.4 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4, delay: i * 0.07, ease: EASE }}
+            viewport={{ once: true, margin: '-5%' }}
+          >
             <span className="process-step-index">{step.index}</span>
             <h2 className="process-step-title">{step.title}</h2>
             <p className="process-step-description">{step.description}</p>
-          </article>
+          </motion.article>
         ))}
       </section>
 

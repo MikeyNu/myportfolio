@@ -1,0 +1,112 @@
+/*
+ * Self-hosted web fonts — served from /public/fonts/ so they are bundled with
+ * the site and never blocked by network conditions or CORS.
+ *
+ * Bebas Neue  (display)  — SIL Open Font License 1.1
+ *   Nearest free match to Agency FB: same condensed caps geometry, same
+ *   vertical scale. All .cinematic-display elements already use
+ *   text-transform: uppercase so the caps-only character set is sufficient.
+ *
+ * Inter  (body)  — SIL Open Font License 1.1
+ *   Optical metrics align closely with Neue Haas Grotesk at the small sizes
+ *   (0.64–0.88rem) used throughout the UI. Hinting is excellent on Windows.
+ *
+ * Each face has two @font-face blocks: latin-ext first (extended Latin
+ * characters — accented letters, currency symbols), latin second (ASCII +
+ * common punctuation). The browser downloads only the block(s) it needs.
+ *
+ * font-display: swap  →  fallback shown during load, swapped when ready.
+ *   The fallback chain is tuned so the layout shift is minimal:
+ *   Bebas Neue ↔ Agency FB (Windows) share nearly the same cap-height ratio.
+ *   Inter ↔ Helvetica Neue share identical x-height.
+ */
+
+/* ── Bebas Neue ──────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Bebas Neue'),
+    url('/fonts/bebas-neue-400-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Bebas Neue'),
+    url('/fonts/bebas-neue-400-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Inter ───────────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Inter'),
+    url('/fonts/inter-400-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    local('Inter'),
+    url('/fonts/inter-400-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Inter Medium'),
+    local('Inter-Medium'),
+    url('/fonts/inter-500-latin-ext.woff2') format('woff2');
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src:
+    local('Inter Medium'),
+    local('Inter-Medium'),
+    url('/fonts/inter-500-latin.woff2') format('woff2');
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

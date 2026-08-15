@@ -26,8 +26,6 @@
   padding-right: 12px;
 }
 
-@media (max-width: 900px) {
-  :root {
-    --ci-header-height: 80px;
-  }
-}
+/* Note: --ci-header-height at ≤900px is set in cinematic-portfolio.css (72px).
+ * Do not redefine it here — the load order makes this file win the cascade,
+ * overriding the portfolio value and misaligning sticky/padding calculations. */

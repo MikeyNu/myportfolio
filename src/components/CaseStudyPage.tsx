@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { caseStudyProjectIds, projects } from '../data/portfolioContent';
 
@@ -9,19 +10,20 @@ interface CaseStudyPageProps {
   onNextProject: (projectId: string) => void;
 }
 
+const EASE = [0.25, 0.46, 0.45, 0.94] as const;
+
+const NARRATIVE = ['Challenge', 'Approach', 'Outcome'] as const;
+
 export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPageProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const reduced = useReducedMotion();
   const project = projects.find((item) => item.id === projectId && item.caseStudy);
 
   useEffect(() => {
     if (!selectedImage) return;
-
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setSelectedImage(null);
-      }
+      if (event.key === 'Escape') setSelectedImage(null);
     };
-
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [selectedImage]);
@@ -79,19 +81,23 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
               </div>
             </div>
 
+            {/*
+              Narrative: 3-column at large screens, all entering together.
+              Stagger via delay so they read as a sequence: problem → response → result.
+            */}
             <div className="project-reference-narrative" aria-label="Project narrative">
-              <article>
-                <h2>Challenge</h2>
-                <p>{caseStudy.challenge}</p>
-              </article>
-              <article>
-                <h2>Approach</h2>
-                <p>{caseStudy.approach}</p>
-              </article>
-              <article>
-                <h2>Outcome</h2>
-                <p>{caseStudy.outcome}</p>
-              </article>
+              {NARRATIVE.map((label, i) => (
+                <motion.article
+                  key={label}
+                  initial={reduced ? false : { y: 10, opacity: 0.4 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.45, delay: i * 0.09, ease: EASE }}
+                  viewport={{ once: true, margin: '-5%' }}
+                >
+                  <h2>{label}</h2>
+                  <p>{caseStudy[label.toLowerCase() as 'challenge' | 'approach' | 'outcome']}</p>
+                </motion.article>
+              ))}
             </div>
 
             <div className="project-reference-lists">
@@ -143,6 +149,7 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
           </section>
         </main>
 
+        {/* Footer arrows drift in their direction of travel — directional affordance. */}
         <footer className="project-detail-footer" aria-label="Project navigation">
           <button type="button" onClick={() => onNextProject(previousProjectId)}>
             <ArrowLeft size={13} aria-hidden="true" /> Previous project

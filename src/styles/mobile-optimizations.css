@@ -1,10 +1,9 @@
 /* Mobile behavior shared across the portfolio. */
 
-html {
-  overflow-x: hidden;
-}
-
+/* overflow-x: hidden on <html> breaks position:sticky on iOS Safari.
+ * Clip overflow on <body> instead — same visual effect, sticky-safe. */
 body {
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

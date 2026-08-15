@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ArrowRight, Check, Copy } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { useMotionValue, useTransform, motion, animate, useReducedMotion } from 'motion/react';
 import { openCalendly } from '../config/calendly';
 import { contactProjectTypes, pageIndex } from '../data/portfolioContent';
 import { RENDERS } from '../data/renderAssets';
@@ -16,6 +17,28 @@ const scopeOptions = [
 ];
 
 export function CreativeContactPage() {
+  const reduced = useReducedMotion();
+
+  /* Cursor parallax for the contact art image.
+   * The image moves ±10px X, ±6px Y as the cursor moves across the intro column.
+   * On mouse leave it springs back with damping so it settles naturally. */
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const artX = useTransform(mouseX, [-1, 1], [-10, 10]);
+  const artY = useTransform(mouseY, [-1, 1], [-6, 6]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (reduced) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width * 2 - 1);
+    mouseY.set((e.clientY - rect.top)  / rect.height * 2 - 1);
+  };
+
+  const handleMouseLeave = () => {
+    animate(mouseX, 0, { type: 'spring', damping: 24, stiffness: 180 });
+    animate(mouseY, 0, { type: 'spring', damping: 24, stiffness: 180 });
+  };
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -76,7 +99,12 @@ export function CreativeContactPage() {
   return (
     <div className="cinematic-page contact-page">
       <div className="cinematic-container contact-layout">
-        <section className="contact-intro" aria-labelledby="contact-title">
+        <section
+          className="contact-intro"
+          aria-labelledby="contact-title"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
           <p className="cinematic-kicker">Contact / Inquiry</p>
           <h1 id="contact-title" className="cinematic-display contact-heading">
             Let&apos;s craft<br />something real.
@@ -85,8 +113,10 @@ export function CreativeContactPage() {
             Bring the brief, idea, problem, or source material. I work across software development, 3D design and visualization, and VR solutions, including multidisciplinary projects that need more than one of those disciplines.
           </p>
 
-          <img className="contact-art theme-img-dark" src={RENDERS.services4} alt="" aria-hidden="true" />
-          <img className="contact-art theme-img-light" src={RENDERS.services4Light} alt="" aria-hidden="true" />
+          <motion.div className="contact-art-group" style={{ x: artX, y: artY }}>
+            <img className="contact-art theme-img-dark" src={RENDERS.services4} alt="" aria-hidden="true" />
+            <img className="contact-art theme-img-light" src={RENDERS.services4Light} alt="" aria-hidden="true" />
+          </motion.div>
 
           <div className="contact-direct-grid" role="group" aria-label="Direct contact options">
             <div className="contact-direct-item">

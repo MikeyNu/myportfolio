@@ -1,15 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Michael Ndhlovu Design Portfolio</title>
 
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Michael Ndhlovu Design Portfolio</title>
-    </head>
+    <!--
+      Preload the critical font files so the browser fetches them in parallel
+      with the CSS parse rather than discovering them mid-render.
+      Only the latin subset is preloaded — the latin-ext subset is downloaded
+      on demand when extended characters are actually encountered.
+    -->
+    <link
+      rel="preload"
+      href="/fonts/bebas-neue-400-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-400-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
 
-    <body>
-      <div id="root"></div>
-      <script type="module" src="/src/main.tsx"></script>
-    </body>
-  </html>
-  
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

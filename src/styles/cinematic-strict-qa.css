@@ -1,6 +1,5 @@
-:root {
-  --ci-display: "Agency FB", "Arial Narrow", "Roboto Condensed", sans-serif;
-}
+/* --ci-display and --ci-body are defined in cinematic-portfolio.css and
+ * point to self-hosted Bebas Neue / Inter. No override needed here. */
 
 /*
  * The supplied renders are opaque RGB PNGs with near-black backplates.
@@ -223,19 +222,21 @@
     grid-column: 1;
     min-height: 0;
     padding-right: 0;
+    z-index: 2;
   }
 
   .work-content-field {
     grid-column: 2;
+    z-index: 1;
   }
 
   .work-heading {
     width: max-content;
-    max-width: 3.45ch;
-    margin-top: 32px;
-    font-size: 8.6rem;
-    line-height: 0.82;
-    transform: scale(0.8, 1.43);
+    max-width: 4.2ch;
+    margin-top: 28px;
+    font-size: 5.8rem;
+    line-height: 0.88;
+    transform: scale(0.8, 1.25);
     transform-origin: left top;
   }
 

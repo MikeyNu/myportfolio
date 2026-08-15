@@ -27,8 +27,8 @@
   --ci-paper: #c5c5c5;
   --ci-blue: #4a6a8a;
   --ci-rule: rgba(42, 45, 49, 0.28);
-  --ci-display: "Druk Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
-  --ci-body: "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --ci-display: 'Bebas Neue', 'Agency FB', 'Arial Narrow', sans-serif;
+  --ci-body: 'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --ci-max: 1440px;
   --ci-gutter: 32px;
   --ci-margin: clamp(20px, 4.8vw, 80px);
@@ -107,6 +107,123 @@ textarea:focus-visible {
   min-height: 100vh;
 }
 
+/* ─── Parallax helpers ────────────────────────────────────────────────────── */
+
+/* Portrait parallax: inner wrapper fills the outer positioned container. */
+.about-art-parallax {
+  width: 100%;
+  height: 100%;
+}
+
+/* Contact art cursor parallax: wrapper holds both theme images. */
+.contact-art-group {
+  display: contents; /* preserves existing positioning of child .contact-art images */
+}
+
+/* Quote lines: display as blocks so each can animate independently. */
+.about-quote-line {
+  display: block;
+}
+
+/* ─── Scroll-driven entrance: archive rows ────────────────────────────────── */
+/* Each row is stacked vertically so it enters the viewport at a unique scroll
+ * position — no JS needed, animation-timeline: view() handles the stagger. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes settle-in {
+    from { transform: translateY(8px); opacity: 0.4; }
+    to   { transform: translateY(0);   opacity: 1; }
+  }
+
+  .work-archive-row {
+    animation: settle-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+/* ─── Service panel: background art drifts backward on hover ─────────────── */
+/* The art sits behind the content at 22–34% opacity. On hover the surface
+ * "recedes" slightly, reinforcing that the texture exists in a layer behind. */
+.service-panel-art {
+  transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 400ms ease,
+              filter 400ms ease;
+}
+.service-panel:hover .service-panel-art {
+  transform: translate(-10px, -7px) scale(1.04);
+}
+
+/* ─── Capability icons: micro-rotate with spring bounce ──────────────────── */
+/* The icons are wireframe geometric forms — on hover they rotate slightly,
+ * referencing the 3D viewport orbit gesture used to produce them. */
+.about-capability-icon {
+  transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.about-capabilities > div:hover .about-capability-icon {
+  transform: rotate(8deg) scale(1.1);
+}
+
+/* ─── Gallery: image swells within its fixed frame ───────────────────────── */
+/* The container holds firm. Only the image inside breathes outward, like
+ * pressing on a physical print. */
+.project-reference-gallery-item img {
+  transition: filter 400ms ease, transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.project-reference-gallery-item:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0) contrast(1);
+}
+.project-reference-hero-media img {
+  transition: filter 400ms ease, transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.project-reference-hero-media:hover img {
+  transform: scale(1.025);
+  filter: grayscale(0) contrast(1);
+}
+
+/* ─── Case study footer: arrows drift in their direction of travel ────────── */
+.project-detail-footer button svg {
+  transition: transform 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.project-detail-footer button:first-child:hover svg { transform: translateX(-4px); }
+.project-detail-footer button:last-child:hover svg  { transform: translateX(4px); }
+
+/* ─── Archive row: index number lifts on hover ───────────────────────────── */
+/* The index is a ledger reference — a tiny Y float signals the row is selected. */
+.work-archive-index {
+  display: inline-block;
+  transition: transform 220ms ease;
+}
+.work-archive-row:hover .work-archive-index { transform: translateY(-2px); }
+
+/* ─── Contact form: label leans toward active input ──────────────────────── */
+.contact-label {
+  display: block;
+  transition: transform 200ms ease, letter-spacing 200ms ease;
+}
+.contact-field:focus-within .contact-label,
+.contact-field-full:focus-within .contact-label {
+  transform: translateX(3px);
+  letter-spacing: 0.11em;
+}
+
+/* ─── Submit button: arrow pre-fires on hover ────────────────────────────── */
+.cinematic-primary-action svg {
+  transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cinematic-primary-action:hover svg { transform: translateX(5px); }
+
+/* ─── Contact direct items: label lifts on hover ─────────────────────────── */
+.contact-direct-label {
+  display: block;
+  transition: transform 180ms ease, letter-spacing 180ms ease;
+}
+.contact-direct-item:hover .contact-direct-label {
+  transform: translateY(-2px);
+  letter-spacing: 0.12em;
+}
+
+/* ─── Theme-aware image pairs ────────────────────────────────────────────── */
 /* Theme-aware image pairs: dark image shown by default, swapped in light mode. */
 .theme-img-light { display: none; }
 
@@ -1955,3 +2072,102 @@ textarea:focus-visible {
     transition: none;
   }
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE OVERFLOW FIXES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* All display headings must wrap within their container on mobile.
+ * Without this, long words ("ENGINEERING.", "SOMETHING") break the
+ * layout box and create horizontal overflow at small viewport widths. */
+@media (max-width: 900px) {
+  .cinematic-display,
+  .work-heading,
+  .services-heading,
+  .about-heading,
+  .contact-heading,
+  .work-archive-title,
+  .project-detail-title,
+  .services-manifesto {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
+  /* Each page clips its own horizontal overflow so a single overflowing
+   * child cannot widen the document and trigger a body scroll. */
+  .cinematic-page {
+    overflow-x: clip;
+  }
+}
+
+/* On very small screens (≤390px) the long contact heading "LET'S CRAFT /
+ * SOMETHING REAL." can still overflow even with break-word because the
+ * minimum font-size in the clamp is too large. Tighten the clamp ceiling. */
+@media (max-width: 620px) {
+  .contact-heading {
+    font-size: clamp(2.8rem, 14vw, 5rem);
+  }
+
+  /* Buttons with min-width: 220px are safe when alone but would overflow
+   * if ever placed side-by-side in a flex row at ≤390px. */
+  .cinematic-outline-action,
+  .cinematic-primary-action {
+    min-width: min(220px, 100%);
+  }
+
+  /* Work heading: tighten so "SELECTED WORK" is proportional to content width. */
+  .work-heading {
+    font-size: clamp(3.6rem, 19vw, 5.8rem);
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOUCH INTERACTION — :active mirrors :hover
+   Users on touch devices experience all animations via press.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Service panel art drift */
+.service-panel:active .service-panel-art {
+  transform: translate(-10px, -7px) scale(1.04);
+}
+
+/* Capability icon micro-rotate */
+.about-capabilities > div:active .about-capability-icon {
+  transform: rotate(8deg) scale(1.1);
+}
+
+/* Gallery and hero media colour reveal + swell */
+.project-reference-gallery-item:active img {
+  transform: scale(1.05);
+  filter: grayscale(0) contrast(1);
+}
+.project-reference-hero-media:active img {
+  transform: scale(1.025);
+  filter: grayscale(0) contrast(1);
+}
+
+/* Work overview project media colour reveal */
+.work-project-media:active img,
+.work-project-media:active video {
+  filter: grayscale(0) contrast(1);
+}
+
+/* Case study footer navigation arrow drift */
+.project-detail-footer button:first-child:active svg { transform: translateX(-4px); }
+.project-detail-footer button:last-child:active svg  { transform: translateX(4px); }
+
+/* Archive row index lift */
+.work-archive-row:active .work-archive-index { transform: translateY(-2px); }
+
+/* Contact direct item label lift */
+.contact-direct-item:active .contact-direct-label {
+  transform: translateY(-2px);
+  letter-spacing: 0.12em;
+}
+
+/* Submit button arrow pre-fire */
+.cinematic-primary-action:active svg { transform: translateX(5px); }
+
+/* Text links: arrow nudge on touch */
+.cinematic-text-link:active svg { transform: translateX(3px); }
