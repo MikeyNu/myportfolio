@@ -3,6 +3,26 @@
   "git": {
     "deploymentEnabled": false
   },
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "myportfolio-peach-eta-63.vercel.app" }],
+      "destination": "https://michaelndhlovu.vercel.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "myportfolio-mikeynu-projects.vercel.app" }],
+      "destination": "https://michaelndhlovu.vercel.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "myportfolio-git-main-mikeynu-projects.vercel.app" }],
+      "destination": "https://michaelndhlovu.vercel.app/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/work", "destination": "/work/index.html" },
     { "source": "/services", "destination": "/services/index.html" },
