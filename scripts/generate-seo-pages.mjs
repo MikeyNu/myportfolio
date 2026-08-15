@@ -17,7 +17,7 @@ const routes = [
     path: '/services',
     title: 'Software Development, 3D Design & VR Solutions | Michael Ndhlovu',
     description: 'Software development, web and app development, 3D design and visualization, and VR solutions by Michael Ndhlovu for products, platforms, brands and immersive experiences.',
-    image: '/renders/assets/what-do-assets (3).webp',
+    image: '/renders/assets/what-do-assets (4).webp',
     imageAlt: 'Software development, 3D design and VR services by Michael Ndhlovu'
   },
   {
