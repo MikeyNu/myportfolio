@@ -88,10 +88,15 @@
 
 .hero-reference-title {
   margin-top: 22px;
-  font-size: clamp(5rem, 10vw, 9rem);
+  /* Single responsive clamp — no breakpoint overrides needed.
+   * 18vw scales smoothly: ~70px at 390px, ~200px at 1120px+.
+   * Never breaks mid-word because max-width is unrestricted. */
+  font-size: clamp(3rem, 18vw, 12.5rem);
   font-weight: 600;
   letter-spacing: 0.025em;
-  line-height: 0.84;
+  line-height: 0.9;
+  word-break: normal;
+  overflow-wrap: normal;
 }
 
 .hero-reference-action {
@@ -182,7 +187,6 @@
   .hero-reference-title {
     margin-top: 28px;
     width: max-content;
-    font-size: 12.5rem;
     transform: scale(0.78, 1.25);
     transform-origin: left top;
   }
@@ -845,10 +849,7 @@
     top: 18%;
   }
 
-  .hero-reference-title {
-    max-width: 4ch;
-    font-size: clamp(5rem, 21vw, 8rem);
-  }
+  /* font-size handled by the base clamp — no override needed here */
 
   .hero-reference-action {
     min-width: min(100%, 250px);
