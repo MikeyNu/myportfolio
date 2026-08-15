@@ -1,8 +1,10 @@
+import { getPagePath, type Page } from '../seo/siteSeo';
+
 interface CreativeFooterProps {
   onPageChange: (page: string) => void;
 }
 
-const footerNavigation = [
+const footerNavigation: { id: Exclude<Page, 'home' | 'case-study'>; label: string }[] = [
   { id: 'projects', label: 'Work' },
   { id: 'services', label: 'Services' },
   { id: 'about', label: 'About' },
@@ -20,9 +22,17 @@ export function CreativeFooter({ onPageChange }: CreativeFooterProps) {
 
         <nav className="cinematic-footer-nav" aria-label="Footer navigation">
           {footerNavigation.map((item) => (
-            <button key={item.id} type="button" onClick={() => onPageChange(item.id)}>
+            <a
+              key={item.id}
+              href={getPagePath(item.id)}
+              onClick={(event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                onPageChange(item.id);
+              }}
+            >
               {item.label}
-            </button>
+            </a>
           ))}
           <a href="mailto:info@mikeynu.com">info@mikeynu.com</a>
         </nav>

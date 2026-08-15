@@ -2,5 +2,35 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "git": {
     "deploymentEnabled": false
-  }
+  },
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "myportfolio-peach-eta-63.vercel.app" }],
+      "destination": "https://michaelndhlovu.vercel.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "myportfolio-mikeynu-projects.vercel.app" }],
+      "destination": "https://michaelndhlovu.vercel.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "myportfolio-git-main-mikeynu-projects.vercel.app" }],
+      "destination": "https://michaelndhlovu.vercel.app/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/work", "destination": "/work/index.html" },
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/work/netflix-multi-show-launch-display", "destination": "/work/netflix-multi-show-launch-display/index.html" },
+    { "source": "/work/arknights-endfield-gamescom-2025-stand", "destination": "/work/arknights-endfield-gamescom-2025-stand/index.html" },
+    { "source": "/work/sonic-racing-crossworlds-stand-gamescom-2025", "destination": "/work/sonic-racing-crossworlds-stand-gamescom-2025/index.html" },
+    { "source": "/work/genshin-impact-exhibition-booth", "destination": "/work/genshin-impact-exhibition-booth/index.html" }
+  ]
 }

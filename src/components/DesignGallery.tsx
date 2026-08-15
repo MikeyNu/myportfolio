@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { ArrowRight, ArrowLeft, X } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 
-/* ── Data ──────────────────────────────────────────────────────────────────
- * Add future designs here. Set `url` to the live URL once available.
- * Leave `url` as null to show the "Not Available" overlay instead. */
 interface Design {
   id: string;
   title: string;
@@ -13,41 +10,27 @@ interface Design {
 }
 
 const DESIGNS: Design[] = [
-  { id: 'luna',      title: 'Luna',      image: '/designs/LUNA.webp',      url: null },
-  { id: 'auren',     title: 'Auren',     image: '/designs/AUREN.webp',     url: null },
-  { id: 'solstice',  title: 'Solstice',  image: '/designs/SOLSTICE.webp',  url: null },
+  { id: 'luna', title: 'Luna', image: '/designs/LUNA.webp', url: null },
+  { id: 'auren', title: 'Auren', image: '/designs/AUREN.webp', url: null },
+  { id: 'solstice', title: 'Solstice', image: '/designs/SOLSTICE.webp', url: null },
   { id: 'stillform', title: 'Stillform', image: '/designs/STILLFORM.webp', url: null },
-  { id: 'vorax',     title: 'Vorax',     image: '/designs/VORAX.webp',     url: null },
-  { id: 'aurelia',   title: 'Aurelia',   image: '/designs/AURELIA.webp',   url: null },
-  { id: 'aurora',    title: 'Aurora',    image: '/designs/AURORA.webp',    url: null },
-  { id: 'kalo',      title: 'Kalo',      image: '/designs/KALO.webp',      url: null },
-  /* ── Coming soon ── */
+  { id: 'vorax', title: 'Vorax', image: '/designs/VORAX.webp', url: null },
+  { id: 'aurelia', title: 'Aurelia', image: '/designs/AURELIA.webp', url: null },
+  { id: 'aurora', title: 'Aurora', image: '/designs/AURORA.webp', url: null },
+  { id: 'kalo', title: 'Kalo', image: '/designs/KALO.webp', url: null },
   { id: 'tbd-1', title: 'Coming Soon', image: null, url: null },
   { id: 'tbd-2', title: 'Coming Soon', image: null, url: null },
 ];
 
-/* ── Animation helpers ─────────────────────────────────────────────────────
- * Each card begins in a displaced "drawer" state — slightly rotated and
- * offset as if stacked physically — then springs into its grid position
- * with staggered timing.  The stagger and trajectory differ per card so
- * they read as individual physical objects, not a synchronised effect. */
-
-/** Pre-computed offsets so values are stable between renders */
 const OFFSETS = DESIGNS.map((_, i) => ({
-  /* Y: deeper cards start further below */
   y: 90 + (i % 5) * 22,
-  /* X: alternating lean — like folder tabs at different positions */
   x: ((i % 3) - 1) * 28,
-  /* Rotation: each card has a slightly different tilt */
   rotate: ((i % 5) - 2) * 2.8,
-  /* Stagger delay (ms) — each card arrives a beat after the previous */
   delay: i * 90,
 }));
 
 const SPRING = { type: 'spring', damping: 22, stiffness: 180 } as const;
-const EASE   = [0.25, 0.46, 0.45, 0.94] as const;
-
-/* ── Not Found overlay ──────────────────────────────────────────────────── */
+const EASE = [0.25, 0.46, 0.45, 0.94] as const;
 
 function DesignNotFound({ onClose }: { onClose: () => void }) {
   return (
@@ -102,8 +85,6 @@ function DesignNotFound({ onClose }: { onClose: () => void }) {
   );
 }
 
-/* ── Card ────────────────────────────────────────────────────────────────── */
-
 interface DesignCardProps {
   design: Design;
   index: number;
@@ -139,21 +120,22 @@ function DesignCard({ design, index, inView, reduced, onView }: DesignCardProps)
         opacity: { duration: 0.4, ease: EASE, delay: off.delay / 1000 },
       }}
     >
-      {/* Image frame */}
       <div className="design-card-frame">
         {isReal ? (
           <>
-            {/* CSS background-image: prevents right-click "Save Image As" */}
-            <div
+            <img
               className="design-card-image"
-              style={{ backgroundImage: `url(${design.image})` }}
-              aria-hidden="true"
+              src={design.image}
+              alt={`${design.title} interface design concept by Michael Ndhlovu`}
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+              onContextMenu={(event) => event.preventDefault()}
             />
-            {/* Transparent shield: intercepts the context menu event */}
             <div
               className="design-card-shield"
-              onContextMenu={(e) => e.preventDefault()}
-              onDragStart={(e) => e.preventDefault()}
+              onContextMenu={(event) => event.preventDefault()}
+              onDragStart={(event) => event.preventDefault()}
               aria-hidden="true"
             />
           </>
@@ -166,7 +148,6 @@ function DesignCard({ design, index, inView, reduced, onView }: DesignCardProps)
         )}
       </div>
 
-      {/* Footer */}
       <div className="design-card-footer">
         <h3 className="design-card-title">{design.title}</h3>
 
@@ -181,14 +162,12 @@ function DesignCard({ design, index, inView, reduced, onView }: DesignCardProps)
             <ArrowRight size={11} aria-hidden="true" />
           </button>
         ) : (
-          <span className="design-card-unavailable" aria-label="Not yet available">—</span>
+          <span className="design-card-unavailable" aria-label="Not yet available">-</span>
         )}
       </div>
     </motion.article>
   );
 }
-
-/* ── Gallery section ─────────────────────────────────────────────────────── */
 
 export function DesignGallery() {
   const [notFound, setNotFound] = useState(false);
@@ -207,7 +186,6 @@ export function DesignGallery() {
     <>
       <section className="design-gallery" aria-labelledby="gallery-title">
         <div className="cinematic-container">
-          {/* Section header */}
           <motion.header
             className="design-gallery-header"
             initial={reduced ? false : { opacity: 0, y: 24 }}
@@ -225,7 +203,6 @@ export function DesignGallery() {
             </p>
           </motion.header>
 
-          {/* Grid — use IntersectionObserver to trigger the card animations */}
           <motion.div
             className="design-gallery-grid"
             onViewportEnter={() => setInView(true)}
@@ -245,7 +222,6 @@ export function DesignGallery() {
         </div>
       </section>
 
-      {/* Not Found overlay — rendered outside the section so it covers everything */}
       {notFound && (
         <DesignNotFound onClose={() => setNotFound(false)} />
       )}

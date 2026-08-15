@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { HeroPaintText } from './HeroPaintText';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { projects, caseStudyProjectIds, pageIndex, type ServiceId } from '../data/portfolioContent';
-import { RENDERS } from '../data/renderAssets';
+import { getPagePath, getProjectPath } from '../seo/siteSeo';
 
 type WorkFilter = 'all' | ServiceId;
 
@@ -33,7 +33,7 @@ function ProjectMedia({ title, source }: { title: string; source: string }) {
     );
   }
 
-  return <ImageWithFallback src={source} alt={title} loading="lazy" />;
+  return <ImageWithFallback src={source} alt={`${title} project render`} loading="lazy" />;
 }
 
 export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: CreativeProjectsPageProps) {
@@ -86,10 +86,18 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
               <p className="cinematic-copy work-intro-copy">
                 This portfolio does not currently contain a documented public case study for this discipline. The service remains available, but no project is invented simply to fill the layout.
               </p>
-              <button type="button" className="cinematic-text-link work-project-action" onClick={onViewServices}>
+              <a
+                className="cinematic-text-link work-project-action"
+                href={getPagePath('services')}
+                onClick={(event) => {
+                  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                  event.preventDefault();
+                  onViewServices();
+                }}
+              >
                 View services
                 <ArrowRight size={14} aria-hidden="true" />
-              </button>
+              </a>
             </div>
           ) : (
             <>
@@ -104,14 +112,18 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
                         <p className="work-project-category">{project.category}</p>
                         <p className="work-project-summary">{project.role}</p>
                         {hasCaseStudy && (
-                          <button
-                            type="button"
+                          <a
                             className="cinematic-text-link work-project-action"
-                            onClick={() => onViewCaseStudy(project.id)}
+                            href={getProjectPath(project)}
+                            onClick={(event) => {
+                              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                              event.preventDefault();
+                              onViewCaseStudy(project.id);
+                            }}
                           >
                             View project
                             <ArrowRight size={14} aria-hidden="true" />
-                          </button>
+                          </a>
                         )}
                       </div>
 
@@ -142,14 +154,18 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
                         <p className="work-archive-meta">{project.year}<br />{project.brand}</p>
                         <p className="work-archive-role">{project.role}</p>
                         {hasCaseStudy ? (
-                          <button
-                            type="button"
+                          <a
                             className="cinematic-text-link"
-                            onClick={() => onViewCaseStudy(project.id)}
+                            href={getProjectPath(project)}
+                            onClick={(event) => {
+                              if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                              event.preventDefault();
+                              onViewCaseStudy(project.id);
+                            }}
                           >
                             View
                             <ArrowRight size={13} aria-hidden="true" />
-                          </button>
+                          </a>
                         ) : (
                           <span className="cinematic-meta">Client work</span>
                         )}
