@@ -1,20 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+>
   <url>
     <loc>https://michaelndhlovu.vercel.app/</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/LUNA.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/AUREN.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/SOLSTICE.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/STILLFORM.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/VORAX.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/AURELIA.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/AURORA.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/designs/KALO.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://michaelndhlovu.vercel.app/work</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/netflix/netflix-hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/arknights-endfield/arknights-endfiield-hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/sega/sonic-hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/genshin-impact.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/cerave/cerave.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/deli-boys/deli-boys.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/heineken/heineken.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/pepsi/pepsi-hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/daimler-truck/daimler.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/gac.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://michaelndhlovu.vercel.app/services</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/assets/what-do-assets%20%283%29.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/assets/what-do-assets%20%282%29.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/assets/what-do-assets%20%281%29.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://michaelndhlovu.vercel.app/about</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/assets/approach-assets%20%281%29.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://michaelndhlovu.vercel.app/contact</loc>
@@ -23,17 +48,32 @@
   <url>
     <loc>https://michaelndhlovu.vercel.app/work/netflix-multi-show-launch-display</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/netflix/netflix-hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/netflix/netflix.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/netflix/netflix%20%282%29.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/netflix/netflix%20%283%29.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/netflix/netflix%20%284%29.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/netflix/netflix%20%285%29.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://michaelndhlovu.vercel.app/work/arknights-endfield-gamescom-2025-stand</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/arknights-endfield/arknights-endfiield-hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/arknights-endfield/arknights-endfiield.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/arknights-endfield/arknights-endfiield-booth.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://michaelndhlovu.vercel.app/work/sonic-racing-crossworlds-stand-gamescom-2025</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/sega/sonic-hero.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/sega/sonic.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/sega/sonic%20%282%29.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/sega/sonic%20%283%29.webp</image:loc></image:image>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/sega/sonic%20%284%29.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://michaelndhlovu.vercel.app/work/genshin-impact-exhibition-booth</loc>
     <lastmod>2026-08-15</lastmod>
+    <image:image><image:loc>https://michaelndhlovu.vercel.app/renders/genshin-impact.webp</image:loc></image:image>
   </url>
 </urlset>
