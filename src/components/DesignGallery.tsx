@@ -18,12 +18,12 @@ const DESIGNS: Design[] = [
   { id: 'solstice',  title: 'Solstice',  image: '/designs/SOLSTICE.png',  url: null },
   { id: 'stillform', title: 'Stillform', image: '/designs/STILLFORM.png', url: null },
   { id: 'vorax',     title: 'Vorax',     image: '/designs/VORAX.png',     url: null },
+  { id: 'auren',     title: 'Auren',     image: '/designs/AUREN.png',     url: null },
+  { id: 'aurora',    title: 'Aurora',    image: '/designs/AURORA.png',    url: null },
+  { id: 'kalo',      title: 'Kalo',      image: '/designs/KALO.png',      url: null },
   /* ── Coming soon ── */
   { id: 'tbd-1', title: 'Coming Soon', image: null, url: null },
   { id: 'tbd-2', title: 'Coming Soon', image: null, url: null },
-  { id: 'tbd-3', title: 'Coming Soon', image: null, url: null },
-  { id: 'tbd-4', title: 'Coming Soon', image: null, url: null },
-  { id: 'tbd-5', title: 'Coming Soon', image: null, url: null },
 ];
 
 /* ── Animation helpers ─────────────────────────────────────────────────────
