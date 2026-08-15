@@ -7,49 +7,32 @@ import { CreativeAboutPage } from './components/CreativeAboutPage';
 import { CreativeContactPage } from './components/CreativeContactPage';
 import { CaseStudyPage } from './components/CaseStudyPage';
 import { CreativeFooter } from './components/CreativeFooter';
+import { getPagePath, parseRoute, syncSeo, type Page } from './seo/siteSeo';
 
-type Page = 'home' | 'projects' | 'services' | 'about' | 'contact' | 'case-study';
 type Theme = 'light' | 'dark';
-
-const VALID_PAGES: Page[] = ['home', 'projects', 'services', 'about', 'contact'];
-
-function parseHash(): { page: Page; projectId: string | null } {
-  const raw = window.location.hash.replace(/^#\/?/, '');
-  if (!raw || raw === 'home') return { page: 'home', projectId: null };
-  if (raw.startsWith('case-study/')) {
-    const id = raw.slice('case-study/'.length) || null;
-    return { page: 'case-study', projectId: id };
-  }
-  if ((VALID_PAGES as string[]).includes(raw)) return { page: raw as Page, projectId: null };
-  return { page: 'home', projectId: null };
-}
-
-function toHash(page: Page, projectId: string | null): string {
-  if (page === 'case-study' && projectId) return `#case-study/${projectId}`;
-  if (page === 'home') return '#home';
-  return `#${page}`;
-}
 
 const getInitialTheme = (): Theme =>
   window.localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>(() => parseHash().page);
-  const [currentProjectId, setCurrentProjectId] = useState<string | null>(() => parseHash().projectId);
+  const [currentPage, setCurrentPage] = useState<Page>(() => parseRoute().page);
+  const [currentProjectId, setCurrentProjectId] = useState<string | null>(() => parseRoute().projectId);
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
-  /* Keep the URL hash in sync with app state */
   useEffect(() => {
-    const hash = toHash(currentPage, currentProjectId);
-    if (window.location.hash !== hash) {
-      window.history.pushState(null, '', hash);
+    const initialRoute = parseRoute();
+    if (window.location.hash) {
+      window.history.replaceState(null, '', getPagePath(initialRoute.page, initialRoute.projectId));
     }
+  }, []);
+
+  useEffect(() => {
+    syncSeo(currentPage, currentProjectId);
   }, [currentPage, currentProjectId]);
 
-  /* Handle browser back / forward */
   useEffect(() => {
     const onPop = () => {
-      const { page, projectId } = parseHash();
+      const { page, projectId } = parseRoute();
       setCurrentPage(page);
       setCurrentProjectId(projectId);
       window.scrollTo({ top: 0, behavior: 'auto' });
@@ -60,32 +43,35 @@ export default function App() {
 
   const moveToTop = () => window.scrollTo({ top: 0, behavior: 'auto' });
 
-  const handlePageChange = (page: string) => {
-    setCurrentPage(page as Page);
-    setCurrentProjectId(null);
+  const navigate = (page: Page, projectId: string | null = null) => {
+    const path = getPagePath(page, projectId);
+    if (window.location.pathname !== path || window.location.hash) {
+      window.history.pushState(null, '', path);
+    }
+    setCurrentPage(page);
+    setCurrentProjectId(projectId);
     moveToTop();
+  };
+
+  const handlePageChange = (page: string) => {
+    navigate(page as Page);
   };
 
   const handleViewCaseStudy = (projectId: string) => {
-    setCurrentProjectId(projectId);
-    setCurrentPage('case-study');
-    moveToTop();
+    navigate('case-study', projectId);
   };
 
   const handleBackFromCaseStudy = () => {
-    setCurrentPage('projects');
-    setCurrentProjectId(null);
-    moveToTop();
+    navigate('projects');
   };
 
   const handleNextProject = (projectId: string) => {
-    setCurrentProjectId(projectId);
-    moveToTop();
+    navigate('case-study', projectId);
   };
 
-  const handleThemeChange = (t: Theme) => {
-    setTheme(t);
-    window.localStorage.setItem('theme', t);
+  const handleThemeChange = (nextTheme: Theme) => {
+    setTheme(nextTheme);
+    window.localStorage.setItem('theme', nextTheme);
   };
 
   const renderCurrentPage = () => {
