@@ -9,6 +9,7 @@ import './styles/cinematic-portfolio.css';
 import './styles/cinematic-reference-layout.css';
 import './styles/cinematic-accessibility.css';
 import './styles/cinematic-strict-qa.css';
+import './styles/seo-routing.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
