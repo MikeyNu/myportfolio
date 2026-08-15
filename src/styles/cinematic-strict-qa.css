@@ -845,9 +845,8 @@
 }
 
 @media (max-width: 900px) {
-  .hero-reference-copy {
-    top: 18%;
-  }
+  /* hero-reference-copy top removed — base 25% works at all viewport sizes,
+   * eliminating the abrupt 7% upward jump at the 900px breakpoint */
 
   /* font-size handled by the base clamp — no override needed here */
 

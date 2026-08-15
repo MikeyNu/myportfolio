@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
 
 interface ImprovedCreativeNavigationProps {
@@ -103,7 +103,15 @@ export function ImprovedCreativeNavigation({
               aria-expanded={isMobileMenuOpen}
               aria-controls="cinematic-mobile-menu"
             >
-              {isMobileMenuOpen ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
+              {isMobileMenuOpen ? (
+                <X size={19} aria-hidden="true" />
+              ) : (
+                <svg width="19" height="13" viewBox="0 0 19 13" fill="none" aria-hidden="true">
+                  <rect x="0"  y="0"   width="19" height="1.5" fill="currentColor" />
+                  <rect x="6"  y="5.5" width="13" height="1.5" fill="currentColor" />
+                  <rect x="0"  y="11"  width="19" height="1.5" fill="currentColor" />
+                </svg>
+              )}
             </button>
           </div>
         </div>

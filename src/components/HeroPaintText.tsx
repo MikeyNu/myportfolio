@@ -161,9 +161,9 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
     const canvas = canvasRef.current;
     if (!h1 || !canvas) return;
 
-    /* Media guards */
-    const fine = window.matchMedia('(pointer: fine)');
-    const wide = window.matchMedia('(min-width: 901px)');
+    /* Only skip the effect when the user has explicitly requested less motion.
+     * The previous (pointer: fine) and (min-width: 901px) guards blocked touch
+     * and mobile entirely — removed so swipe on the hero title works on touch. */
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     let disposed = false;
@@ -171,7 +171,7 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
 
     const start = () => {
       if (disposed || cleanup) return;
-      if (!fine.matches || !wide.matches || reduced.matches) return;
+      if (reduced.matches) return;
 
       /* ── WebGL2 context ── */
       const gl = canvas.getContext('webgl2', {
@@ -527,19 +527,15 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
     const stop = () => { cleanup?.(); cleanup = null; };
 
     const evaluate = () => {
-      if (fine.matches && wide.matches && !reduced.matches) start();
+      if (!reduced.matches) start();
       else stop();
     };
 
     evaluate();
-    fine.addEventListener('change', evaluate);
-    wide.addEventListener('change', evaluate);
     reduced.addEventListener('change', evaluate);
 
     return () => {
       disposed = true;
-      fine.removeEventListener('change', evaluate);
-      wide.removeEventListener('change', evaluate);
       reduced.removeEventListener('change', evaluate);
       stop();
     };
