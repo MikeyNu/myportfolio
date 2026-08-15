@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, X } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { caseStudyProjectIds, projects } from '../data/portfolioContent';
+import { HeroPaintText } from './HeroPaintText';
 
 interface CaseStudyPageProps {
   projectId: string;
@@ -64,7 +65,7 @@ export function CaseStudyPage({ projectId, onBack, onNextProject }: CaseStudyPag
         <main className="project-reference-layout" aria-labelledby="project-title">
           <section className="project-reference-left">
             <p className="project-detail-category">3D Design / Visualization</p>
-            <h1 id="project-title" className="cinematic-display project-detail-title">{project.brand}</h1>
+            <HeroPaintText id="project-title" className="cinematic-display project-detail-title" text={project.brand} />
 
             <div className="project-reference-summary">
               <div>

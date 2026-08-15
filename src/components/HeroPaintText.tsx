@@ -3,12 +3,15 @@ import { useEffect, useRef } from 'react';
 /* ─── Simulation constants ─────────────────────────────────────────────────── */
 const FIELD_SIZE = 256;      // ping-pong RT resolution
 const BRUSH_RADIUS = 0.14;   // Gaussian spread in UV space (0-1)
-const SMEAR_STRENGTH = 0.18; // UV displacement applied to text texture
+const SMEAR_STRENGTH = 0.18; // UV displacement applied to text texture (mouse)
+const SMEAR_STRENGTH_TOUCH = 0.42; // same but for touch — wider smear
 const SMEAR_TAPS = 8;        // streak samples in the display pass
 const REMAIN_PER_SECOND = 0.04; // what fraction of velocity survives 1 s
 const FLOOR_PER_FRAME = 0.003;  // absolute floor subtracted each frame
-const DRAG_SCALE = 2.0;         // cursor px/s → velocity units
+const DRAG_SCALE = 2.0;         // cursor px/s → velocity units (mouse)
+const DRAG_SCALE_TOUCH = 5.5;   // same but for touch — fingers move slower
 const MAX_VELOCITY = 0.85;
+const MAX_VELOCITY_TOUCH = 1.4;
 const IDLE_GRACE_MS = 2800; // stop rAF this long after last motion
 const MAX_DT = 1 / 30;
 
@@ -147,12 +150,18 @@ function makeRT(gl: WebGL2RenderingContext, size: number, halfFloat: boolean) {
 
 /* ─── Component ─────────────────────────────────────────────────────────────── */
 interface HeroPaintTextProps {
+  /** Plain-text label — used for rasterisation and as aria-label when children are provided. */
   text: string;
+  /** Optional JSX children (e.g. <br />) rendered inside the heading.
+   *  When omitted, `text` is rendered directly. */
+  children?: React.ReactNode;
   className?: string;
   id?: string;
+  /** Heading level to render. Defaults to 'h1'. */
+  as?: 'h1' | 'h2';
 }
 
-export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
+export function HeroPaintText({ text, children, className, id, as: Tag = 'h1' }: HeroPaintTextProps) {
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -254,6 +263,13 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
       let loopRunning = false;
       let ready = false;
 
+      // Touch scroll-vs-swipe detection — reset per gesture on pointerdown.
+      let touchScrolling = false;  // current touch is a scroll → suppress smear
+      let touchDecided = false;    // gesture intent has been classified
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isTouch = false;         // last active pointer is touch → use touch constants
+
       /* ── Read foreground colour from the CSS custom property ──
        * Cannot use getComputedStyle(h1).color because once data-paint='on'
        * is set the h1 has color:transparent, giving rgba(0,0,0,0). */
@@ -288,7 +304,14 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
         const fontWeight = style.fontWeight;
         const fontStyle  = style.fontStyle;
         const spacing    = parseFloat(style.letterSpacing) || 0;
-        const content    = style.textTransform === 'uppercase' ? text.toUpperCase() : text;
+        /* Read the actual rendered text from the DOM — captures <br /> as \n.
+         * Falls back to the `text` prop if innerText is not yet available. */
+        const rawText = h1.innerText.trim() || text;
+        const xform   = style.textTransform;
+        const lines   = rawText
+          .split('\n')
+          .map(l => xform === 'uppercase' ? l.toUpperCase() : l)
+          .filter(l => l.length > 0);
 
         rctx.clearRect(0, 0, raster.width, raster.height);
         rctx.setTransform(dpr, 0, 0, dpr, 0, 0); /* only DPR — no CSS scale */
@@ -300,22 +323,26 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
         /* Use actualBoundingBox for placement so we don't overshoot the
          * natural height.  fontBoundingBox covers every glyph in the font
          * (including descenders we don't have here) and is ~40% taller. */
-        const metrics = rctx.measureText(content);
+        const sample  = lines[0] ?? text;
+        const metrics = rctx.measureText(sample);
         const ascent  = metrics.actualBoundingBoxAscent  || fontSize * 0.75;
         const descent = metrics.actualBoundingBoxDescent || fontSize * 0.1;
-        /* Centre within the natural line-height */
         const lineH   = parseFloat(style.lineHeight) || fontSize;
         const baseline = Math.round((lineH - (ascent + descent)) / 2 + ascent);
 
-        if (spacing) {
-          let cx = 0;
-          for (const ch of content) {
-            rctx.fillText(ch, cx, baseline);
-            cx += rctx.measureText(ch).width + spacing;
+        const drawLine = (content: string, y: number) => {
+          if (spacing) {
+            let cx = 0;
+            for (const ch of content) {
+              rctx.fillText(ch, cx, y);
+              cx += rctx.measureText(ch).width + spacing;
+            }
+          } else {
+            rctx.fillText(content, 0, y);
           }
-        } else {
-          rctx.fillText(content, 0, baseline);
-        }
+        };
+
+        lines.forEach((line, i) => drawLine(line, baseline + i * lineH));
 
         /* WebGL canvas: same natural backing size */
         canvas.width  = raster.width;
@@ -349,11 +376,14 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
         pendingDx = 0;
         pendingDy = 0;
 
-        /* Natural-space delta → velocity UV units */
-        let vx = (dx / natW) * DRAG_SCALE;
-        let vy = (-dy / natH) * DRAG_SCALE; /* flip Y: canvas Y down, UV Y up */
+        /* Natural-space delta → velocity UV units.
+         * Touch uses higher scale and velocity cap for a more dramatic smear. */
+        const dragScale = isTouch ? DRAG_SCALE_TOUCH : DRAG_SCALE;
+        const maxVel    = isTouch ? MAX_VELOCITY_TOUCH : MAX_VELOCITY;
+        let vx = (dx / natW) * dragScale;
+        let vy = (-dy / natH) * dragScale; /* flip Y: canvas Y down, UV Y up */
         const vm = Math.hypot(vx, vy);
-        if (vm > MAX_VELOCITY) { vx = vx / vm * MAX_VELOCITY; vy = vy / vm * MAX_VELOCITY; }
+        if (vm > maxVel) { vx = vx / vm * maxVel; vy = vy / vm * maxVel; }
 
         gl.bindVertexArray(vao);
         gl.disable(gl.BLEND);
@@ -388,7 +418,7 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
         gl.bindTexture(gl.TEXTURE_2D, rts[0].tex);
         gl.uniform1i(uD.field, 1);
         gl.uniform3f(uD.color, color[0], color[1], color[2]);
-        gl.uniform1f(uD.strength, SMEAR_STRENGTH);
+        gl.uniform1f(uD.strength, isTouch ? SMEAR_STRENGTH_TOUCH : SMEAR_STRENGTH);
         gl.drawArrays(gl.TRIANGLES, 0, 3);
 
         gl.bindVertexArray(null);
@@ -418,8 +448,38 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
       };
 
       /* ── Pointer tracking ── */
+
+      /* pointerdown: reset scroll-detection state per gesture and clear
+       * hasPrev so the very first delta after a new touch is always clean. */
+      const onDown = (e: PointerEvent) => {
+        isTouch = e.pointerType === 'touch';
+        if (isTouch) {
+          touchScrolling = false;
+          touchDecided = false;
+          touchStartX = e.clientX;
+          touchStartY = e.clientY;
+          hasPrev = false;
+        }
+      };
+
       const onMove = (e: PointerEvent) => {
         if (!ready) return;
+
+        /* Touch: classify as scroll or deliberate swipe on first movement past
+         * the dead zone. Once decided, keep the same classification for the
+         * rest of the gesture. Suppress smear entirely for scroll gestures. */
+        if (e.pointerType === 'touch') {
+          isTouch = true;
+          if (!touchDecided) {
+            const dx = Math.abs(e.clientX - touchStartX);
+            const dy = Math.abs(e.clientY - touchStartY);
+            if (dx > 6 || dy > 6) {
+              touchScrolling = dy > dx && dy > 8;
+              touchDecided = true;
+            }
+          }
+          if (touchScrolling) return;
+        }
 
         /* The canvas has the same CSS transform as h1.
          * getBoundingClientRect gives the VISUAL (post-scale) rect.
@@ -446,6 +506,16 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
         kickLoop();
       };
 
+      /* pointercancel fires when the browser claims the gesture for native
+       * scroll — treat any ongoing touch as a scroll from this point. */
+      const onCancel = (e: PointerEvent) => {
+        if (e.pointerType === 'touch') {
+          touchScrolling = true;
+          touchDecided = true;
+          hasPrev = false;
+        }
+      };
+
       const onLeave = () => { hasPrev = false; };
 
       const onVisibility = () => {
@@ -468,12 +538,16 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
         delete h1.dataset.paint;
       };
 
-      /* Listen on the whole hero section so the cursor is tracked across
-       * the full hero, not just the small .hero-reference-copy box. */
+      /* Use the widest reasonable surface: the hero section on the home page,
+       * the full cinematic-page section on other pages, falling back to root. */
       const surface: EventTarget =
-        h1.closest('.portfolio-video-hero') ?? document.documentElement;
-      surface.addEventListener('pointermove', onMove as EventListener, { passive: true });
-      surface.addEventListener('pointerleave', onLeave as EventListener, { passive: true });
+        h1.closest('.portfolio-video-hero') ??
+        h1.closest('.cinematic-page') ??
+        document.documentElement;
+      surface.addEventListener('pointerdown',  onDown   as EventListener, { passive: true });
+      surface.addEventListener('pointermove',  onMove   as EventListener, { passive: true });
+      surface.addEventListener('pointercancel', onCancel as EventListener, { passive: true });
+      surface.addEventListener('pointerleave', onLeave  as EventListener, { passive: true });
       document.addEventListener('visibilitychange', onVisibility);
       canvas.addEventListener('webglcontextlost', onContextLost);
 
@@ -503,8 +577,10 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
         fontsCancelled = true;
         cancelAnimationFrame(rafId);
         clearTimeout(resizeTimer);
-        surface.removeEventListener('pointermove', onMove as EventListener);
-        surface.removeEventListener('pointerleave', onLeave as EventListener);
+        surface.removeEventListener('pointerdown',   onDown   as EventListener);
+        surface.removeEventListener('pointermove',   onMove   as EventListener);
+        surface.removeEventListener('pointercancel', onCancel as EventListener);
+        surface.removeEventListener('pointerleave',  onLeave  as EventListener);
         document.removeEventListener('visibilitychange', onVisibility);
         canvas.removeEventListener('webglcontextlost', onContextLost);
         ro.disconnect();
@@ -543,9 +619,14 @@ export function HeroPaintText({ text, className, id }: HeroPaintTextProps) {
 
   return (
     <>
-      <h1 ref={h1Ref} id={id} className={className}>
-        {text}
-      </h1>
+      <Tag
+        ref={h1Ref}
+        id={id}
+        className={`paint-text${className ? ` ${className}` : ''}`}
+        aria-label={children ? text : undefined}
+      >
+        {children ?? text}
+      </Tag>
       <canvas ref={canvasRef} className="hero-paint-canvas" aria-hidden="true" />
     </>
   );

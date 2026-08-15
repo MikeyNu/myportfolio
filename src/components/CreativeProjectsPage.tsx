@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { HeroPaintText } from './HeroPaintText';
 import { ImageWithFallback } from './shared/ImageWithFallback';
 import { projects, caseStudyProjectIds, pageIndex, type ServiceId } from '../data/portfolioContent';
 import { RENDERS } from '../data/renderAssets';
@@ -53,7 +54,7 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
       <div className="cinematic-container cinematic-grid">
         <aside className="work-intro-rail">
           <p className="cinematic-kicker">Work / Selected projects</p>
-          <h1 className="cinematic-display work-heading">Selected work</h1>
+          <HeroPaintText className="cinematic-display work-heading" text="Selected work" />
           <p className="cinematic-copy work-intro-copy">
             A selection of production work built with precision across 3D, spatial design, visualization, and interactive disciplines. Software and VR services are available even where public case studies are not yet documented in this archive.
           </p>

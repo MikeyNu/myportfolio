@@ -103,10 +103,9 @@
   margin-top: 34px;
 }
 
-/* The h1 keeps its layout footprint for accessibility and so the button below
- * does not shift. Once the GPU layer is live the text is made transparent so
- * only the displaced canvas copy is visible. */
-.hero-reference-title[data-paint='on'] {
+/* The heading keeps its layout footprint for accessibility. Once the GPU layer
+ * is live the text is made transparent so only the displaced canvas is visible. */
+.paint-text[data-paint='on'] {
   color: transparent;
 }
 
@@ -115,11 +114,20 @@
   z-index: 5;
   display: none;
   pointer-events: none;
-  /* left / top / width / height / transform are set by JS to mirror the h1 */
+  /* left / top / width / height / transform are set by JS to mirror the heading */
 }
 
-.hero-reference-title[data-paint='on'] ~ .hero-paint-canvas {
+.paint-text[data-paint='on'] ~ .hero-paint-canvas {
   display: block;
+}
+
+/* Positioning contexts for paint canvases on non-hero pages */
+.about-copy,
+.services-hero-copy,
+.work-intro-rail,
+.contact-intro,
+.project-reference-left {
+  position: relative;
 }
 
 .hero-page-index,
@@ -845,10 +853,16 @@
 }
 
 @media (max-width: 900px) {
-  /* hero-reference-copy top removed — base 25% works at all viewport sizes,
-   * eliminating the abrupt 7% upward jump at the 900px breakpoint */
+  .hero-reference-overlay {
+    display: flex;
+    align-items: center;
+  }
 
-  /* font-size handled by the base clamp — no override needed here */
+  .hero-reference-copy {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
 
   .hero-reference-action {
     min-width: min(100%, 250px);

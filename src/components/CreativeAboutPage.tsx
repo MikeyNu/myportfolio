@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { capabilities, pageIndex, processSteps, services } from '../data/portfolioContent';
 import { RENDERS } from '../data/renderAssets';
 import { useParallax } from '../hooks/useParallax';
+import { HeroPaintText } from './HeroPaintText';
 
 /* Ease curve: smooth deceleration, matches the site's cinematic pacing. */
 const EASE = [0.25, 0.46, 0.45, 0.94] as const;
@@ -50,9 +51,9 @@ export function CreativeAboutPage() {
       >
         <div className="about-copy">
           <p className="cinematic-kicker">About / Approach</p>
-          <h1 id="about-title" className="cinematic-display about-heading">
+          <HeroPaintText id="about-title" className="cinematic-display about-heading" text="Design as experience engineering.">
             Design as<br />experience engineering.
-          </h1>
+          </HeroPaintText>
           <p className="cinematic-copy about-lead">
             I design digital and spatial experiences where software, 3D production, and immersive technology align to make complex work clear, useful, and memorable.
           </p>

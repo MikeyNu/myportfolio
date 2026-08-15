@@ -413,6 +413,17 @@ textarea:focus-visible {
   height: var(--ci-header-height);
   background: transparent;
   color: var(--foreground);
+  transition: background 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+  border-bottom: 1px solid transparent;
+}
+
+.cinematic-nav[data-scrolled="true"] {
+  background: #c5c5c5;
+  border-bottom-color: var(--ci-rule);
+}
+
+.dark .cinematic-nav[data-scrolled="true"] {
+  background: #000;
 }
 
 .cinematic-nav-inner {

@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { processSteps, services, pageIndex } from '../data/portfolioContent';
 import { RENDERS } from '../data/renderAssets';
+import { HeroPaintText } from './HeroPaintText';
 
 interface CreativeServicesPageProps {
   onContact: () => void;
@@ -17,9 +18,9 @@ export function CreativeServicesPage({ onContact }: CreativeServicesPageProps) {
       <section className="cinematic-container cinematic-grid services-hero" aria-labelledby="services-title">
         <div className="services-hero-copy">
           <p className="cinematic-kicker">What I do</p>
-          <h1 id="services-title" className="cinematic-display services-heading">
+          <HeroPaintText id="services-title" className="cinematic-display services-heading" text="Digital experiences that feel real.">
             Digital experiences<br />that feel real.
-          </h1>
+          </HeroPaintText>
           <p className="cinematic-copy services-lead">
             I design and build software, 3D environments, and VR experiences as one connected practice. The medium changes with the problem, but the goal stays the same: clear systems, deliberate visual direction, and production work that can survive beyond the concept stage.
           </p>

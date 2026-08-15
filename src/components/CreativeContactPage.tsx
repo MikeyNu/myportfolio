@@ -5,6 +5,7 @@ import { useMotionValue, useTransform, motion, animate, useReducedMotion } from 
 import { openCalendly } from '../config/calendly';
 import { contactProjectTypes, pageIndex } from '../data/portfolioContent';
 import { RENDERS } from '../data/renderAssets';
+import { HeroPaintText } from './HeroPaintText';
 
 type SubmissionStatus = 'idle' | 'success' | 'error';
 
@@ -106,9 +107,9 @@ export function CreativeContactPage() {
           onMouseLeave={handleMouseLeave}
         >
           <p className="cinematic-kicker">Contact / Inquiry</p>
-          <h1 id="contact-title" className="cinematic-display contact-heading">
+          <HeroPaintText id="contact-title" className="cinematic-display contact-heading" text="Let's craft something real.">
             Let&apos;s craft<br />something real.
-          </h1>
+          </HeroPaintText>
           <p className="cinematic-copy contact-copy">
             Bring the brief, idea, problem, or source material. I work across software development, 3D design and visualization, and VR solutions, including multidisciplinary projects that need more than one of those disciplines.
           </p>

@@ -23,8 +23,15 @@ export function ImprovedCreativeNavigation({
   onThemeChange
 }: ImprovedCreativeNavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const lastFocusedElement = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -63,7 +70,7 @@ export function ImprovedCreativeNavigation({
 
   return (
     <>
-      <nav className="cinematic-nav" aria-label="Primary navigation">
+      <nav className="cinematic-nav" aria-label="Primary navigation" data-scrolled={scrolled}>
         <div className="cinematic-nav-inner">
           <button
             type="button"
