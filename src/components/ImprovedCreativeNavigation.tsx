@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type MouseEvent } from 'react';
 import { X } from 'lucide-react';
 import { ThemeToggle } from './ThemeToggle';
+import { getPagePath, type Page } from '../seo/siteSeo';
 
 interface ImprovedCreativeNavigationProps {
   currentPage: string;
@@ -9,12 +10,21 @@ interface ImprovedCreativeNavigationProps {
   onThemeChange: (theme: 'light' | 'dark') => void;
 }
 
-const navItems = [
+const navItems: { id: Exclude<Page, 'home' | 'case-study'>; label: string }[] = [
   { id: 'projects', label: 'Work' },
   { id: 'services', label: 'Services' },
   { id: 'about', label: 'About' },
   { id: 'contact', label: 'Contact' }
 ];
+
+function shouldUseClientNavigation(event: MouseEvent<HTMLAnchorElement>) {
+  return !event.defaultPrevented
+    && event.button === 0
+    && !event.metaKey
+    && !event.ctrlKey
+    && !event.shiftKey
+    && !event.altKey;
+}
 
 export function ImprovedCreativeNavigation({
   currentPage,
@@ -47,7 +57,7 @@ export function ImprovedCreativeNavigation({
   useEffect(() => {
     if (isMobileMenuOpen) {
       lastFocusedElement.current = document.activeElement as HTMLElement;
-      mobileMenuRef.current?.querySelector<HTMLButtonElement>('.cinematic-mobile-menu-link')?.focus();
+      mobileMenuRef.current?.querySelector<HTMLElement>('.cinematic-mobile-menu-link')?.focus();
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -59,43 +69,45 @@ export function ImprovedCreativeNavigation({
     };
   }, [isMobileMenuOpen]);
 
-  const handlePageChange = (page: string) => {
+  const handleLink = (event: MouseEvent<HTMLAnchorElement>, page: Page) => {
+    if (!shouldUseClientNavigation(event)) return;
+    event.preventDefault();
     onPageChange(page);
     setIsMobileMenuOpen(false);
   };
 
   const isActivePage = (page: string) => {
-    return currentPage === page || ((currentPage === 'home' || currentPage === 'case-study') && page === 'projects');
+    return currentPage === page || (currentPage === 'case-study' && page === 'projects');
   };
 
   return (
     <>
       <nav className="cinematic-nav" aria-label="Primary navigation" data-scrolled={scrolled}>
         <div className="cinematic-nav-inner">
-          <button
-            type="button"
+          <a
             className="cinematic-brand"
-            onClick={() => handlePageChange('home')}
+            href={getPagePath('home')}
+            onClick={(event) => handleLink(event, 'home')}
             aria-label="Mikey Nu, home"
           >
             MN
-          </button>
+          </a>
 
           <div className="cinematic-nav-actions">
             <div className="cinematic-nav-links">
               {navItems.map((item) => {
                 const active = isActivePage(item.id);
                 return (
-                  <button
+                  <a
                     key={item.id}
-                    type="button"
+                    href={getPagePath(item.id)}
                     className="cinematic-nav-link"
                     data-active={active}
-                    onClick={() => handlePageChange(item.id)}
+                    onClick={(event) => handleLink(event, item.id)}
                     aria-current={active ? 'page' : undefined}
                   >
                     {item.label}
-                  </button>
+                  </a>
                 );
               })}
             </div>
@@ -114,9 +126,9 @@ export function ImprovedCreativeNavigation({
                 <X size={19} aria-hidden="true" />
               ) : (
                 <svg width="19" height="13" viewBox="0 0 19 13" fill="none" aria-hidden="true">
-                  <rect x="0"  y="0"   width="19" height="1.5" fill="currentColor" />
-                  <rect x="6"  y="5.5" width="13" height="1.5" fill="currentColor" />
-                  <rect x="0"  y="11"  width="19" height="1.5" fill="currentColor" />
+                  <rect x="0" y="0" width="19" height="1.5" fill="currentColor" />
+                  <rect x="6" y="5.5" width="13" height="1.5" fill="currentColor" />
+                  <rect x="0" y="11" width="19" height="1.5" fill="currentColor" />
                 </svg>
               )}
             </button>
@@ -134,17 +146,17 @@ export function ImprovedCreativeNavigation({
             {navItems.map((item, index) => {
               const active = isActivePage(item.id);
               return (
-                <button
+                <a
                   key={item.id}
-                  type="button"
+                  href={getPagePath(item.id)}
                   className="cinematic-mobile-menu-link"
                   data-active={active}
-                  onClick={() => handlePageChange(item.id)}
+                  onClick={(event) => handleLink(event, item.id)}
                   aria-current={active ? 'page' : undefined}
                 >
                   <span>{item.label}</span>
                   <span className="cinematic-meta">0{index + 1}</span>
-                </button>
+                </a>
               );
             })}
           </div>
