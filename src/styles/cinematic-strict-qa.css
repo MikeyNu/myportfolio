@@ -54,7 +54,7 @@
 
 .dark {
   background-color: var(--ci-void);
-  background-image: url('/renders/assets/approach-assets (2).png');
+  background-image: url('/renders/assets/approach-assets (2).webp');
   background-size: 720px 720px;
 }
 
@@ -89,7 +89,7 @@
 .hero-reference-title {
   margin-top: 22px;
   font-size: clamp(5rem, 10vw, 9rem);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.025em;
   line-height: 0.84;
 }

@@ -13,14 +13,14 @@ interface Design {
 }
 
 const DESIGNS: Design[] = [
-  { id: 'aurelia',   title: 'Aurelia',   image: '/designs/AURELIA.png',   url: null },
-  { id: 'luna',      title: 'Luna',      image: '/designs/LUNA.png',      url: null },
-  { id: 'solstice',  title: 'Solstice',  image: '/designs/SOLSTICE.png',  url: null },
-  { id: 'stillform', title: 'Stillform', image: '/designs/STILLFORM.png', url: null },
-  { id: 'vorax',     title: 'Vorax',     image: '/designs/VORAX.png',     url: null },
-  { id: 'auren',     title: 'Auren',     image: '/designs/AUREN.png',     url: null },
-  { id: 'aurora',    title: 'Aurora',    image: '/designs/AURORA.png',    url: null },
-  { id: 'kalo',      title: 'Kalo',      image: '/designs/KALO.png',      url: null },
+  { id: 'luna',      title: 'Luna',      image: '/designs/LUNA.webp',      url: null },
+  { id: 'auren',     title: 'Auren',     image: '/designs/AUREN.webp',     url: null },
+  { id: 'solstice',  title: 'Solstice',  image: '/designs/SOLSTICE.webp',  url: null },
+  { id: 'stillform', title: 'Stillform', image: '/designs/STILLFORM.webp', url: null },
+  { id: 'vorax',     title: 'Vorax',     image: '/designs/VORAX.webp',     url: null },
+  { id: 'aurelia',   title: 'Aurelia',   image: '/designs/AURELIA.webp',   url: null },
+  { id: 'aurora',    title: 'Aurora',    image: '/designs/AURORA.webp',    url: null },
+  { id: 'kalo',      title: 'Kalo',      image: '/designs/KALO.webp',      url: null },
   /* ── Coming soon ── */
   { id: 'tbd-1', title: 'Coming Soon', image: null, url: null },
   { id: 'tbd-2', title: 'Coming Soon', image: null, url: null },
