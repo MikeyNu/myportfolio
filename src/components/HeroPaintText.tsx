@@ -290,44 +290,97 @@ export function HeroPaintText({ text, children, className, id, as: Tag = 'h1' }:
         if (!rctx) return;
 
         const style = getComputedStyle(h1);
-
-        /* Use NATURAL (pre-scale) dimensions so glyphs aren't clipped */
-        natW = h1.offsetWidth  || 1;
-        natH = h1.offsetHeight || 1;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-        raster.width  = Math.max(1, Math.round(natW * dpr));
-        raster.height = Math.max(1, Math.round(natH * dpr));
-
-        const fontSize   = parseFloat(style.fontSize)   || 16;
+        const layoutW = h1.offsetWidth || 1;
+        const layoutH = h1.offsetHeight || 1;
+        const fontSize = parseFloat(style.fontSize) || 16;
         const fontFamily = style.fontFamily;
         const fontWeight = style.fontWeight;
-        const fontStyle  = style.fontStyle;
-        const spacing    = parseFloat(style.letterSpacing) || 0;
-        /* Read the actual rendered text from the DOM — captures <br /> as \n.
-         * Falls back to the `text` prop if innerText is not yet available. */
-        const rawText = h1.innerText.trim() || text;
-        const xform   = style.textTransform;
-        const lines   = rawText
-          .split('\n')
-          .map(l => xform === 'uppercase' ? l.toUpperCase() : l)
-          .filter(l => l.length > 0);
+        const fontStyle = style.fontStyle;
+        const spacing = parseFloat(style.letterSpacing) || 0;
+        const lineH = parseFloat(style.lineHeight) || fontSize;
+        const font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
+
+        /*
+         * Read the browser's actual rendered line breaks, including soft wraps.
+         * innerText only exposes explicit <br> breaks, so rasterising it directly
+         * clips constrained headings such as SELECTED WORK into a single line.
+         */
+        const renderedLines = () => {
+          const buckets: Array<{ top: number; text: string }> = [];
+          const walker = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT);
+          const range = document.createRange();
+          let node = walker.nextNode() as Text | null;
+
+          while (node) {
+            for (let index = 0; index < node.data.length; index += 1) {
+              range.setStart(node, index);
+              range.setEnd(node, index + 1);
+              const rect = range.getBoundingClientRect();
+              if (!rect.height) continue;
+
+              let bucket = buckets.find((item) => Math.abs(item.top - rect.top) < 1);
+              if (!bucket) {
+                bucket = { top: rect.top, text: '' };
+                buckets.push(bucket);
+              }
+              bucket.text += node.data[index];
+            }
+            node = walker.nextNode() as Text | null;
+          }
+
+          const xform = style.textTransform;
+          return buckets
+            .sort((a, b) => a.top - b.top)
+            .map((item) => item.text.trim())
+            .filter(Boolean)
+            .map((line) => xform === 'uppercase' ? line.toUpperCase() : line);
+        };
+
+        rctx.font = font;
+        const measureLine = (content: string) => {
+          if (!spacing) return rctx.measureText(content).width;
+          let width = 0;
+          for (const character of content) {
+            width += rctx.measureText(character).width + spacing;
+          }
+          return width;
+        };
+
+        const fallbackText = h1.innerText.trim() || text;
+        const lines = renderedLines();
+        if (!lines.length) {
+          lines.push(...fallbackText.split('\n').map((line) => line.trim()).filter(Boolean));
+        }
+
+        /*
+         * The layout box can be narrower than an unbreakable word, and glyph
+         * antialiasing can extend a few pixels beyond measured text. Size the
+         * GPU layer to the real content width plus a small safety edge.
+         */
+        const measuredWidth = Math.max(1, ...lines.map(measureLine));
+        const edgePadX = Math.ceil(Math.max(8, fontSize * 0.06));
+        const edgePadY = Math.ceil(Math.max(4, fontSize * 0.04));
+        natW = Math.ceil(Math.max(layoutW, h1.scrollWidth, measuredWidth) + edgePadX);
+        natH = Math.ceil(Math.max(layoutH, h1.scrollHeight, lines.length * lineH) + edgePadY);
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        raster.width = Math.max(1, Math.round(natW * dpr));
+        raster.height = Math.max(1, Math.round(natH * dpr));
 
         rctx.clearRect(0, 0, raster.width, raster.height);
         rctx.setTransform(dpr, 0, 0, dpr, 0, 0); /* only DPR — no CSS scale */
-        rctx.font = `${fontStyle} ${fontWeight} ${fontSize}px ${fontFamily}`;
+        rctx.font = font;
         rctx.textBaseline = 'alphabetic';
         rctx.textAlign = 'left';
         rctx.fillStyle = '#fff';
 
         /* Use actualBoundingBox for placement so we don't overshoot the
-         * natural height.  fontBoundingBox covers every glyph in the font
+         * natural height. fontBoundingBox covers every glyph in the font
          * (including descenders we don't have here) and is ~40% taller. */
-        const sample  = lines[0] ?? text;
+        const sample = lines[0] ?? text;
         const metrics = rctx.measureText(sample);
-        const ascent  = metrics.actualBoundingBoxAscent  || fontSize * 0.75;
+        const ascent = metrics.actualBoundingBoxAscent || fontSize * 0.75;
         const descent = metrics.actualBoundingBoxDescent || fontSize * 0.1;
-        const lineH   = parseFloat(style.lineHeight) || fontSize;
         const baseline = Math.round((lineH - (ascent + descent)) / 2 + ascent);
 
         const drawLine = (content: string, y: number) => {
