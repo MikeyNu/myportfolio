@@ -56,7 +56,7 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
           <p className="cinematic-kicker">Work / Selected projects</p>
           <HeroPaintText className="cinematic-display work-heading" text="Selected work" />
           <p className="cinematic-copy work-intro-copy">
-            A selection of production work built with precision across 3D, spatial design, visualization, and interactive disciplines. Software and VR services are available even where public case studies are not yet documented in this archive.
+            A selection of production work across 3D design, spatial experiences, visualization, branded environments, and interactive disciplines.
           </p>
         </aside>
 
@@ -81,10 +81,10 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
 
           {filteredProjects.length === 0 ? (
             <div className="work-empty" aria-live="polite">
-              <p className="cinematic-kicker">Portfolio evidence</p>
-              <h2 className="cinematic-display work-heading">Public case studies coming later.</h2>
+              <p className="cinematic-kicker">Selected work</p>
+              <h2 className="cinematic-display work-heading">More projects coming soon.</h2>
               <p className="cinematic-copy work-intro-copy">
-                This portfolio does not currently contain a documented public case study for this discipline. The service remains available, but no project is invented simply to fill the layout.
+                Additional case studies for this discipline are being prepared. Explore the service scope in the meantime.
               </p>
               <a
                 className="cinematic-text-link work-project-action"
@@ -139,9 +139,6 @@ export function CreativeProjectsPage({ onViewCaseStudy, onViewServices }: Creati
                 <section className="work-archive" aria-labelledby="work-archive-title">
                   <div className="work-archive-heading">
                     <p id="work-archive-title" className="cinematic-kicker">Archive</p>
-                    <p className="cinematic-copy">
-                      Additional verified portfolio work, kept deliberately compact so the hierarchy remains image-led rather than card-led.
-                    </p>
                   </div>
 
                   {archiveProjects.map((project, index) => {
